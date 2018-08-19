@@ -1,0 +1,28 @@
+<div class="row">
+
+
+    <div class="col-md-6 offset-3">
+
+        <div class="country-info">
+
+            <h2 class="country-title"><%= @country.name %></h2>
+            <p class="country-desc"><%= @country.description %></p>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="row justify-content-center">
+    <div class="btn-group">
+
+        <%= link_to "Back", root_path, class: "btn btn-default" %>
+
+        <%= link_to "Edit", edit_country_path(@country), class: "btn btn-default" %>
+        <%= link_to "Delete", country_path(@country), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+
+    </div>    
+</div>
+

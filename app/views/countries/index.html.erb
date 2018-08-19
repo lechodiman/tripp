@@ -1,3 +1,18 @@
+<h2>Welcome to our app</h2>
+
 <h1>Countries</h1>
 
-<h2>Welcome to our app</h2>
+
+<% if @countries.count == 0 %>
+    <h1>There are no countries currently in this category</h1>
+<% else %>
+
+    <div class="row">
+        <% @countries.each do |country| %>
+            <div class="col-md-3">
+                <a href="<%= country_path(country) %>">
+                <%= country.name %></a>                
+            </div>
+        <% end %>            
+    </div>
+<% end %>
