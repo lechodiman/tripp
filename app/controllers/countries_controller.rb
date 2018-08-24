@@ -18,6 +18,7 @@ class CountriesController < ApplicationController
 	   @country = Country.new(country_params)
 
 		if @country.save
+			flash[:success] = "Country created successfully!"
 			redirect_to root_path
 		else
 			render 'new'
