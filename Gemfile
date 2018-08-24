@@ -36,6 +36,7 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'simple_form', '~> 4.0', '>= 4.0.1'
+gem 'devise', '~> 4.5'
 
 
 # Use Capistrano for deployment
