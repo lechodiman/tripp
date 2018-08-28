@@ -6,5 +6,5 @@
 - Nicolas Parraguez
 
 ## App
-App deployed in [heroku](https://glacial-reef-18763.herokuapp.com/)
+App deployed in [heroku](https://fierce-dawn-75239.herokuapp.com/)
 
