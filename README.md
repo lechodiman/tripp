@@ -1,24 +1,10 @@
-# README
+# Grupo 15
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Members:
+- Luis Chodiman
+- Luis Loyola
+- Nicolas Parraguez
 
-Things you may want to cover:
+## App
+App deployed in [heroku](https://glacial-reef-18763.herokuapp.com/)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
