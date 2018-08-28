@@ -5,44 +5,15 @@ Rails:
 Metrics/LineLength:
   Max: 120
 
-# Too short methods lead to extraction of single-use methods, which can make
-# the code easier to read (by naming things), but can also clutter the class
-Metrics/MethodLength: 
-  Max: 20
-
-# The guiding principle of classes is SRP, SRP can't be accurately measured by LoC
-Metrics/ClassLength:
-  Max: 1500
-
-# Single quotes being faster is hardly measurable and only affects parse time.
-# Enforcing double quotes reduces the times where you need to change them
-# when introducing an interpolation. Use single quotes only if their semantics
-# are needed.
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
-# We do not need to support Ruby 1.9, so this is good to use.
-Style/SymbolArray:
-  Enabled: true
-
 # Mixing the styles looks just silly.
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys
-
-# has_key? and has_value? are far more readable than key? and value?
-Style/PreferredHashMethods:
-  Enabled: false
-
-# String#% is by far the least verbose and only object oriented variant.
-Style/FormatString:
-  EnforcedStyle: percent
 
 Style/CollectionMethods:
   Enabled: true
   PreferredMethods:
     # inject seems more common in the community.
     reduce: "inject"
-
 
 # Either allow this style or don't. Marking it as safe with parenthesis
 # is silly. Let's try to live without them for now.
@@ -84,27 +55,9 @@ Style/MethodCalledOnDoEndBlock:
 Style/SingleLineBlockParams:
   Enabled: false
 
-# Shadowing outer local variables with block parameters is often useful
-# to not reinvent a new name for the same thing, it highlights the relation
-# between the outer variable and the parameter. The cases where it's actually
-# confusing are rare, and usually bad for other reasons already, for example
-# because the method is too long.
-Lint/ShadowingOuterLocalVariable:
+Style/Tab:
   Enabled: false
 
-# Check with yard instead.
-Style/Documentation:
-  Enabled: false 
-
-# This is just silly. Calling the argument `other` in all cases makes no sense.
-Style/BinaryOperatorParameterName:
-  Enabled: false 
-
-# There are valid cases, for example debugging Cucumber steps,
-# also they'll fail CI anyway
-Lint/Debugger:
-  Enabled: false
-
-# Style preference
-Style/MethodDefParentheses:
-  Enabled: false
+Style/IndentationWidth:
+  # Number of spaces for each indentation level.
+  Width: 4
