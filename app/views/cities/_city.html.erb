@@ -1,0 +1,15 @@
+<div class="city">
+    
+    <div class="city-name">
+        <p><%= city.name %></p>
+    </div>
+
+    <div class="links btn-group">
+
+        <%= link_to "Edit", edit_country_city_path(city.country, city), class: "btn btn-custom" %>
+        <%= link_to "Delete", country_city_path(city.country, city), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+
+    </div>
+
+    
+</div>
