@@ -4,6 +4,10 @@
         <p><%= city.name %></p>
     </div>
 
+    <div>
+        <%= link_to "See more", country_city_path(city.country, city)  %>
+    </div>
+
     <div class="links btn-group">
 
         <%= link_to "Edit", edit_country_city_path(city.country, city), class: "btn btn-custom" %>
