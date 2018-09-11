@@ -5,3 +5,16 @@
         <p><%= @city.description %></p>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="hotels">
+            <h1>Hotels</h1>
+            <%= render(@city.hotels) %>
+            <div>
+                <%= link_to "Add Hotel", new_country_city_hotel_path(@city.country,@city), class:"btn-custom"  %>
+            </div>
+        </div>
+
+    </div>
+</div>

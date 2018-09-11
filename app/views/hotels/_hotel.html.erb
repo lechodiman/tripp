@@ -1,0 +1,19 @@
+<div class="hotel">
+    
+    <div class="hotel-name">
+        <p><%= hotel.name %></p>
+    </div>
+
+    <div>
+        <%= link_to "See more", country_city_hotel_path(hotel.city, hotel)  %>
+    </div>
+
+    <div class="links btn-group">
+
+        <%= link_to "Edit", edit_country_city_hotel_path(hotel.city, hotel), class: "btn btn-custom" %>
+        <%= link_to "Delete", country_city_hotel_path(hotel.city, hotel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+
+    </div>
+
+    
+</div>
