@@ -19,9 +19,8 @@
 
     <%= f.input :username,
                 hint: "leave it blank if you don't want to change it",
-                required: true
-                input_html: { class: "new-username" } %>
-
+                required: false
+                input_html: { autocomplete: "new-username" } %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false
