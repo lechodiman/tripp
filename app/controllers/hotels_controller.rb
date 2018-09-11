@@ -15,7 +15,7 @@ class HotelsController < ApplicationController
 
   def update
   	 if @hotel.update(hotel_params)
-            redirect_to hotel_path(@hotel)
+            redirect_to country_city_hotel_path(@hotel.city.country, @hotel.city , @hotel)
         else
             render 'edit'
         end
@@ -24,7 +24,7 @@ class HotelsController < ApplicationController
 
   def destroy
         @hotel.destroy
-        redirect_to city_path(@city)
+        redirect_to root_path
   end
 
 

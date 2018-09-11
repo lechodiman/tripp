@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
     
-  get 'hotels/index'
-
-  get 'hotels/new'
-
-  get 'hotels/show'
+  
 
     devise_for :users
     
