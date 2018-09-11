@@ -1,5 +1,12 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
+<% if has_role?(:admin) %>
+  <div class="notification">
+    <p>You are currently an <strong>admin</strong> of the Travel application.</p>
+  </div>
+  <br />
+<% end %>
+
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
@@ -9,6 +16,11 @@
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
+
+    <%= f.input :username,
+                hint: "leave it blank if you don't want to change it",
+                required: true
+                input_html: { class: "new-username" } %>
 
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
