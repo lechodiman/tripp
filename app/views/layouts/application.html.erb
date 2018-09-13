@@ -22,9 +22,12 @@
       <li class="nav-item active">
         <%= link_to "Home", root_path, class: "nav-link" %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Add Country", new_country_path, class: "nav-link" %>
-      </li>
+
+      <% if has_role?(:admin) %>
+        <li class="nav-item">
+          <%= link_to "Add Country", new_country_path, class: "nav-link" %>
+        </li>        
+      <% end %>
 
       <% if user_signed_in? %>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link"  %></li>
