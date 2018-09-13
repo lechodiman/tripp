@@ -7,6 +7,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   </head>
 
 <body>
@@ -22,37 +24,40 @@
       <li class="nav-item active">
         <%= link_to "Home", root_path, class: "nav-link" %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Add Country", new_country_path, class: "nav-link" %>
-      </li>
 
-      <% if user_signed_in? %>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link"  %></li>
-      <% else %>  
-        <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
-        <li><%= link_to "Log In", new_user_session_path, class: "nav-link"  %></li>
+      <% if has_role?(:admin) %>
+        <li class="nav-item">
+          <%= link_to "Add Country", new_country_path, class: "nav-link" %>
+        </li>        
       <% end %>
 
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
     </ul>
+
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+    
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+
+        <li class="nav-item dropdown">
+          <%= link_to "#{image_tag(current_user.avatar, alt: current_user.username, class: "img-fluid img-thumbnail nav-gravatar")} Account".html_safe, edit_user_registration_path, class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", 'aria-haspopup'=> true, 'aria-expanded'=> false, 'data-toggle'=> "dropdown"  %>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to current_user.username, edit_user_registration_path, class:"dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+          </div>
+        </li>
+
+      <% else %>
+
+        <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
+        <li><%= link_to "Log In", new_user_session_path, class: "nav-link"  %></li>
+
+      <% end %>
+    </ul>
+
   </div>
 </nav>
 
