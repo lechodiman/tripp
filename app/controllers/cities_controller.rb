@@ -27,7 +27,7 @@ class CitiesController < ApplicationController
 
     def update
         if @city.update(city_params)
-            redirect_to city_path(@city)
+            redirect_to country_city_path(@city.country,@city)
         else
             render 'edit'
         end

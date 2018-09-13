@@ -1,0 +1,15 @@
+<div class="col-md-6 offset-3">
+
+    <div class="edit-hotel-form">
+
+        <h1>Edit hotel</h1>
+
+        <%= simple_form_for([@hotel.city.country, @hotel.city , @hotel]) do |f| %>
+            <%= f.input :name %>
+            <%= f.input :description %>
+            <%= f.button :submit, :class => "btn btn-primary" %>
+        <% end %>   
+
+    </div>
+
+</div>
