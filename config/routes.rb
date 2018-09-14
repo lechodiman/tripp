@@ -9,6 +9,10 @@ Rails.application.routes.draw do
             resources :hotels do
             	
             end
+
+            resources :citywalks do
+                
+            end
         	
         end
     end
