@@ -1,0 +1,10 @@
+<h3>Reviews</h3>
+
+<% reviewable.reviews.each do |review| %>
+    <div class="card">
+
+        <div class="card-body">
+            <%= review.body %>
+        </div>
+    </div>
+<% end %>

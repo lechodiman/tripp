@@ -4,4 +4,7 @@
     <div class="hotel-description">
         <p><%= @hotel.description %></p>
     </div>
+
+    <%= render partial: "reviews/reviews", locals: {reviewable: @hotel} %>
+
 </div>

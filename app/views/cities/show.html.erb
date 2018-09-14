@@ -4,10 +4,9 @@
     <div class="city-description">
         <p><%= @city.description %></p>
     </div>
-</div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="hotels">
             <h1>Hotels</h1>
             <%= render(@city.hotels) %>
@@ -18,8 +17,7 @@
 
     </div>
 
-<div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="citywalks">
             <h1>Citywalks</h1>
             <%= render(@city.citywalks) %>
@@ -29,4 +27,9 @@
         </div>
 
     </div>
+</div>
+
+<hr>
+
+<%= render partial: "reviews/reviews", locals: {reviewable: @city} %>
 </div>

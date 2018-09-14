@@ -4,4 +4,8 @@
     <div class="citywalk-description">
         <p><%= @citywalk.description %></p>
     </div>
+
+    <%= render partial: "reviews/reviews", locals: {reviewable: @citywalk} %>
+
+
 </div>
