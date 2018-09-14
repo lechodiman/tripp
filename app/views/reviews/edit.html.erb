@@ -1,0 +1,14 @@
+<div class="col-md-6 offset-3">
+
+    <div class="edit-citywalk-form">
+
+        <h1>Edit citywalk</h1>
+
+        <%= simple_form_for [@reviewable.city.country, @reviewable.city, @reviewable,  Review.new] do |f| %>
+            <%= f.input :body, placeholder: "Add a review", label: false %>
+            <%= f.button :submit, :class => "btn btn-primary" %>
+        <% end %> 
+
+    </div>
+
+</div>

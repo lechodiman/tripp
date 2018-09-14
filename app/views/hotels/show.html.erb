@@ -1,0 +1,12 @@
+<div class="container">
+    <h1><%= @hotel.name %></h1>
+
+    <div class="hotel-description">
+        <p><%= @hotel.description %></p>
+    </div>
+
+    <%= render partial: "reviews/reviews", locals: {reviewable: @hotel} %>
+
+    <%= render partial: "reviews/form", locals: {reviewable: @hotel} %>
+
+</div>
