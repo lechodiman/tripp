@@ -7,13 +7,19 @@
     <div class="row">
         <% @posts.each do |post| %>
             <div class="well">
-            	<p>author: <%=post.user.name  %></p>
+            	<p>author: <%=post.user.username%></p>
             	<p>content: <%=post.content%></p>                   
             </div>
+           
+        	<%= link_to "Edit", edit_post_path(post), class: "btn btn-default" %>
+        	<%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+
         <% end %>            
     </div>
 
 
 <% end %>
+
+
 
 <%= link_to "Add Posts", new_post_path, class: "btn btn-default" %>
