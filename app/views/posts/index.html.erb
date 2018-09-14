@@ -1,0 +1,19 @@
+<h1>Post</h1>
+
+<% if @posts.count == 0 %>
+    <h1>There are no posts currently in this category</h1>
+<% else %>
+
+    <div class="row">
+        <% @posts.each do |post| %>
+            <div class="well">
+            	<p>author: <%=post.user.name  %></p>
+            	<p>content: <%=post.content%></p>                   
+            </div>
+        <% end %>            
+    </div>
+
+
+<% end %>
+
+<%= link_to "Add Posts", new_post_path, class: "btn btn-default" %>
