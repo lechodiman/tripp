@@ -24,7 +24,7 @@ class CitywalksController < ApplicationController
   end
 
   def create
-    @citywalk = Citywalk.new(hotel_params)
+    @citywalk = Citywalk.new(citywalks_params)
     @citywalk.city_id = @city.id
 
     if @citywalk.save

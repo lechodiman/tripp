@@ -1,0 +1,7 @@
+<%= simple_form_for([@city.country, @city, @city.citywalks.build]) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :duration %>
+    <%= f.input :place %>
+    <%= f.button :submit, :class => "btn btn-primary" %>
+<% end %>

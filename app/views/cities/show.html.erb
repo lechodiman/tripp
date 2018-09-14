@@ -17,4 +17,16 @@
         </div>
 
     </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="citywalks">
+            <h1>Citywalks</h1>
+            <%= render(@city.citywalks) %>
+            <div>
+                <%= link_to "Add citywalk", new_country_city_citywalk_path(@city.country,@city), class:"btn-custom"  %>
+            </div>
+        </div>
+
+    </div>
 </div>
