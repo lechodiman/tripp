@@ -7,11 +7,11 @@ Rails.application.routes.draw do
     resources :countries do
         resources :cities do 
             resources :hotels do
-            	
+            	resources :reviews, module: :hotels
             end
 
             resources :citywalks do
-                
+                resources :reviews, module: :citywals
             end
         	
         end
