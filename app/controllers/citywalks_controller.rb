@@ -11,7 +11,7 @@ class CitywalksController < ApplicationController
   end
 
   def update
-    if @citywalk.update(citywalk_params)
+    if @citywalk.update(citywalks_params)
       redirect_to country_city_citywalk_path(@citywalk.city.country, @citywalk.city , @citywalk)
     else
       render 'edit'
