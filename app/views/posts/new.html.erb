@@ -1,0 +1,18 @@
+<% if current_user %>
+    <div class="col-md-6 offset-md-3">
+
+        <div class="new-post-form">
+
+            <h1>New post</h1>
+
+            <%= render 'form' %>
+
+        </div>
+
+    </div>
+    
+<% else %>
+    <p class="text-center">Sorry! You do not have acces to this page</p>
+    <%= link_to "Back", root_path %>
+<% end %>
+
