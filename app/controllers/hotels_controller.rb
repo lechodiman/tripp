@@ -1,5 +1,5 @@
 class HotelsController < ApplicationController
-  before_action :find_city  
+  before_action :find_city, only: [:new, :create]
   before_action :find_hotel, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit]
   
@@ -15,7 +15,7 @@ class HotelsController < ApplicationController
 
   def update
     if @hotel.update(hotel_params)
-      redirect_to country_city_hotel_path(@hotel.city.country, @hotel.city , @hotel)
+      redirect_to hotel_path(@hotel)
     else
       render 'edit'
     end    
@@ -23,9 +23,8 @@ class HotelsController < ApplicationController
 
   def destroy
     @hotel.destroy
-    redirect_to root_path
+    redirect_to city_path(@city)
   end
-
 
   def create
     @hotel = Hotel.new(hotel_params)
@@ -33,7 +32,7 @@ class HotelsController < ApplicationController
 
     if @hotel.save
         flash[:success] = "Hotel created successfully!"
-        redirect_to country_city_path(@city.country, @city)
+        redirect_to city_path(@city)
     else
         render 'new'
     end

@@ -11,7 +11,7 @@
             <h1>Hotels</h1>
             <%= render(@city.hotels) %>
             <div>
-                <%= link_to "Add Hotel", new_country_city_hotel_path(@city.country,@city), class:"btn-custom"  %>
+                <%= link_to "Add Hotel", new_city_hotel_path(@city), class:"btn-custom"  %>
             </div>
         </div>
 
@@ -22,7 +22,7 @@
             <h1>Citywalks</h1>
             <%= render(@city.citywalks) %>
             <div>
-                <%= link_to "Add citywalk", new_country_city_citywalk_path(@city.country,@city), class:"btn-custom"  %>
+                <%= link_to "Add citywalk", new_city_citywalk_path(@city), class:"btn-custom"  %>
             </div>
         </div>
 

@@ -4,7 +4,7 @@
 
         <h1>Edit city</h1>
 
-        <%= simple_form_for([@country, @city]) do |f| %>
+        <%= simple_form_for(@city) do |f| %>
             <%= f.input :name %>
             <%= f.input :description %>
             <%= f.button :submit, :class => "btn btn-primary" %>

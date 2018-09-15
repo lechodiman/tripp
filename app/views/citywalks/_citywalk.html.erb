@@ -5,15 +5,14 @@
     </div>
 
     <div>
-        <%= link_to "See more", country_city_citywalk_path(citywalk.city.country, citywalk.city, citywalk)  %>
+        <%= link_to "See more", citywalk_path(citywalk)  %>
     </div>
 
     <div class="links btn-group">
 
-        <%= link_to "Edit", edit_country_city_citywalk_path(citywalk.city.country, citywalk.city, citywalk), class: "btn btn-custom" %>
-        <%= link_to "Delete", country_city_citywalk_path(citywalk.city.country, citywalk.city, citywalk), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+        <%= link_to "Edit", edit_citywalk_path(citywalk), class: "btn btn-custom" %>
+        <%= link_to "Delete", citywalk_path(citywalk), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
 
     </div>
 
-    
 </div>

@@ -1,5 +1,5 @@
 class Hotels::ReviewsController < ReviewsController
-    before_action :set_reviewable
+    before_action :set_reviewable, only: [:new, :create, :update]
 
     private
         def set_reviewable

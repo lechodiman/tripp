@@ -8,6 +8,6 @@
         </div>
     </div>
 
-    <%= link_to "Edit", edit_country_city_hotel_review_path(review.reviewable.city.country, review.reviewable.city, review.reviewable, review), class: "btn btn-default" %>
-    <%= link_to "Delete", country_city_hotel_review_path(review.reviewable.city.country, review.reviewable.city, review.reviewable, review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+    <%= link_to "Edit", edit_review_path(review), class: "btn btn-default" %>
+    <%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
 <% end %>

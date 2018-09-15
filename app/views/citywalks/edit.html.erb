@@ -4,8 +4,7 @@
 
         <h1>Edit citywalk</h1>
 
-        <%= simple_form_for([@citywalk.city.country, 
-        	@citywalk.city , @citywalk]) do |f| %>
+        <%= simple_form_for(@citywalk) do |f| %>
             <%= f.input :name %>
             <%= f.input :description %>
             <%= f.input :duration %>

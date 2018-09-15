@@ -1,4 +1,4 @@
-<%= simple_form_for([@city.country, @city, @city.hotels.build]) do |f| %>
+<%= simple_form_for([@city, @city.hotels.build]) do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.button :submit, :class => "btn btn-primary" %>

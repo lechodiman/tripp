@@ -5,13 +5,13 @@
     </div>
 
     <div>
-        <%= link_to "See more", country_city_hotel_path(hotel.city.country, hotel.city, hotel)  %>
+        <%= link_to "See more", hotel_path(hotel)  %>
     </div>
 
     <div class="links btn-group">
 
-        <%= link_to "Edit", edit_country_city_hotel_path(hotel.city.country, hotel.city, hotel), class: "btn btn-custom" %>
-        <%= link_to "Delete", country_city_hotel_path(hotel.city.country, hotel.city, hotel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+        <%= link_to "Edit", edit_hotel_path(hotel), class: "btn btn-custom" %>
+        <%= link_to "Delete", hotel_path(hotel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
 
     </div>
 

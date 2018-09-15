@@ -1,5 +1,5 @@
 class CitywalksController < ApplicationController
-  before_action :find_city  
+  before_action :find_city, only: [:new, :create]
   before_action :find_citywalk, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit]
 
@@ -12,7 +12,7 @@ class CitywalksController < ApplicationController
 
   def update
     if @citywalk.update(citywalks_params)
-      redirect_to country_city_citywalk_path(@citywalk.city.country, @citywalk.city , @citywalk)
+      redirect_to citywalk_path(@citywalk)
     else
       render 'edit'
     end    
@@ -20,7 +20,7 @@ class CitywalksController < ApplicationController
 
   def destroy
     @citywalk.destroy
-    redirect_to root_path
+    redirect_to city_path(@city)
   end
 
   def create
@@ -29,7 +29,7 @@ class CitywalksController < ApplicationController
 
     if @citywalk.save
         flash[:success] = "Citywalk created successfully!"
-        redirect_to country_city_path(@city.country, @city)
+        redirect_to city_path(@city)
     else
         render 'new'
     end

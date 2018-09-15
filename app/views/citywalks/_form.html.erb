@@ -1,4 +1,4 @@
-<%= simple_form_for([@city.country, @city, @city.citywalks.build]) do |f| %>
+<%= simple_form_for([@city, @city.citywalks.build]) do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :duration %>

@@ -1,5 +1,5 @@
 class CitiesController < ApplicationController
-    before_action :find_country
+    before_action :find_country, only: [:new, :create]
     before_action :find_city, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!, only: [:new, :edit]
 
@@ -27,7 +27,7 @@ class CitiesController < ApplicationController
 
     def update
         if @city.update(city_params)
-            redirect_to country_city_path(@city.country,@city)
+            redirect_to city_path(@city)
         else
             render 'edit'
         end
