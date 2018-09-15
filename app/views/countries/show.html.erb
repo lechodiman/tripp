@@ -1,20 +1,16 @@
+
 <div class="row">
+    <div class="country-info">
 
-    <div class="col-md-6 offset-md-3">
-
-        <div class="country-info">
-
-            <h2 class="country-title"><%= @country.name %></h2>
-            <p class="country-desc"><%= @country.description %></p>
-
-        </div>
+        <h1 class="country-title"><%= @country.name %></h2>
+        <p class="country-desc"><%= @country.description %></p>
 
     </div>
-
+    
 </div>
 
+
 <div class="row">
-    <div class="col-md-4">
         <div class="cities">
             <h1>Cities</h1>
             <%= render(@country.cities) %>
@@ -22,8 +18,6 @@
                 <%= link_to "Add City", new_country_city_path(@country), class:"btn-custom"  %>
             </div>
         </div>
-
-    </div>
 </div>
 
 

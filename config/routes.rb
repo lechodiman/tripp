@@ -11,7 +11,7 @@ Rails.application.routes.draw do
             end
 
             resources :citywalks do
-                resources :reviews, module: :citywals
+                resources :reviews, module: :citywalks
             end
         	
         end

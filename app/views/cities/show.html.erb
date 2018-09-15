@@ -1,9 +1,8 @@
-<div class="container">
-    <h1><%= @city.name %></h1>
+<h1><%= @city.name %></h1>
 
-    <div class="city-description">
-        <p><%= @city.description %></p>
-    </div>
+<div class="city-description">
+    <p><%= @city.description %></p>
+</div>
 
 <div class="row">
     <div class="col-md-6">
@@ -14,7 +13,6 @@
                 <%= link_to "Add Hotel", new_city_hotel_path(@city), class:"btn-custom"  %>
             </div>
         </div>
-
     </div>
 
     <div class="col-md-6">
@@ -27,8 +25,5 @@
         </div>
 
     </div>
-</div>
+</div> <!-- row -->
 
-<hr>
-
-</div>
