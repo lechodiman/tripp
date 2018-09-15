@@ -34,8 +34,9 @@ class CitiesController < ApplicationController
     end
 
     def destroy
+        this_country = @city.country
         @city.destroy
-        redirect_to country_path(@country)
+        redirect_to country_path(this_country)
     end
 
     private

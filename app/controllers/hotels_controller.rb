@@ -22,7 +22,7 @@ class HotelsController < ApplicationController
   end
 
   def destroy
-    this_city = @hotel.city 
+    this_city = @hotel.city
     @hotel.destroy
     redirect_to city_path(this_city)
   end

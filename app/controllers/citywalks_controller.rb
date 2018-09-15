@@ -19,8 +19,9 @@ class CitywalksController < ApplicationController
   end
 
   def destroy
+    this_city = @citywalk.city
     @citywalk.destroy
-    redirect_to city_path(@city)
+    redirect_to city_path(this_city)
   end
 
   def create

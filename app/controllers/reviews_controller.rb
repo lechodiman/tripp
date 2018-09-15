@@ -11,8 +11,9 @@ class ReviewsController < ApplicationController
     end
 
     def destroy
+        this_reviewable = @review.reviewable
         @review.destroy
-        redirect_to root_path
+        redirect_to this_reviewable
     end
 
     def edit
@@ -20,8 +21,9 @@ class ReviewsController < ApplicationController
     end
 
     def update
+        this_reviewable = @review.reviewable
         if @review.update(review_params)
-          redirect_to root_path
+          redirect_to this_reviewable
         else
           render 'edit'
         end 
