@@ -12,15 +12,15 @@ class PostsController < ApplicationController
   end
 
   def create
-  	    @post = Post.new(post_params)
-        @post.user_id = current_user.id
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
-        if @post.save
-            flash[:success] = "Post created successfully!"
-            redirect_to root_path
-        else
-            render 'new'
-        end
+    if @post.save
+        flash[:success] = "Post created successfully!"
+        redirect_to posts_path
+    else
+        render 'new'
+    end
   end
 
   def edit
@@ -31,12 +31,12 @@ class PostsController < ApplicationController
 
   def destroy
   	@post.destroy
-  	redirect_to root_path
+  	redirect_to posts_path
   end
 
   def update
     if @post.update(post_params)
-        redirect_to post_path(@post)
+        redirect_to posts_path
     else
         render 'edit'
     end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :posts
     
     resources :countries, shallow: true do
-        resources :cities do 
+        resources :cities do
             resources :hotels do
             	resources :reviews, module: :hotels
             end
