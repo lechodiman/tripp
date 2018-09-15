@@ -21,10 +21,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <%= link_to "Home", root_path, class: "nav-link" %>
-      </li>
-
       <% if has_role?(:admin) %>
         <li class="nav-item">
           <%= link_to "Add Country", new_country_path, class: "nav-link" %>
@@ -34,13 +30,7 @@
       <li class="nav-item">
         <%= link_to "Posts", posts_path, class: "nav-link" %>
       </li>        
-     
-
-
     </ul>
-
-
-
 
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
