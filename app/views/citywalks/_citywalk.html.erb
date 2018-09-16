@@ -1,18 +1,8 @@
-<div class="citywalk">
-    
-    <div class="citywalk-name">
-        <p><%= citywalk.name %></p>
+<div class="col-sm-4">
+    <h5><%= citywalk.name %></h5> 
+    <%= link_to "See more", citywalk_path(citywalk), class: "btn btn-primary" %>
+    <div class="btn-group">
+        <%= link_to "Edit", edit_citywalk_path(citywalk), class: "btn btn-secondary" %>
+        <%= link_to "Delete", citywalk_path(citywalk), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     </div>
-
-    <div>
-        <%= link_to "See more", citywalk_path(citywalk)  %>
-    </div>
-
-    <div class="links btn-group">
-
-        <%= link_to "Edit", edit_citywalk_path(citywalk), class: "btn btn-custom" %>
-        <%= link_to "Delete", citywalk_path(citywalk), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
-
-    </div>
-
 </div>

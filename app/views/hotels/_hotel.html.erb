@@ -1,19 +1,8 @@
-<div class="hotel">
-    
-    <div class="hotel-name">
-        <p><%= hotel.name %></p>
+<div class="col-sm-4">
+    <h5><%= hotel.name %></h5> 
+    <%= link_to "See more", hotel_path(hotel), class: "btn btn-primary" %>
+    <div class="btn-group">
+        <%= link_to "Edit", edit_hotel_path(hotel), class: "btn btn-secondary" %>
+        <%= link_to "Delete", hotel_path(hotel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     </div>
-
-    <div>
-        <%= link_to "See more", hotel_path(hotel)  %>
-    </div>
-
-    <div class="links btn-group">
-
-        <%= link_to "Edit", edit_hotel_path(hotel), class: "btn btn-custom" %>
-        <%= link_to "Delete", hotel_path(hotel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
-
-    </div>
-
-    
 </div>

@@ -19,7 +19,16 @@
     width: auto;
 }
 
-.catcher {
-    height: 200px;
-    padding: 48px 0;
+.activity-button {
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    width: 100%;
+}
+
+a.activity-button:hover {
+    background-color: #4AA9D2;
+    color: #fff;
 }

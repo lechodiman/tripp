@@ -1,29 +1,55 @@
-<h1><%= @city.name %></h1>
-
-<div class="city-description">
-    <p><%= @city.description %></p>
+<div class="row align-items-center flex-column">
+    <h1 class="display-1"><%= @city.name %></h1>
+    <h6> <%= link_to @city.country.name, country_path(@city.country) %> </h6>
 </div>
 
 <div class="row">
-    <div class="col-md-6">
-        <div class="hotels">
-            <h1>Hotels</h1>
-            <%= render(@city.hotels) %>
-            <div>
-                <%= link_to "Add Hotel", new_city_hotel_path(@city), class:"btn-custom"  %>
-            </div>
-        </div>
-    </div>
+    <p class="lead"><%= @city.description %></p>
+</div>
 
-    <div class="col-md-6">
-        <div class="citywalks">
-            <h1>Citywalks</h1>
-            <%= render(@city.citywalks) %>
-            <div>
-                <%= link_to "Add citywalk", new_city_citywalk_path(@city), class:"btn-custom"  %>
-            </div>
-        </div>
+<div class="row justify-content-center">
+    <h2>Browse <%= @city.name %></h2>
+</div>
 
-    </div>
-</div> <!-- row -->
+<div class="row">
+    <div class="col-md-4">
+        <%= link_to '<i class="fas fa-hotel"></i> Hotels'.html_safe, city_hotels_path(@city), class: "btn activity-button" %>
+    </div>        
+    <div class="col-md-4">
+        <%= link_to '<i class="fas fa-shoe-prints"></i> Citywalks'.html_safe, city_citywalks_path(@city), class: "btn activity-button" %>
+    </div>        
+    <div class="col-md-4">
+        <%= link_to '<i class="fas fa-utensils"></i> Restaurants'.html_safe, city_hotels_path(@city), class: "btn activity-button" %>
+    </div>        
+</div>
 
+<hr>
+
+<div class="row flex-column align-items-center">
+    <h2>Book hotels, tours and attractions</h2>
+    <p>Save time by booking in advance</p>
+</div>
+
+<div class="row justify-content-center">
+    <h3 class="text-muted">Hotels</h3>
+</div>
+
+<div class="row">
+    <%= render(@city.hotels) %>
+</div>
+
+<hr>
+
+<%= link_to "Add Hotel", new_city_hotel_path(@city), class:"btn btn-primary"  %>
+
+<div class="row justify-content-center">
+    <h3 class="text-muted">Citywalks</h3>
+</div>
+
+<div class="row">
+    <%= render(@city.citywalks) %>
+</div>
+
+<hr>
+
+<%= link_to "Add Citywalk", new_city_citywalk_path(@city), class:"btn btn-primary"  %>
