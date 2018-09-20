@@ -39,6 +39,7 @@ gem 'simple_form', '~> 4.0', '>= 4.0.1'
 gem 'devise', '~> 4.5'
 gem 'rolify', '~> 5.2'
 gem 'cancancan', '~> 2.1', '>= 2.1.3'
+gem 'carrierwave', '~> 1.2', '>= 1.2.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
