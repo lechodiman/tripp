@@ -1,5 +1,6 @@
 <%= simple_form_for @country, :html => { :multipart => true } do |f| %>
     <%= f.input :name, label: "Country Name" %>
     <%= f.input :description %>
+    <%= f.input :image %>
     <%= f.button :submit %>
 <% end %>

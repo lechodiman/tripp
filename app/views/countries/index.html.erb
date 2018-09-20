@@ -7,6 +7,7 @@
     <div class="row">
         <% @countries.each do |country| %>
             <div class="col-md-3">
+                <%= image_tag(country.image.url, alt: 'Image') if country.image? %>
                 <a href="<%= country_path(country) %>">
                 <%= country.name %></a>                
             </div>
