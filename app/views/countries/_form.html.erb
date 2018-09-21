@@ -2,5 +2,9 @@
     <%= f.input :name, label: "Country Name" %>
     <%= f.input :description %>
     <%= f.input :image %>
+    <% if @country.image? %>
+        <%= image_tag @country.image.thumb.url, class:"d-block mx-auto" %>
+    <% end %>
+    <hr>
     <%= f.button :submit %>
 <% end %>
