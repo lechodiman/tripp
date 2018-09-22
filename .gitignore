@@ -22,5 +22,8 @@
 # Ignore application configuration
 /config/application.yml
 
+/config/cloudinary.yml
+
+
  # files
  /public/uploads/
