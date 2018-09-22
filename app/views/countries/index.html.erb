@@ -12,8 +12,19 @@
                 <div class="thumbnail">
                     <%= image_tag(country.image.thumb.url, alt: country.name, class: "img-fluid") if country.image? %>
                     <div class="caption">
-                        <h3><%= link_to country.name, country_path(country), class: "caption-link"%></h3>  
-                    </div>                    
+                        <h4><%= link_to country.name, country_path(country), class: "caption-link"%></h4>  
+                    </div>
+
+                    <% if has_role?(:admin) %>
+                        <div class="thumbnail-buttons">
+                            <%= link_to edit_country_path(country) do %>
+                                <p><i class="fas fa-pencil-alt"></i></p>
+                            <% end %>
+                            <%= link_to country_path(country), method: :delete, data: { confirm: "Are you sure?" } do %>
+                                <p><i class="fas fa-trash-alt"></i></p>
+                            <% end %>            
+                        </div>                                                
+                    <% end %>
                 </div>
             </div>
         <% end %>            

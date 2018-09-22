@@ -3,4 +3,5 @@ class City < ApplicationRecord
     has_many :hotels
     has_many :citywalks
     has_many :reviews, as: :reviewable
+    mount_uploader :image, ImageUploader
 end
