@@ -1,4 +1,6 @@
-<h1>Countries</h1>
+<div class="row justify-content-center">
+    <h1 class="display-2">Countries</h1>
+</div>
 
 <% if @countries.count == 0 %>
     <h1>There are no countries currently in this category</h1>
@@ -6,11 +8,13 @@
 
     <div class="row">
         <% @countries.each do |country| %>
-            <div class="col-md-3">
-                <%= image_tag(country.image.thumb.url, alt: country.name, class: "img-fluid") if country.image? %>
-                
-                <a href="<%= country_path(country) %>">
-                <%= country.name %></a>                
+            <div class="col-md-4 mb-4">
+                <div class="thumbnail">
+                    <%= image_tag(country.image.thumb.url, alt: country.name, class: "img-fluid") if country.image? %>
+                    <div class="caption">
+                        <h3><%= link_to country.name, country_path(country), class: "caption-link"%></h3>  
+                    </div>                    
+                </div>
             </div>
         <% end %>            
     </div>

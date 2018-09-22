@@ -32,3 +32,19 @@ a.activity-button:hover {
     background-color: #4AA9D2;
     color: #fff;
 }
+
+.thumbnail {
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    width: 100%;
+
+    .caption-link {
+        color: #fff;
+    }
+}
+
