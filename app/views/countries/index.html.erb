@@ -10,7 +10,7 @@
         <% @countries.each do |country| %>
             <div class="col-md-4 mb-4">
                 <div class="thumbnail">
-                    <%= image_tag(country.image.thumb.url, alt: country.name, class: "img-fluid") if country.image? %>
+                    <%= link_to(image_tag(country.image.thumb.url, alt: country.name, class: "img-fluid"), country_path(country)) if country.image? %>
                     <div class="caption">
                         <h4><%= link_to country.name, country_path(country), class: "caption-link"%></h4>  
                     </div>

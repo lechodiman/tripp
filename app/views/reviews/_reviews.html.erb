@@ -4,10 +4,10 @@
 
 <% reviewable.reviews.each do |review| %>
     <div class="row m-2">
-        <div class="col-md-1">
-            <%= image_tag(review.user.avatar, alt: review.user.username, class: "img-fluid rounded-circle") %>
+        <div class="col-1 p-0">
+            <%= image_tag(review.user.avatar, alt: review.user.username, class: " img-fluid rounded-circle") %>
         </div>
-        <div class="col-md-9 flex-column">
+        <div class="col-8 flex-column">
             <p>
                 <strong><%= review.user.username %></strong> <small><%= time_ago_in_words(review.created_at) %></small>
                 <br>
@@ -15,7 +15,7 @@
             </p>
         </div>
         <% if current_user == review.user || has_role?(:admin) %>
-            <div class="col-md-2 text-md-center">
+            <div class="col-2 text-md-center">
                 <%= link_to edit_review_path(review) do %>
                     <p><i class="fas fa-pencil-alt"></i></p>
                 <% end %>

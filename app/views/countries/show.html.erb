@@ -6,6 +6,13 @@
     <p class="lead"><%= @country.description %></p>
 </div>
 
+<div class="row">
+    <div class="col-sm-12 justify-content-center">
+        <div class="show-image">
+            <%= image_tag @country.image.url, alt: @country.name, class: "h-100 w-100" %>        
+        </div>        
+    </div>
+</div>
 
 <div class="row justify-content-center">
     <h2>Top Destinations</h2>
