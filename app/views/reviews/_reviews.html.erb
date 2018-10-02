@@ -22,7 +22,6 @@
                 <%= link_to dislike_review_path(review), method: :put, class: "btn btn-primary" do %>
                     <i class="fas fa-thumbs-down"></i></i> <%= review.get_downvotes.size %>
                 <% end %>
-
             </div>
         </div>
         <% if current_user == review.user || has_role?(:admin) %>

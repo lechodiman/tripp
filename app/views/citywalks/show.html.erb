@@ -1,6 +1,7 @@
 <div class="row align-items-center flex-column">
     <h1 class="display-1"><%= @citywalk.name %></h1>
     <h6> <%= link_to @citywalk.city.name, city_path(@citywalk.city) %> </h6>
+    <div class="average-review-rating" data-score="<%= @average_review %>"></div> <small>based on <%= @citywalk.reviews.count %> reviews</small>
 </div>
 
 <div class="row">
