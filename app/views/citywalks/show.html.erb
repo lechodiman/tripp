@@ -17,3 +17,30 @@
 
 <%= render partial: "reviews/form", locals: {reviewable: @citywalk} %>
 
+<script>
+    $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        path: '/assets/'
+    });
+</script>
+
+<script>
+    $('.average-review-rating').raty({
+        readOnly: true,
+        path: '/assets/',
+        score: function() {
+            return $(this).attr('data-score');
+        }
+    });
+</script>
+
+
+<script>
+    $('#rating-form').raty({
+        path: '/assets/',
+        scoreName: 'review[rating]'
+    });
+</script>
