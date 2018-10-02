@@ -9,8 +9,8 @@
         </div>
         <div class="col-8 flex-column">
             <div class="review-header">
-                <strong><%= review.user.username %></strong> rated it  
-                <small><%= time_ago_in_words(review.created_at) %></small> <div class="review-rating d-inline" data-score="<%= review.rating %>"></div>
+                <strong><%= review.user.username %></strong> <small><%= time_ago_in_words(review.created_at) %></small>  
+                <div class="review-rating" data-score="<%= review.rating %>"></div>
                 <br>
                 <%= review.body %>
             </div>
@@ -29,16 +29,6 @@
 <% end %>
 
 <hr>
-
-<script>
-    $('.review-rating').raty({
-        readOnly: true,
-        score: function() {
-            return $(this).attr('data-score');
-        },
-        path: '/assets/'
-    });
-</script>
 
 <script>
     $('.review-rating').raty({
