@@ -15,10 +15,14 @@
             <div class="review-body">
                 <%= review.body %>
             </div>
-            <div class="review-votes">
-                <%= link_to like_review_path(review), method: :put, class: "btn btn-default" do %>
-                    <p><i class="fas fa-heart"></i></i> <%= review.get_upvotes.size %></p>
+            <div class="btn-group btn-group-sm">
+                <%= link_to like_review_path(review), method: :put, class: "btn btn-primary" do %>
+                    <i class="fas fa-heart"></i></i> <%= review.get_upvotes.size %>
                 <% end %>
+                <%= link_to dislike_review_path(review), method: :put, class: "btn btn-primary" do %>
+                    <i class="fas fa-thumbs-down"></i></i> <%= review.get_downvotes.size %>
+                <% end %>
+
             </div>
         </div>
         <% if current_user == review.user || has_role?(:admin) %>

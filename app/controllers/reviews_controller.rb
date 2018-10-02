@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
     before_action :authenticate_user!
-    before_action :find_review, only: [:edit, :update, :destroy, :upvote]
+    before_action :find_review, only: [:edit, :update, :destroy, :upvote, :downvote]
 
     def create
         @review = @reviewable.reviews.new(review_params)
@@ -33,6 +33,11 @@ class ReviewsController < ApplicationController
         redirect_to @review.reviewable        
     end
 
+    def downvote
+        @review.downvote_by current_user
+        redirect_to @review.reviewable        
+    end
+
     private
 
     def review_params
@@ -41,13 +46,6 @@ class ReviewsController < ApplicationController
 
     def find_review
         @review = Review.find(params[:id])
-    end
-
-
-    def downvote
-        @review = Review.find(params[:id])
-        @review.downvote_by current_user
-        redirect_to :back        
     end
 
 end
