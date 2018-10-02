@@ -8,11 +8,12 @@
             <%= image_tag(review.user.avatar, alt: review.user.username, class: " img-fluid rounded-circle") %>
         </div>
         <div class="col-8 flex-column">
-            <p>
-                <strong><%= review.user.username %></strong> <small><%= time_ago_in_words(review.created_at) %></small>
+            <div class="review-header">
+                <strong><%= review.user.username %></strong> rated it  
+                <small><%= time_ago_in_words(review.created_at) %></small> <div class="review-rating d-inline" data-score="<%= review.rating %>"></div>
                 <br>
                 <%= review.body %>
-            </p>
+            </div>
         </div>
         <% if current_user == review.user || has_role?(:admin) %>
             <div class="col-2 text-md-center">
@@ -28,3 +29,23 @@
 <% end %>
 
 <hr>
+
+<script>
+    $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        path: '/assets/'
+    });
+</script>
+
+<script>
+    $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        path: '/assets/'
+    });
+</script>

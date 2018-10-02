@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
         @review.user = current_user
         @review.save
 
-        redirect_to @reviewable, notice: "Your review was successfully posted!"
+        redirect_to @reviewable, notice: 'Your review was successfully posted!'
     end
 
     def destroy
@@ -17,24 +17,24 @@ class ReviewsController < ApplicationController
     end
 
     def edit
-        
     end
 
     def update
         this_reviewable = @review.reviewable
         if @review.update(review_params)
-          redirect_to this_reviewable
+            redirect_to this_reviewable
         else
-          render 'edit'
-        end 
+            render 'edit'
+        end
     end
 
     private
-        def review_params
-            params.require(:review).permit(:body)
-        end
 
-        def find_review
-            @review = Review.find(params[:id])
-        end
+    def review_params
+        params.require(:review).permit(:body, :rating)
+    end
+
+    def find_review
+        @review = Review.find(params[:id])
+    end
 end

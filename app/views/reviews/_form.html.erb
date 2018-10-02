@@ -4,6 +4,7 @@
 
 <% if user_signed_in? %>
     <%= simple_form_for [reviewable,  Review.new] do |f| %>
+        <%= f.input :rating %>
         <%= f.input :body, placeholder: "Add a review", label: false %>
         <%= f.button :submit, :class => "btn btn-primary" %>
     <% end %>
