@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     resources :countries, shallow: true do
         resources :cities do
             resources :hotels do
-            	resources :reviews, module: :hotels
+            	resources :reviews, module: :hotels do
+                    member do
+                        put "like", to: "reviews#upvote"
+                    end
+                end
             end
 
             resources :citywalks do
