@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
 
     def upvote
         @review.upvote_by current_user
-        redirect_to :back        
+        redirect_to @review.reviewable        
     end
 
     private
