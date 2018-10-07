@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_many :posts
 
-  validates :username, presence: :true
+  VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/
+  validates :username, presence: true, format: { with: VALID_USERNAME_REGEX }, uniqueness: { case_sensitive: false }
   
   rolify
   # Include default devise modules. Others available are:
