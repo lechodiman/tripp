@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   has_many :review
 
+  validates :username, presence :true
+
   def avatar
     email_address = self.email.downcase
     hash = Digest::MD5.hexdigest(email_address)
