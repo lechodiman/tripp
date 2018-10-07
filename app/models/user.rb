@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :posts
+
+  validates :username, presence :true
   
   rolify
   # Include default devise modules. Others available are:
@@ -8,8 +10,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :review
-
-  validates :username, presence :true
 
   def avatar
     email_address = self.email.downcase
