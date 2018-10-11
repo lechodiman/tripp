@@ -13,6 +13,11 @@ Rails.application.routes.draw do
             resources :citywalks do
                 resources :reviews, module: :citywalks
             end
+
+            resources :restaurants do
+                resources :reviews, module: :restaurants
+                
+            end
         	
         end
     end
