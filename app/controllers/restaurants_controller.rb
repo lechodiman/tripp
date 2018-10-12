@@ -19,13 +19,13 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    this_restaurant = @restaurant.city
+    this_city = @restaurant.city
     @restaurant.destroy
     redirect_to city_path(this_city)
   end
 
   def create
-    @restaurant = restaurant.new(restaurants_params)
+    @restaurant = Restaurant.new(restaurants_params)
     @restaurant.city_id = @city.id
 
     if @restaurant.save
@@ -49,7 +49,7 @@ class RestaurantsController < ApplicationController
             @city = City.find(params[:city_id])
         end
 
-        def find_citywalk
+        def find_restaurant
             @restaurant = Restaurant.find(params[:id])
         end
 end

@@ -61,3 +61,15 @@
 <hr>
 
 <%= link_to "Add Citywalk", new_city_citywalk_path(@city), class:"btn btn-primary"  %>
+
+<div class="row justify-content-center">
+    <h3 class="text-muted">Restaurants</h3>
+</div>
+
+<div class="row">
+    <%= render(@city.restaurants) %>
+</div>
+
+<hr>
+
+<%= link_to "Add restaurant", new_city_restaurant_path(@city), class:"btn btn-primary"  %>

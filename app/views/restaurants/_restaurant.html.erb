@@ -3,6 +3,6 @@
     <%= link_to "See more", restaurant_path(restaurant), class: "btn btn-primary" %>
     <div class="btn-group">
         <%= link_to "Edit", edit_restaurant_path(restaurant), class: "btn btn-secondary" %>
-        <%= link_to "Delete", citywalk_path(citywalk), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <%= link_to "Delete", restaurant_path(restaurant), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     </div>
 </div>
