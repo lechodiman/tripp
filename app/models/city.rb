@@ -12,4 +12,6 @@ class City < ApplicationRecord
 
     mount_uploader :image, ImageUploader
 
+    resourcify
+
 end
