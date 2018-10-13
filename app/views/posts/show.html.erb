@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="row">
     <h1 class="display-1"><%= @post.title %></h1>
 </div>
 
@@ -12,11 +12,14 @@
 
 
 
-<div class="row">
-    <%= render(@post.comments) %>
-</div>
+<%= render(@post.comments) %>
+
+
+<br>
+<br>
 
 <%= render partial: "comments/form" %>
+
 
 
 
