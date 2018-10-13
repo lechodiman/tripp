@@ -10,6 +10,14 @@ class CitywalksController < ApplicationController
   	@citywalk = Citywalk.new
   end
 
+  def show
+      if @citywalk.reviews.blank?
+          @average_review = 0
+      else
+          @average_review = @citywalk.reviews.average(:rating).round(2)
+      end
+  end
+
   def update
     if @citywalk.update(citywalks_params)
       redirect_to citywalk_path(@citywalk)
