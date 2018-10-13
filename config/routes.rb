@@ -8,7 +8,12 @@ Rails.application.routes.draw do
 
     devise_for :users, controllers: {registrations: 'registrations'}
 
-    resources :posts
+    resources :posts, shallow: true do
+        member do
+            put "like", to: "posts#upvote"
+            put "dislike", to: "posts#downvote"
+        end
+    end
     
     resources :countries, shallow: true do
         resources :cities do

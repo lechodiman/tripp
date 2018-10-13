@@ -1,26 +1,51 @@
 <div class="row">
-    <h1>Posts</h1>    
+    <h5 class="text-secondary"><%= @posts.count %> Posts</h2>
 </div>
 
 <% if @posts.count == 0 %>
     <h1>There are no posts currently in this category</h1>
 <% else %>
 
-    <div class="row">
-        <% @posts.each do |post| %>
-            <div class="card card-primary">
-            	<p>author: <%=post.user.username%></p>
-            	<p>content: <%=post.content%></p>                   
-           
-                <%= link_to "Edit", edit_post_path(post), class: "btn btn-default" %>
-                <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+    <% @posts.each do |post| %>
+        <div class="row m-2">
+            <div class="col-1 p-0">
+                <%= image_tag(post.user.avatar, alt: post.user.username, class: " img-fluid rounded-circle") %>
             </div>
 
-        <% end %>            
-    </div>
+            <div class="col-8 flex-column">
+                <div class="post-header">
+                    <h4 class="d-inline"><%= post.title %></h4> by 
+                    <strong><%= post.user.username %></strong> <small><%= time_ago_in_words(post.created_at) %></small>  
+                </div>
+                <div class="post-body">
+                    <%= post.content %>
+                    <% if post.image? %>
+                        <%= image_tag post.image.thumb.url, class:"d-block mx-auto" %>
+                    <% end %>
+                </div>
+                <div class="btn-group btn-group-sm">
+                    <%= link_to like_post_path(post), method: :put, class: "btn btn-primary" do %>
+                        <i class="fas fa-heart"></i></i> <%= post.get_upvotes.size %>
+                    <% end %>
+                    <%= link_to dislike_post_path(post), method: :put, class: "btn btn-primary" do %>
+                        <i class="fas fa-thumbs-down"></i></i> <%= post.get_downvotes.size %>
+                    <% end %>
+                </div>
+            </div>
+            <% if current_user == post.user || has_role?(:admin) %>
+                <div class="col-2 text-md-center">
+                    <%= link_to edit_post_path(post) do %>
+                        <p><i class="fas fa-pencil-alt"></i></p>
+                    <% end %>
+                    <%= link_to post_path(post), method: :delete, data: { confirm: "Are you sure?" } do %>
+                        <p><i class="fas fa-trash-alt"></i></p>
+                    <% end %>
+                </div>            
+            <% end %> <!-- endif -->
+        </div> <!-- div.row -->
+    <% end %>            
 
-
-<% end %>
+<% end %> <!-- endelse -->
 
 <hr>
 

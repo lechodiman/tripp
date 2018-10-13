@@ -1,5 +1,10 @@
 <%= simple_form_for @post, :html => { :multipart => true } do |f| %>
     <%= f.input :title, label: "Title Name" %>
     <%= f.input :content %>
+    <%= f.input :image %>
+    <% if @post.image? %>
+        <%= image_tag @post.image.thumb.url, class:"d-block mx-auto" %>
+    <% end %>
+    <hr>
     <%= f.button :submit, :class =>"btn btn-primary" %>
 <% end %> 

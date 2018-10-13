@@ -1,9 +1,11 @@
 class Post < ApplicationRecord
-	belongs_to :user
+    mount_uploader :image, ImageUploader
 
-	has_many :comments
+    belongs_to :user
 
-	validates :title, presence: true
-	validates :content, presence: true
+    has_many :comments
 
+    validates :title, presence: true
+    validates :content, presence: true
+    acts_as_votable
 end
