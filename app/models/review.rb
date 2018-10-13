@@ -4,4 +4,5 @@ class Review < ApplicationRecord
     validates :body, presence: true
     acts_as_votable
 
+    resourcify
 end

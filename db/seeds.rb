@@ -14,6 +14,10 @@
         ["adminuser", "admin@example.com", "123456", "123456"]        
     ]
 
+    mods_list = [
+        ["moderatoruser", "moderator@example.com", "123456", "123456"]
+    ]
+
     users_list.each do |username, email, password, password_confirmation|
       user = User.new
       user.username = username
@@ -31,5 +35,16 @@
       user.password_confirmation = password_confirmation
 
       user.add_role "admin"
+      user.save!
+    end
+
+    mods_list.each do |username, email, password, password_confirmation|
+      user = User.new
+      user.username = username
+      user.email = email
+      user.password = password
+      user.password_confirmation = password_confirmation
+
+      user.add_role "moderator"
       user.save!
     end
