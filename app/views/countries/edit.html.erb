@@ -4,11 +4,7 @@
 
         <h1>Edit country</h1>
 
-        <%= simple_form_for @country, :html => { :multipart => true } do |f| %>
-            <%= f.input :name, label: "Country name" %>
-            <%= f.input :description %>
-            <%= f.button :submit %>
-        <% end %>
+        <%= render 'form' %>
 
     </div>
 

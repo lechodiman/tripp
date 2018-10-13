@@ -5,6 +5,9 @@
         <h1>Edit Review</h1>
 
         <%= simple_form_for @review do |f| %>
+            <div id="rating-form">
+                <label>My rating: </label>
+            </div>
             <%= f.input :body %>
             <%= f.button :submit, :class => "btn btn-primary" %>
         <% end %> 
@@ -12,3 +15,11 @@
     </div>
 
 </div>
+
+<script>
+    $('#rating-form').raty({
+        path: '/assets/',
+        scoreName: 'review[rating]',
+        score: <%= @review.rating %>
+    });
+</script>

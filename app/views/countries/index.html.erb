@@ -1,4 +1,6 @@
-<h1>Countries</h1>
+<div class="row justify-content-center">
+    <h1 class="display-2">Countries</h1>
+</div>
 
 <% if @countries.count == 0 %>
     <h1>There are no countries currently in this category</h1>
@@ -6,9 +8,24 @@
 
     <div class="row">
         <% @countries.each do |country| %>
-            <div class="col-md-3">
-                <a href="<%= country_path(country) %>">
-                <%= country.name %></a>                
+            <div class="col-md-4 mb-4">
+                <div class="thumbnail">
+                    <%= link_to(image_tag(country.image.thumb.url, alt: country.name, class: "img-fluid"), country_path(country)) if country.image? %>
+                    <div class="caption">
+                        <h4><%= link_to country.name, country_path(country), class: "caption-link"%></h4>  
+                    </div>
+
+                    <% if has_role?(:admin) %>
+                        <div class="thumbnail-buttons">
+                            <%= link_to edit_country_path(country) do %>
+                                <p><i class="fas fa-pencil-alt"></i></p>
+                            <% end %>
+                            <%= link_to country_path(country), method: :delete, data: { confirm: "Are you sure?" } do %>
+                                <p><i class="fas fa-trash-alt"></i></p>
+                            <% end %>            
+                        </div>                                                
+                    <% end %>
+                </div>
             </div>
         <% end %>            
     </div>

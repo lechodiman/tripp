@@ -7,6 +7,11 @@
         <%= simple_form_for(@city) do |f| %>
             <%= f.input :name %>
             <%= f.input :description %>
+            <%= f.input :image %>
+            <% if @city.image? %>
+                <%= image_tag @city.image.thumb.url, class:"d-block mx-auto" %>
+            <% end %>
+            <hr>
             <%= f.button :submit, :class => "btn btn-primary" %>
         <% end %>   
 

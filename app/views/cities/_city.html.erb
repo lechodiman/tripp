@@ -1,19 +1,18 @@
-<div class="city">
-    
-    <div class="city-name">
-        <p><%= city.name %></p>
+<div class="col-md-4 mb-4">
+    <div class="thumbnail">
+        <%= link_to image_tag(city.image.thumb.url, alt: city.name, class: "img-fluid"), city_path(city) if city.image? %>
+        <div class="caption">
+            <h4><%= link_to city.name, city_path(city), class: "caption-link"%></h4>
+        </div>
+        <% if has_role?(:admin) %>
+            <div class="thumbnail-buttons">
+                <%= link_to edit_city_path(city) do %>
+                    <p><i class="fas fa-pencil-alt"></i></p>
+                <% end %>
+                <%= link_to city_path(city), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <p><i class="fas fa-trash-alt"></i></p>
+                <% end %>            
+            </div>            
+        <% end %>
     </div>
-
-    <div>
-        <%= link_to "See more", city_path(city)  %>
-    </div>
-
-    <div class="links btn-group">
-
-        <%= link_to "Edit", edit_city_path(city), class: "btn btn-custom" %>
-        <%= link_to "Delete", city_path(city), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
-
-    </div>
-
-    
 </div>

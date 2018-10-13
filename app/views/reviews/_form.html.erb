@@ -1,4 +1,17 @@
-<%= simple_form_for [reviewable,  Review.new] do |f| %>
-    <%= f.input :body, placeholder: "Add a review", label: false %>
-    <%= f.button :submit, :class => "btn btn-primary" %>
+<div class="row">
+    <h3 class="text-secondary">Leave a review</h3>
+</div>
+
+<% if user_signed_in? %>
+    <%= simple_form_for [reviewable,  Review.new] do |f| %>
+        <div id="rating-form">
+            <label>My rating: </label>
+        </div>
+        <%= f.input :body, placeholder: "What do you think?", label: false %>
+        <%= f.button :submit, :class => "btn btn-primary" %>
+    <% end %>
+<% else %>
+    <p>To reply you need to <%= link_to 'login', new_user_session_path %>. Don't have an account?
+    <%= link_to 'Sign up', new_user_registration_path %> for one.</p>
 <% end %>
+

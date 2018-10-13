@@ -1,10 +1,43 @@
-<h1><%= @hotel.name %></h1>
-
-<div class="hotel-description">
-    <p><%= @hotel.description %></p>
+<div class="row align-items-center flex-column">
+    <h1 class="display-1"><%= @hotel.name %></h1>
+    <h6> <%= link_to @hotel.city.name, city_path(@hotel.city) %> </h6>
+    <div class="average-review-rating" data-score="<%= @average_review %>"></div> <small>based on <%= @hotel.reviews.count %> reviews</small>
 </div>
+
+<div class="row">
+    <p class="lead"><%= @hotel.description %></p>
+</div>
+
 
 <%= render partial: "reviews/reviews", locals: {reviewable: @hotel} %>
 
 <%= render partial: "reviews/form", locals: {reviewable: @hotel} %>
 
+
+<script>
+    $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        path: '/assets/'
+    });
+</script>
+
+<script>
+    $('.average-review-rating').raty({
+        readOnly: true,
+        path: '/assets/',
+        score: function() {
+            return $(this).attr('data-score');
+        }
+    });
+</script>
+
+
+<script>
+    $('#rating-form').raty({
+        path: '/assets/',
+        scoreName: 'review[rating]'
+    });
+</script>

@@ -1,13 +1,47 @@
-<h1><%= @citywalk.name %></h1>
+<div class="row align-items-center flex-column">
+    <h1 class="display-1"><%= @citywalk.name %></h1>
+    <h6> <%= link_to @citywalk.city.name, city_path(@citywalk.city) %> </h6>
+    <div class="average-review-rating" data-score="<%= @average_review %>"></div> <small>based on <%= @citywalk.reviews.count %> reviews</small>
+</div>
 
-<div class="citywalk-description">
-    <p> Name <%= @citywalk.name %></p>
-    <p> Description <%= @citywalk.description %></p>
-    <p> Duration <%= @citywalk.duration %></p>
-    <p> Place <%= @citywalk.place %></p>
+<div class="row">
+    <p class="lead"><%= @citywalk.description %></p>
+</div>
+
+<div class="row flex-column">
+    <p><strong>Duration</strong> <%= @citywalk.duration %> minutes</p>
+    <p><strong>Place</strong> <%= @citywalk.place %></p>
+
 </div>
 
 <%= render partial: "reviews/reviews", locals: {reviewable: @citywalk} %>
 
 <%= render partial: "reviews/form", locals: {reviewable: @citywalk} %>
 
+<script>
+    $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        path: '/assets/'
+    });
+</script>
+
+<script>
+    $('.average-review-rating').raty({
+        readOnly: true,
+        path: '/assets/',
+        score: function() {
+            return $(this).attr('data-score');
+        }
+    });
+</script>
+
+
+<script>
+    $('#rating-form').raty({
+        path: '/assets/',
+        scoreName: 'review[rating]'
+    });
+</script>

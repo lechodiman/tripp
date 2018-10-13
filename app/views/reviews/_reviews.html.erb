@@ -1,13 +1,40 @@
-<h3>Reviews</h3>
+<div class="row">
+    <h5 class="text-secondary"><%= reviewable.reviews.count %> Reviews</h2>
+</div>
 
 <% reviewable.reviews.each do |review| %>
-    <div class="card">
-
-        <div class="card-body">
-            <%= review.body %>
+    <div class="row m-2">
+        <div class="col-1 p-0">
+            <%= image_tag(review.user.avatar, alt: review.user.username, class: " img-fluid rounded-circle") %>
         </div>
+        <div class="col-8 flex-column">
+            <div class="review-header">
+                <strong><%= review.user.username %></strong> <small><%= time_ago_in_words(review.created_at) %></small>  
+                <div class="review-rating" data-score="<%= review.rating %>"></div>
+            </div>
+            <div class="review-body">
+                <%= review.body %>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <%= link_to like_review_path(review), method: :put, class: "btn btn-primary" do %>
+                    <i class="fas fa-heart"></i></i> <%= review.get_upvotes.size %>
+                <% end %>
+                <%= link_to dislike_review_path(review), method: :put, class: "btn btn-primary" do %>
+                    <i class="fas fa-thumbs-down"></i></i> <%= review.get_downvotes.size %>
+                <% end %>
+            </div>
+        </div>
+        <% if current_user == review.user || has_role?(:admin) %>
+            <div class="col-2 text-md-center">
+                <%= link_to edit_review_path(review) do %>
+                    <p><i class="fas fa-pencil-alt"></i></p>
+                <% end %>
+                <%= link_to review_path(review), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <p><i class="fas fa-trash-alt"></i></p>
+                <% end %>
+            </div>            
+        <% end %>
     </div>
-
-    <%= link_to "Edit", edit_review_path(review), class: "btn btn-default" %>
-    <%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
 <% end %>
+
+<hr>

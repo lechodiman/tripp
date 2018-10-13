@@ -15,7 +15,7 @@ class CitiesController < ApplicationController
         @city.country_id = @country.id
 
         if @city.save
-            flash[:success] = "City created successfully!"
+            flash[:success] = 'City created successfully!'
             redirect_to country_path(@country)
         else
             render 'new'
@@ -40,15 +40,16 @@ class CitiesController < ApplicationController
     end
 
     private
-        def city_params
-            params.require(:city).permit(:name, :description)
-        end
 
-        def find_country
-            @country = Country.find(params[:country_id])
-        end
+    def city_params
+        params.require(:city).permit(:name, :description, :image)
+    end
 
-        def find_city
-            @city = City.find(params[:id])
-        end
+    def find_country
+        @country = Country.find(params[:country_id])
+    end
+
+    def find_city
+        @city = City.find(params[:id])
+    end
 end

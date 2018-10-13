@@ -18,3 +18,46 @@
     height: 30px;
     width: auto;
 }
+
+.activity-button {
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    width: 100%;
+}
+
+a.activity-button:hover {
+    background-color: #4AA9D2;
+    color: #fff;
+}
+
+.thumbnail {
+    position: relative;
+
+    .thumbnail-buttons {
+        display: flex;
+        position: absolute;
+        top: 5%;
+        right: 5%;
+    }
+
+    .caption {
+        position: absolute;
+        bottom: 10%;
+        left: 5%;
+    }
+    
+    .caption-link {
+        color: #fff;
+    }
+
+    a {
+        margin-right: 1rem;
+    }
+}
+
+.show-image {
+    height: 400px;
+}

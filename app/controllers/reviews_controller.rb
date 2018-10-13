@@ -1,13 +1,13 @@
 class ReviewsController < ApplicationController
     before_action :authenticate_user!
-    before_action :find_review, only: [:show, :edit, :update, :destroy]
+    before_action :find_review, only: [:edit, :update, :destroy, :upvote, :downvote]
 
     def create
         @review = @reviewable.reviews.new(review_params)
         @review.user = current_user
         @review.save
 
-        redirect_to @reviewable, notice: "Your review was successfully posted!"
+        redirect_to @reviewable, notice: 'Your review was successfully posted!'
     end
 
     def destroy
@@ -17,24 +17,35 @@ class ReviewsController < ApplicationController
     end
 
     def edit
-        
     end
 
     def update
         this_reviewable = @review.reviewable
         if @review.update(review_params)
-          redirect_to this_reviewable
+            redirect_to this_reviewable
         else
-          render 'edit'
-        end 
+            render 'edit'
+        end
+    end
+
+    def upvote
+        @review.upvote_by current_user
+        redirect_to @review.reviewable        
+    end
+
+    def downvote
+        @review.downvote_by current_user
+        redirect_to @review.reviewable        
     end
 
     private
-        def review_params
-            params.require(:review).permit(:body)
-        end
 
-        def find_review
-            @review = Review.find(params[:id])
-        end
+    def review_params
+        params.require(:review).permit(:body, :rating)
+    end
+
+    def find_review
+        @review = Review.find(params[:id])
+    end
+
 end
