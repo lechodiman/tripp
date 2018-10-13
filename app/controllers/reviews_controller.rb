@@ -30,12 +30,12 @@ class ReviewsController < ApplicationController
 
     def upvote
         @review.upvote_by current_user
-        redirect_to @review.reviewable        
+        redirect_to @review.reviewable
     end
 
     def downvote
         @review.downvote_by current_user
-        redirect_to @review.reviewable        
+        redirect_to @review.reviewable
     end
 
     private
@@ -47,5 +47,4 @@ class ReviewsController < ApplicationController
     def find_review
         @review = Review.find(params[:id])
     end
-
 end
