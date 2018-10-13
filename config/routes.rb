@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {registrations: 'registrations'}
 
     resources :posts, shallow: true do
+        resources :comments do
+        end
+        
         member do
             put "like", to: "posts#upvote"
             put "dislike", to: "posts#downvote"
