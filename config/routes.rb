@@ -23,6 +23,13 @@ Rails.application.routes.draw do
                     end
                 end
             end
+
+
+            resources :restaurants do
+                resources :reviews, module: :restaurants
+                
+            end
+        	
         end
     end
 
