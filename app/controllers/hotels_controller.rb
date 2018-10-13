@@ -1,8 +1,8 @@
 class HotelsController < ApplicationController
     before_action :find_city, only: [:new, :create]
-    before_action :find_hotel, only: [:show, :edit, :update, :destroy , :index]
+    before_action :find_hotel, only: [:show, :edit, :update, :destroy, :index]
     before_action :authenticate_user!, only: [:new, :edit]
-  
+
     def index
         @hotels = Hotel.where(city_id: @hotel.city.id)
     end
