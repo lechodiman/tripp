@@ -1,0 +1,18 @@
+<div class="row">
+    <h3 class="text-secondary">Leave a comment</h3>
+</div>
+
+<% if user_signed_in? %>
+	<%= simple_form_for([@post, Comment.new]) do |f| %>
+    	<%= f.input :title %>
+    	<%= f.input :content %>
+    	<%= f.button :submit, :class => "btn btn-primary" %>
+	<% end %>
+
+
+
+
+<% else %>
+    <p>To reply you need to <%= link_to 'login', new_user_session_path %>. Don't have an account?
+    <%= link_to 'Sign up', new_user_registration_path %> for one.</p>
+<% end %>
