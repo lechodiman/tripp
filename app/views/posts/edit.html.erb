@@ -4,11 +4,7 @@
 
         <h1>Edit post</h1>
 
-        <%= simple_form_for @post, :html => { :multipart => true } do |f| %>
-            <%= f.input :title, label: "Title" %>
-            <%= f.input :content %>
-            <%= f.button :submit %>
-        <% end %>
+        <%= render 'form' %>
 
     </div>
 

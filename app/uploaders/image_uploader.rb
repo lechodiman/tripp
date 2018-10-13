@@ -39,7 +39,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
 
     def public_id
-        return model.name
+        return model.has_attribute?(:name) ? model.name : model.title
     end
 
     # Create different versions of your uploaded files:
