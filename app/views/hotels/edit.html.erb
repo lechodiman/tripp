@@ -1,15 +1,22 @@
-<div class="col-md-6 offset-3">
+<% if has_role?(:admin) %>
 
-    <div class="edit-hotel-form">
+	<div class="col-md-6 offset-3">
 
-        <h1>Edit hotel</h1>
+	    <div class="edit-hotel-form">
 
-        <%= simple_form_for(@hotel) do |f| %>
-            <%= f.input :name %>
-            <%= f.input :description %>
-            <%= f.button :submit, :class => "btn btn-primary" %>
-        <% end %>   
+	        <h1>Edit hotel</h1>
 
-    </div>
+	        <%= simple_form_for(@hotel) do |f| %>
+	            <%= f.input :name %>
+	            <%= f.input :description %>
+	            <%= f.button :submit, :class => "btn btn-primary" %>
+	        <% end %>   
 
-</div>
+	    </div>
+
+	</div>
+	
+<% else %>
+    <p class="text-center">Sorry! You do not have acces to this page</p>
+    <%= link_to "Back", root_path %>
+<% end %>
