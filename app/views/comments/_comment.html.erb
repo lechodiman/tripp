@@ -1,0 +1,16 @@
+<br>
+<div class="row">
+    <div class="col-1 p-0">
+        <%= image_tag(comment.user.avatar, alt: comment.user.username, class: " img-fluid rounded-circle") %>
+    </div>
+    <div class="col-8 flex-column">
+        <div class="comment-header">
+            <strong><%= comment.user.username %></strong> <small><%= time_ago_in_words(comment.created_at) %></small>  
+        </div>
+        <div class="comment-content">
+                <%= comment.content %>
+        </div>
+    </div>
+
+
+</div>
