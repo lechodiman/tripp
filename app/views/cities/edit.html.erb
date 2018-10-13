@@ -1,20 +1,27 @@
-<div class="col-md-6 offset-3">
+<% if has_role?(:admin) %>
 
-    <div class="edit-city-form">
+    <div class="col-md-6 offset-3">
 
-        <h1>Edit city</h1>
+        <div class="edit-city-form">
 
-        <%= simple_form_for(@city) do |f| %>
-            <%= f.input :name %>
-            <%= f.input :description %>
-            <%= f.input :image %>
-            <% if @city.image? %>
-                <%= image_tag @city.image.thumb.url, class:"d-block mx-auto" %>
-            <% end %>
-            <hr>
-            <%= f.button :submit, :class => "btn btn-primary" %>
-        <% end %>   
+            <h1>Edit city</h1>
+
+            <%= simple_form_for(@city) do |f| %>
+                <%= f.input :name %>
+                <%= f.input :description %>
+                <%= f.input :image %>
+                <% if @city.image? %>
+                    <%= image_tag @city.image.thumb.url, class:"d-block mx-auto" %>
+                <% end %>
+                <hr>
+                <%= f.button :submit, :class => "btn btn-primary" %>
+            <% end %>   
+
+        </div>
 
     </div>
 
-</div>
+<% else %>
+    <p class="text-center">Sorry! You do not have acces to this page</p>
+    <%= link_to "Back", root_path %>
+<% end %>

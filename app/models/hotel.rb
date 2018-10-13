@@ -5,4 +5,6 @@ class Hotel < ApplicationRecord
     VALID_USERNAME_REGEX = /\A[a-zA-Z ]+\z/
   	validates :name, format: { with: VALID_USERNAME_REGEX }, uniqueness: { case_sensitive: false }
   	validates :description, presence: true
+
+  	resourcify
 end

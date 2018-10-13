@@ -1,8 +1,10 @@
 <div class="col-sm-4">
     <h5><%= hotel.name %></h5> 
     <%= link_to "See more", hotel_path(hotel), class: "btn btn-primary" %>
-    <div class="btn-group">
-        <%= link_to "Edit", edit_hotel_path(hotel), class: "btn btn-secondary" %>
-        <%= link_to "Delete", hotel_path(hotel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-    </div>
+    <% if has_role?(:admin) %>
+	    <div class="btn-group">
+	        <%= link_to "Edit", edit_hotel_path(hotel), class: "btn btn-secondary" %>
+	        <%= link_to "Delete", hotel_path(hotel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+	    </div>
+	<% end %>
 </div>

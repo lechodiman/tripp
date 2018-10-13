@@ -1,11 +1,17 @@
-<div class="col-md-6 offset-3">
+<% if has_role?(:admin) %>
+	<div class="col-md-6 offset-3">
 
-    <div class="new-city-form">
+	    <div class="new-city-form">
 
-        <h1>New city</h1>
+	        <h1>New city</h1>
 
-        <%= render 'form' %>
+	        <%= render 'form' %>
 
-    </div>
+	    </div>
 
-</div>
+	</div>
+
+<% else %>
+    <p class="text-center">Sorry! You do not have acces to this page</p>
+    <%= link_to "Back", root_path %>
+<% end %>

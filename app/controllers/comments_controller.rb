@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
         @comment.save
 
         redirect_to root_path, notice: 'Your comment was successfully posted!'
-    end
+  end
 
 
 
