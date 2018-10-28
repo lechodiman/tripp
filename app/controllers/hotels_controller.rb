@@ -5,6 +5,7 @@ class HotelsController < ApplicationController
 
     def index
         @hotels = Hotel.where(city_id: @city.id)
+                       .paginate(page: params[:page], per_page: 3)
     end
 
     def new

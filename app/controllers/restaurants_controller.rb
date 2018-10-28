@@ -5,6 +5,7 @@ class RestaurantsController < ApplicationController
 
     def index
         @restaurants = Restaurant.where(city_id: @city.id)
+                                 .paginate(page: params[:page], per_page: 3)
     end
 
     def new

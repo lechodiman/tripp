@@ -3,4 +3,6 @@
     <h6> <%= link_to @city.country.name, country_path(@city.country) %>, <%= link_to @city.name, city_path(@city) %> </h6>
 </div>
 
-<%= render @citywalks %>
+<div class="row">
+    <%= render @citywalks %>
+</div>
