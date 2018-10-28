@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
     
-  get 'comments/index'
+    get 'comments/index'
 
-  get 'comments/show'
+    get 'comments/show'
 
-  get 'comments/new'
+    get 'comments/new'
 
     devise_for :users, controllers: {registrations: 'registrations'}
+
+    get :search, controller: :main
 
     resources :posts, shallow: true do
         resources :comments do
