@@ -1,9 +1,10 @@
 class CitywalksController < ApplicationController
-    before_action :find_city, only: [:new, :create]
+    before_action :find_city, only: [:new, :create, :index]
     before_action :find_citywalk, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!, only: [:new, :edit]
 
     def index
+        @citywalks = Citywalk.where(city_id: @city.id)
     end
 
     def new
