@@ -43,7 +43,7 @@
 </div>
 
 <div class="row">
-    <%= render(@city.hotels) %>
+    <%= render(@city.hotels.limit(3)) %>
 </div>
 
 <hr>
@@ -55,7 +55,7 @@
 </div>
 
 <div class="row">
-    <%= render(@city.citywalks) %>
+    <%= render(@city.citywalks.limit(3)) %>
 </div>
 
 <hr>
@@ -67,7 +67,7 @@
 </div>
 
 <div class="row">
-    <%= render(@city.restaurants) %>
+    <%= render(@city.restaurants.limit(3)) %>
 </div>
 
 <hr>

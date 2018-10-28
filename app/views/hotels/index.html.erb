@@ -7,4 +7,8 @@
     <%= render(@hotels) %>
 </div>
 
-<%= will_paginate @hotels %>
+<hr>
+
+<div class="row justify-content-center">
+    <%= will_paginate @hotels, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>

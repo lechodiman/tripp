@@ -6,3 +6,7 @@
 <div class="row">
     <%= render @restaurants %>
 </div>
+
+<div class="row justify-content-center">
+    <%= will_paginate @restaurants, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
