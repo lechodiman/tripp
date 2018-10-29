@@ -1,0 +1,44 @@
+<h1>Users from Travel App</h1>
+<p>A list of all the users in the application</p>
+
+<div class='form-group centered'><input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for names..'></div>
+
+<table class='table-responsive-md btn-table' id='myTable' callpadding='0' cellspacing='0' border='0'style='text-align:center;'>
+	<tr class='header'>
+		<th class='th-sm'>Username</th>
+		<th class='th-sm'>Created at</th>
+		<th class='th-sm'> </th>
+	</tr>
+
+<% @users.each do |user| %>
+    <tr><td><%=user.username%></td>
+    	<td><%=user.created_at%></td>
+    	<td><%= link_to "Make moderator", all_users_convert_path(user: user), class: "btn btn-outline-primary btn-sm m-0 waves-effect" %></td></tr>
+<% end %>
+
+</table>
+
+<script>
+
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+</script>
