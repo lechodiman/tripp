@@ -18,14 +18,25 @@ class AllUsersController < ApplicationController
 		user = User.find(params[:user])
 
 		if user.has_role?(:moderator)
-			redirect_to all_users_show_path, notice: "Selected user already has moderator privileges"
-
-		elsif user.has_role?(:admin)
-			redirect_to all_users_show_path, notice: "Selected user is an admin"
+			redirect_to all_users_show_path, alert: "Selected user already has moderator privileges"
 
 		else
 			user.add_role 'moderator'
 			redirect_to all_users_show_path, notice: "Now this user is a moderator"
+
+		end
+	end
+
+	def unconvert
+
+		user = User.find(params[:user])
+
+		if user.has_role?(:moderator)
+			user.remove_role 'moderator'
+			redirect_to all_users_show_path, notice: "Changed user's privileges to normal user"
+
+		else
+			redirect_to all_users_show_path, alert: "Selected user is already a normal user"
 
 		end
 	end
