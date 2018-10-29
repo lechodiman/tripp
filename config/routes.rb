@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+    get 'all_users/show'
+
+    get 'all_users/convert'
     
     get 'comments/index'
 
