@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'acts_as_saveable', '~> 0.10.1'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'bootstrap', '~> 4.1.3'
 gem 'cancancan', '~> 2.1', '>= 2.1.3'

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
     get :search, controller: :main
 
+    resources :users, only: [:show]
+    
     resources :posts, shallow: true do
         resources :comments do
         end
@@ -22,6 +24,9 @@ Rails.application.routes.draw do
     
     resources :countries, shallow: true do
         resources :cities do
+            member do 
+                put "save", to: "cities#saved"
+            end
             resources :hotels do
             	resources :reviews, module: :hotels do
                     member do

@@ -3,6 +3,18 @@
     <h6> <%= link_to @city.country.name, country_path(@city.country) %> </h6>
 </div>
 
+
+
+<label for="id-of-input" class="custom-checkbox">
+  <input type="checkbox" id="id-of-input"/>
+  <%= link_to save_city_path(@city), class: "save", method: :put do %>  
+  <i class="glyphicon glyphicon-star-empty"></i>
+  <i class="glyphicon glyphicon-star"></i>
+  <span>Favorite</span>
+  <%end%>
+</label>
+
+
 <div class="row">
     <p class="lead"><%= @city.description %></p>
 </div>

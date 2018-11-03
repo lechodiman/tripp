@@ -1,0 +1,5 @@
+<%= current_user.username %>
+
+<% current_user.find_saved_items.each do |p| %>
+  <td><%= p.name %></td>
+<% end %>
