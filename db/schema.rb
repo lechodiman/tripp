@@ -60,6 +60,23 @@ ActiveRecord::Schema.define(version: 20181013232239) do
     t.integer "city_id"
   end
 
+  create_table "poll_votes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "vote_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_poll_votes_on_user_id"
+    t.index ["vote_option_id", "user_id"], name: "index_poll_votes_on_vote_option_id_and_user_id", unique: true
+    t.index ["vote_option_id"], name: "index_poll_votes_on_vote_option_id"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.text "topic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -118,6 +135,14 @@ ActiveRecord::Schema.define(version: 20181013232239) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  create_table "vote_options", force: :cascade do |t|
+    t.string "title"
+    t.bigint "poll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_vote_options_on_poll_id"
+  end
+
   create_table "votes", id: :serial, force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
@@ -132,4 +157,7 @@ ActiveRecord::Schema.define(version: 20181013232239) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "poll_votes", "users"
+  add_foreign_key "poll_votes", "vote_options"
+  add_foreign_key "vote_options", "polls"
 end

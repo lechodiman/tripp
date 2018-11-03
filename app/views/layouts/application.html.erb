@@ -9,6 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
   </head>
 
 <body>
@@ -24,12 +25,19 @@
       <% if has_role?(:admin) %>
         <li class="nav-item">
           <%= link_to "Add Country", new_country_path, class: "nav-link" %>
-        </li>        
+        </li> 
+        <li class="nav-item">
+          <%= link_to "See Users", all_users_show_path(type: "user"), class: "nav-link" %>
+        </li>           
       <% end %>
 
       <li class="nav-item">
         <%= link_to "Posts", posts_path, class: "nav-link" %>
-      </li>        
+      </li>
+
+      <li class="nav-item">
+        <%= link_to 'Polls', polls_path, class: "nav-link" %>
+      </li>       
     </ul>
 
     <form class="form-inline my-2 my-lg-0">

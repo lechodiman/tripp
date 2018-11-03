@@ -1,0 +1,21 @@
+<h1>Participate in our polls right now</h1>
+
+<% @polls.each do |poll| %>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title"><%= poll.topic %> <small>(voted: <%= poll.votes_summary %>)</small></h2>
+
+            <%= render 'voting_form', poll: poll %>
+            
+            <!-- if es del usuario o es admin -->
+            <% if has_role?(:admin) || has_role?(:moderator) || current_user == poll.user%>
+                <%= link_to 'Edit', edit_poll_path(poll), class: 'btn btn-default' %>
+                <%= link_to 'Delete', poll_path(poll), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure?'} %>
+            <% end %>
+        </div>
+    </div>
+<% end %>
+
+<div class="row justify-content-center mt-2">
+    <%= link_to 'Add poll', new_poll_path, class: "btn btn-primary" %>
+</div>

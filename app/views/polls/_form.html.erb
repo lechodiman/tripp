@@ -1,0 +1,16 @@
+<%= simple_form_for @poll, :html => { :multipart => true } do |f| %>
+    <%= f.input :topic %>
+    
+    <%= f.simple_fields_for :vote_options do |p| %>
+        <%= p.input :title %>
+    <% end %>
+
+    <!-- link_to_add_association is the helper method introduced by Cocoon that renders a link to dynamically add new nested fields -->
+    
+    <div class="links mt-2">
+        <%= link_to_add_association 'Add Option', f, :vote_options, class: "btn btn-success" %>
+    </div>
+
+    <hr>
+    <%= f.button :submit %>
+<% end %>
