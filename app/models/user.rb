@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   has_many :posts
   has_many :commentaries
-  acts_as_saver
 
   VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/
   validates :username, presence: true, format: { with: VALID_USERNAME_REGEX }, uniqueness: { case_sensitive: false }

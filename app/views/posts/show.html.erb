@@ -2,14 +2,6 @@
     <h1 class="display-1"><%= @post.title %></h1>
 </div>
 
-<%= link_to save_post_path(@post), class: "save", method: :put do %>  
-<%if current_user.find_saved_items.include?(@post)%>
-<i class="fas fa-star"></i>
-<%else%>
-<i class="far fa-star"></i>
-<%end%>
-<%end%>
-
 <div class="row">
     <p class="lead"><%= @post.content%></p>
 </div>

@@ -4,7 +4,6 @@ class Post < ApplicationRecord
     belongs_to :user
 
     has_many :comments
-    acts_as_saveable
 
     validates :title, presence: true
     validates :content, presence: true
