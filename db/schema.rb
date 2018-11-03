@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181013232239) do
+ActiveRecord::Schema.define(version: 20181103124424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,12 @@ ActiveRecord::Schema.define(version: 20181013232239) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "city_id"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.text "topic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -118,6 +124,14 @@ ActiveRecord::Schema.define(version: 20181013232239) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  create_table "vote_options", force: :cascade do |t|
+    t.string "title"
+    t.bigint "poll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_vote_options_on_poll_id"
+  end
+
   create_table "votes", id: :serial, force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
@@ -132,4 +146,5 @@ ActiveRecord::Schema.define(version: 20181013232239) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "vote_options", "polls"
 end
