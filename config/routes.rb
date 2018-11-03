@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
     
-  get 'comments/index'
+    get 'comments/index'
 
-  get 'comments/show'
+    get 'comments/show'
 
-  get 'comments/new'
+    get 'comments/new'
 
     devise_for :users, controllers: {registrations: 'registrations'}
 
+    get :search, controller: :main
+
+    resources :users, only: [:show]
+    
     resources :posts, shallow: true do
         resources :comments do
         end
@@ -15,11 +19,15 @@ Rails.application.routes.draw do
         member do
             put "like", to: "posts#upvote"
             put "dislike", to: "posts#downvote"
+            put "save" , to: "posts#saved"
         end
     end
     
     resources :countries, shallow: true do
         resources :cities do
+            member do 
+                put "save", to: "cities#saved"
+            end
             resources :hotels do
             	resources :reviews, module: :hotels do
                     member do
