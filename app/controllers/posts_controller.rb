@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :find_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :saved]
+    before_action :find_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
     before_action :authenticate_user!, only: [:new, :edit, :upvote, :downvote]
 
     def index
@@ -49,11 +49,6 @@ class PostsController < ApplicationController
     def downvote
         @post.downvote_by current_user
         redirect_back(fallback_location: root_path)
-    end
-
-    def saved
-        @post.upsaved_by current_user
-        redirect_to post_path(@post)
     end
 
     private

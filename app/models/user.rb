@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-
+    has_many :posts
+    has_many :commentaries
     acts_as_saver
 
     has_many :posts
