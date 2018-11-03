@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
     get :search, controller: :main
 
+    resources :users, only: [:show]
+    
     resources :polls
 
     resources :poll_votes, only: [:create]
@@ -28,11 +30,15 @@ Rails.application.routes.draw do
         member do
             put "like", to: "posts#upvote"
             put "dislike", to: "posts#downvote"
+            put "save" , to: "posts#saved"
         end
     end
     
     resources :countries, shallow: true do
         resources :cities do
+            member do 
+                put "save", to: "cities#saved"
+            end
             resources :hotels do
             	resources :reviews, module: :hotels do
                     member do
