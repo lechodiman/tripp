@@ -29,7 +29,11 @@
 
       <li class="nav-item">
         <%= link_to "Posts", posts_path, class: "nav-link" %>
-      </li>        
+      </li>
+
+      <li class="nav-item">
+        <%= link_to 'Add poll', new_poll_path %>
+      </li>       
     </ul>
 
     <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline my-2 my-lg-0" } do |form| %>
