@@ -3,7 +3,9 @@
 <% @polls.each do |poll| %>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title"> <%= poll.topic %></h5>
+            <h2 class="card-title"><%= poll.topic %> <small>(voted: <%= poll.votes_summary %>)</small></h2>
+
+            <%= render 'voting_form', poll: poll %>
             
             <!-- if es del usuario o es admin -->
             <%= link_to 'Edit', edit_poll_path(poll), class: 'btn btn-default' %>

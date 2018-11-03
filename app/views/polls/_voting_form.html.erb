@@ -1,0 +1,16 @@
+<%= form_tag poll_votes_path, method: :post, remote: true, id: 'voting_form' do %>
+  <%= hidden_field_tag 'poll[id]', poll.id %>
+
+  <%= render partial: 'polls/vote_option', collection: poll.vote_options, as: :option %>
+
+  <% if !current_user %>
+    <p>You need to log in to vote</p>
+  <% elsif current_user.voted_for?(poll) %>
+    <p>You have already voted!</p>
+  <% else %>
+    <%= submit_tag 'Vote', class: 'btn btn-lg btn-primary' %>
+  <% end %>
+
+
+  <p><b>Total votes: <%= poll.votes_summary %></b></p>
+<% end %>
