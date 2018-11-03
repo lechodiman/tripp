@@ -39,7 +39,6 @@ gem 'devise', '~> 4.5'
 gem 'figaro'
 gem 'jquery-rails'
 gem 'mini_magick', '~> 4.9', '>= 4.9.2'
-gem 'ransack', '~> 2.0', '>= 2.0.1'
 gem 'rolify', '~> 5.2'
 gem 'simple_form', '~> 4.0', '>= 4.0.1'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?

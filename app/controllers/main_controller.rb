@@ -3,10 +3,10 @@ class MainController < ApplicationController
     end
 
     def search
-        @countries = Country.ransack(name_cont: params[:q]).result(distinct: true)
-        @cities = City.ransack(name_cont: params[:q]).result(distinct: true)
-        @hotels = Hotel.ransack(name_cont: params[:q]).result(distinct: true)
-        @restaurants = Restaurant.ransack(name_cont: params[:q]).result(distinct: true)
+        @countries = Country.distinct.where('lower(name) LIKE ?', "%#{params[:q].downcase}%")
+        @cities = City.distinct.where('lower(name) LIKE ?', "%#{params[:q].downcase}%")
+        @hotels = Hotel.distinct.where('lower(name) LIKE ?', "%#{params[:q].downcase}%")
+        @restaurants = Restaurant.distinct.where('lower(name) LIKE ?', "%#{params[:q].downcase}%")
 
         respond_to do |format|
             format.html {}
