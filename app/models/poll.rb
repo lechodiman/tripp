@@ -1,6 +1,7 @@
 class Poll < ApplicationRecord
     has_many :vote_options, dependent: :destroy
     validates :topic, presence: true
+    belongs_to :user
     # :reject_if => :all_blank raises an error and rejects
     # saving the poll if it has no vote options
 

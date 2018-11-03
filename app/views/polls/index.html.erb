@@ -8,8 +8,10 @@
             <%= render 'voting_form', poll: poll %>
             
             <!-- if es del usuario o es admin -->
-            <%= link_to 'Edit', edit_poll_path(poll), class: 'btn btn-default' %>
-            <%= link_to 'Delete', poll_path(poll), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure?'} %>
+            <% if has_role?(:admin) || has_role?(:moderator) || current_user == poll.user%>
+                <%= link_to 'Edit', edit_poll_path(poll), class: 'btn btn-default' %>
+                <%= link_to 'Delete', poll_path(poll), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure?'} %>
+            <% end %>
         </div>
     </div>
 <% end %>

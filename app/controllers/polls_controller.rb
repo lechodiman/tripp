@@ -1,5 +1,6 @@
 class PollsController < ApplicationController
     before_action :find_poll, only: [:edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:new, :edit]
 
     def index
         @polls = Poll.all
@@ -11,6 +12,8 @@ class PollsController < ApplicationController
 
     def create
         @poll = Poll.new(poll_params)
+        @poll.user_id = current_user.id
+
         if @poll.save
             flash[:success] = 'Poll was created!'
             redirect_to polls_path

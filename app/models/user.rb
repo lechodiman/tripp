@@ -4,6 +4,7 @@ class User < ApplicationRecord
     has_many :reviews
     has_many :poll_votes, dependent: :destroy
     has_many :vote_options, through: :poll_votes
+    has_many :polls
 
     VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/
     validates :username, presence: true, format: { with: VALID_USERNAME_REGEX }, uniqueness: { case_sensitive: false }
