@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
     before_action :find_country, only: [:new, :create]
-    before_action :find_city, only: [:show, :edit, :update, :destroy,:saved]
+    before_action :find_city, only: [:show, :edit, :update, :destroy, :saved]
     before_action :authenticate_user!, only: [:new, :edit]
 
     def show

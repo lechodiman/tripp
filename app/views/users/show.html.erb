@@ -1,5 +1,45 @@
-<%= current_user.username %>
+<div class="row justify-content-center">
+    <h1 class="display-1"><%= current_user.username %></h1>
+</div>
 
-<% current_user.find_saved_items.each do |p| %>
-  <td><%= p.name %></td>
-<% end %>
+<div class="row">
+    <div class="col-sm-12 justify-content-center">
+        <div class="show-image">
+            <%= image_tag current_user.avatar, alt: current_user.username, class: "h-50 w-50" %>        
+        </div>        
+    </div>
+</div>
+
+<div class="row">
+	<div class="dropdown">
+	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Favorite Cities
+	  </button>
+	   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+	   	<% current_user.find_saved_items.each do |p| %>
+	   	<%if p.class == City%>
+	    <button class="dropdown-item" type="button"><%= link_to p.name ,city_path(p) %>
+	    <%end%>
+		</button>
+	    <% end %>
+	  </div>
+
+	</div>
+	&nbsp;
+	&nbsp;
+
+	<div class="dropdown">
+	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Favorite Posts
+	  </button>
+	   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+	   	<% current_user.find_saved_items.each do |p| %>
+	   	<%if p.class == Post%>
+	    <button class="dropdown-item" type="button"><%= link_to p.title ,post_path(p) %>
+	    <%end%>
+		</button>
+	    <% end %>
+	  </div>
+
+	</div>
+</div>

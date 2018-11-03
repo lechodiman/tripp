@@ -5,14 +5,14 @@
 
 
 
-<label for="id-of-input" class="custom-checkbox">
-  <input type="checkbox" id="id-of-input"/>
-  <%= link_to save_city_path(@city), class: "save", method: :put do %>  
-  <i class="glyphicon glyphicon-star-empty"></i>
-  <i class="glyphicon glyphicon-star"></i>
-  <span>Favorite</span>
-  <%end%>
-</label>
+<%= link_to save_city_path(@city), class: "save", method: :put do %>  
+<%if current_user.find_saved_items.include?(@city)%>
+<i class="fas fa-star"></i>
+<%else%>
+<i class="far fa-star"></i>
+<%end%>
+<%end%>
+
 
 
 <div class="row">
