@@ -1,0 +1,12 @@
+<div class="row align-items-center flex-column">
+    <h1 class="display-1">Citywalks</h1>
+    <h6> <%= link_to @city.country.name, country_path(@city.country) %>, <%= link_to @city.name, city_path(@city) %> </h6>
+</div>
+
+<div class="row">
+    <%= render @citywalks %>
+</div>
+
+<div class="row justify-content-center">
+    <%= will_paginate @citywalks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
