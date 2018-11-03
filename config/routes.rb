@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     get 'all_users/unconvert'
     
+
     get 'comments/index'
 
     get 'comments/show'
@@ -15,6 +16,10 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {registrations: 'registrations'}
 
     get :search, controller: :main
+
+    resources :polls
+
+    resources :poll_votes, only: [:create]
 
     resources :posts, shallow: true do
         resources :comments do
