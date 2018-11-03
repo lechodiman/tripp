@@ -8,6 +8,7 @@ class User < ApplicationRecord
     has_many :poll_votes, dependent: :destroy
     has_many :vote_options, through: :poll_votes
     has_many :polls
+    has_one :country
 
 
     VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/

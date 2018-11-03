@@ -1,8 +1,7 @@
 class AllUsersController < ApplicationController
    	def show
 
-   		type = params[:type]
-   		@users = User.ransack(name_cont: params[:q]).result(distinct: true)
+   		@users = User.all
 
         respond_to do |format|
             format.html {}
@@ -22,7 +21,8 @@ class AllUsersController < ApplicationController
 
 		else
 			user.add_role 'moderator'
-			redirect_to all_users_show_path, notice: "Now this user is a moderator"
+			user.save!
+			redirect_to all_users_select_country_path(user: user)
 
 		end
 	end
@@ -33,11 +33,30 @@ class AllUsersController < ApplicationController
 
 		if user.has_role?(:moderator)
 			user.remove_role 'moderator'
+			user.save!
 			redirect_to all_users_show_path, notice: "Changed user's privileges to normal user"
 
 		else
 			redirect_to all_users_show_path, alert: "Selected user is already a normal user"
 
 		end
+	end
+
+	def select_country
+
+		@user = params[:user]
+		@countries = Country.all.order('created_at DESC')
+
+	end
+
+	def assign_country
+
+		id = params[:id]
+		user = User.find(params[:user])
+		user.country_id = id
+		user.save!
+
+		redirect_to  all_users_show_path, notice: "Moderator assigned succesfully"
+
 	end
 end
