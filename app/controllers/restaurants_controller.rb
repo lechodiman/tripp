@@ -1,9 +1,11 @@
 class RestaurantsController < ApplicationController
-    before_action :find_city, only: [:new, :create]
+    before_action :find_city, only: [:new, :create, :index]
     before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!, only: [:new, :edit]
 
     def index
+        @restaurants = Restaurant.where(city_id: @city.id)
+                                 .paginate(page: params[:page], per_page: 3)
     end
 
     def new

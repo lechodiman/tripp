@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+
+    get 'all_users/show'
+
+    get 'all_users/convert'
+
+    get 'all_users/unconvert'
     
+
     get 'comments/index'
 
     get 'comments/show'
@@ -12,6 +19,10 @@ Rails.application.routes.draw do
 
     resources :users, only: [:show]
     
+    resources :polls
+
+    resources :poll_votes, only: [:create]
+
     resources :posts, shallow: true do
         resources :comments do
         end
