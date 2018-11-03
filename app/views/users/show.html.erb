@@ -2,11 +2,16 @@
     <h1 class="display-1"><%= current_user.username %></h1>
 </div>
 
+<div class="row justify-content-center">
+    <div class="average-review-rating" data-score="<%= current_user.posts.sum {|s| 5*s.get_likes.size.to_f/s.votes_for.size} %>"></div> <small>based on <%= current_user.posts.sum {|s| s.votes_for.size} %> votes</small>   
+</div>
+
+
 <div class="row">
     <div class="col-sm-12 justify-content-center">
         <div class="show-image">
             <%= image_tag current_user.avatar, alt: current_user.username, class: "h-50 w-50" %>        
-        </div>        
+        </div>     
     </div>
 </div>
 
@@ -43,3 +48,31 @@
 
 	</div>
 </div>
+
+<script>
+    $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        path: '/assets/'
+    });
+</script>
+
+<script>
+    $('.average-review-rating').raty({
+        readOnly: true,
+        path: '/assets/',
+        score: function() {
+            return $(this).attr('data-score');
+        }
+    });
+</script>
+
+
+<script>
+    $('#rating-form').raty({
+        path: '/assets/',
+        scoreName: 'review[rating]'
+    });
+</script>
