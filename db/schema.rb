@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181103124424) do
+ActiveRecord::Schema.define(version: 20181103134834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 20181103124424) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "city_id"
+  end
+
+  create_table "poll_votes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "vote_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_poll_votes_on_user_id"
+    t.index ["vote_option_id", "user_id"], name: "index_poll_votes_on_vote_option_id_and_user_id", unique: true
+    t.index ["vote_option_id"], name: "index_poll_votes_on_vote_option_id"
   end
 
   create_table "polls", force: :cascade do |t|
@@ -146,5 +156,7 @@ ActiveRecord::Schema.define(version: 20181103124424) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "poll_votes", "users"
+  add_foreign_key "poll_votes", "vote_options"
   add_foreign_key "vote_options", "polls"
 end
