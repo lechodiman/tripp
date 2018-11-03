@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     get 'all_users/convert'
 
     get 'all_users/unconvert'
-    
+
+    get 'all_users/select_country'
+
+    get 'all_users/assign_country'
+
     get 'comments/index'
 
     get 'comments/show'
