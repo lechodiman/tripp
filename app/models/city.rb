@@ -4,6 +4,7 @@ class City < ApplicationRecord
     has_many :citywalks
     has_many :restaurants
     has_many :reviews, as: :reviewable
+    acts_as_saveable
 
 
     VALID_NAME_REGEX = /\A[a-zA-Z ]+\z/
