@@ -1,15 +1,13 @@
 module UsersHelper
+    def can_moderate_review(review)
+        if current_user.country_id
 
-	def can_moderate_review(review)
+            review.reviewable.city.country.id == current_user.country_id
 
-		if current_user.country_id
+        else
 
-			review.reviewable.city.country.id == current_user.country_id
+            false
 
-		else
-
-			false
-
-	end
-
+        end
+    end
 end
