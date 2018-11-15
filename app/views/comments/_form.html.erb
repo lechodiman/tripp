@@ -1,4 +1,3 @@
-<br>
 <div class="row">
     <h3 class="text-secondary">Leave a comment</h3>
 </div>
@@ -9,9 +8,6 @@
     	<%= f.input :content %>
     	<%= f.button :submit, :class => "btn btn-primary" %>
 	<% end %>
-
-
-
 
 <% else %>
     <p>To reply you need to <%= link_to 'login', new_user_session_path %>. Don't have an account?

@@ -27,15 +27,23 @@
             <% end %>
         </div>
     </div>
-    <% if current_user == post.user || has_role?(:admin) || has_role?(:moderator) %>
-        <div class="col-2 text-md-center">
-            <%= link_to edit_post_path(post) do %>
-                <p><i class="fas fa-pencil-alt"></i></p>
-            <% end %>
+    <div class="col-2 text-md-center">
+        <%= link_to save_post_path(post), method: :put do %>  
+            <%if current_user.find_saved_items.include?(post)%>
+                <p><i class="fas fa-star"></i></p>
+            <%else%>
+                <p><i class="far fa-star"></i></p>
+            <%end%>
+        <%end%>
 
-            <%= link_to post_path(post), method: :delete, data: { confirm: "Are you sure?" } do %>
-                <p><i class="fas fa-trash-alt"></i></p>
-            <% end %>
-        </div>            
-    <% end %> <!-- endif -->
+        <% if current_user == post.user || has_role?(:admin) || has_role?(:moderator) %>
+                <%= link_to edit_post_path(post) do %>
+                    <p><i class="fas fa-pencil-alt"></i></p>
+                <% end %>
+
+                <%= link_to post_path(post), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <p><i class="fas fa-trash-alt"></i></p>
+                <% end %>
+        <% end %> <!-- endif -->
+    </div> <!-- col-2 -->           
 </div> <!-- div.row -->
