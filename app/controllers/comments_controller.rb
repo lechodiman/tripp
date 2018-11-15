@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
         @comment.post_id = @post.id
         @comment.save
 
-        redirect_to root_path, notice: 'Your comment was successfully posted!'
+        redirect_to post_path(@post), notice: 'Your comment was successfully posted!'
   end
 
 

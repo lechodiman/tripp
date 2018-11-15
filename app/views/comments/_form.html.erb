@@ -4,8 +4,7 @@
 
 <% if user_signed_in? %>
 	<%= simple_form_for([@post, Comment.new]) do |f| %>
-    	<%= f.input :title %>
-    	<%= f.input :content %>
+    	<%= f.input :content, placeholder: "What do you think about this?", label: false %>
     	<%= f.button :submit, :class => "btn btn-primary" %>
 	<% end %>
 

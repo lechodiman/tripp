@@ -1,5 +1,9 @@
 <%= render @post %>
 
-<%= render(@post.comments) %>
+<div class="row">
+	<div class="col-12 flex-column">
+		<%= render(@post.comments) %>	
+	</div>
+</div>
 
 <%= render partial: "comments/form" %>
