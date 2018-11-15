@@ -1,11 +1,18 @@
-<div class="col-sm-4">
-    <h5><%= citywalk.name %></h5> 
-    <%= link_to "See more", citywalk_path(citywalk), class: "btn btn-primary" %>
-
-    <% if has_role?(:admin) %>
-	    <div class="btn-group">
-	        <%= link_to "Edit", edit_citywalk_path(citywalk), class: "btn btn-secondary" %>
-	        <%= link_to "Delete", citywalk_path(citywalk), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-	    </div>
-	<% end %>
+<div class="col-md-4 mb-4">
+    <div class="thumbnail">
+        <%= link_to image_tag(citywalk.image.thumb.url, alt: citywalk.name, class: "img-fluid"), citywalk_path(citywalk) if citywalk.image? %>
+        <div class="caption">
+            <h4><%= link_to citywalk.name, citywalk_path(citywalk), class: "caption-link"%></h4>
+        </div>
+        <% if has_role?(:admin) %>
+            <div class="thumbnail-buttons">
+                <%= link_to edit_citywalk_path(citywalk) do %>
+                    <p><i class="fas fa-pencil-alt"></i></p>
+                <% end %>
+                <%= link_to citywalk_path(citywalk), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <p><i class="fas fa-trash-alt"></i></p>
+                <% end %>            
+            </div>            
+        <% end %>
+    </div>
 </div>

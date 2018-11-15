@@ -14,6 +14,14 @@
 
 </div>
 
+<div class="row">
+    <div class="col-sm-12 justify-content-center">
+        <div class="show-image">
+            <%= image_tag @citywalk.image.url  , alt: @citywalk.name, class: "h-100 w-100" %>        
+        </div>        
+    </div>
+</div>
+
 <%= render partial: "reviews/reviews", locals: {reviewable: @citywalk} %>
 
 <%= render partial: "reviews/form", locals: {reviewable: @citywalk} %>
