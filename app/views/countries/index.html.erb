@@ -30,3 +30,8 @@
         <% end %>            
     </div>
 <% end %>
+
+<% if has_role?(:admin) %>
+    <%= link_to "Add Country", new_country_path, class: "btn btn-primary" %>
+
+<% end %>
