@@ -4,13 +4,14 @@
 </div>
 
 
-
-<%= link_to save_city_path(@city), class: "save", method: :put do %>  
-<%if current_user.find_saved_items.include?(@city)%>
-<i class="fas fa-star"></i>
-<%else%>
-<i class="far fa-star"></i>
-<%end%>
+<%if current_user%>
+    <%= link_to save_city_path(@city), class: "save", method: :put do %>  
+    <%if current_user.find_saved_items.include?(@city)%>
+        <i class="fas fa-star"></i>
+    <%else%>
+        <i class="far fa-star"></i>
+    <%end%>
+    <%end%>
 <%end%>
 
 
