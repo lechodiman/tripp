@@ -49,7 +49,7 @@ class HotelsController < ApplicationController
     private
 
     def hotel_params
-        params.require(:hotel).permit(:name, :description)
+        params.require(:hotel).permit(:name, :description, :image)
     end
 
     def find_city
