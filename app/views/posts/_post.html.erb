@@ -12,7 +12,7 @@
             <%= post.content %>
             <% if post.image? %>
                 <%= link_to post_path(post) do  %>
-                    <%= image_tag post.image.thumb.url, class:"d-block mx-auto" %>
+                    <%= image_tag post.image.thumb.url, class:"img-fluid d-block mx-auto" %>
                 <% end %>
             <% end %>
         </div>
