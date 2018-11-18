@@ -8,7 +8,7 @@
 
         <div class="col-9 d-flex flex-column">
             <div class="poll-header">
-                <h2 class="card-title"><%= poll.topic %> <small>(voted: <%= poll.votes_summary %>)</small></h2>
+                <h4><%= poll.topic %> <small>(voted: <%= poll.votes_summary %>)</small></h4>
             </div>
 
             <%= render 'voting_form', poll: poll %>                            
