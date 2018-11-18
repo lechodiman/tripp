@@ -3,7 +3,7 @@
         <%= image_tag(post.user.avatar, alt: post.user.username, class: " img-fluid rounded-circle") %>
     </div>
 
-    <div class="col-8 d-flex flex-column">
+    <div class="col-9 d-flex flex-column">
         <div class="post-header">
             <h4 class="d-inline"> <%= link_to post.title, post_path(post) %></h4> by 
             <strong><%= link_to post.user.username, user_path(post.user) %></strong> <small><%= time_ago_in_words(post.created_at) %></small>  
