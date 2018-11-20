@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+    get 'countries/index'
+
     get 'all_users/show'
 
     get 'all_users/convert'
@@ -69,5 +71,5 @@ Rails.application.routes.draw do
         end
     end
 
-    root 'countries#index'
+    root 'main#landing_page'
 end
