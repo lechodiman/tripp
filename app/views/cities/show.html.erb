@@ -55,7 +55,7 @@
 </div>
 
 <div class="row">
-    <%= render(@city.hotels.limit(3).sort_by{|a| a.reviews.sort_by{|b| b.rating }}) %>
+    <%= render(@city.hotels.sort_by{|a| a.mean}.reverse[0..2]) %>
 
 </div>
 
