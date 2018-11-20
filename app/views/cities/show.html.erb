@@ -6,7 +6,7 @@
 
 
 <%= link_to save_city_path(@city), class: "save", method: :put do %>  
-<%if current_user.find_saved_items.include?(@city)%>
+<%if current_user.find_up_saved_items.include?(@city)%>
 <i class="fas fa-star"></i>
 <%else%>
 <i class="far fa-star"></i>
@@ -55,7 +55,8 @@
 </div>
 
 <div class="row">
-    <%= render(@city.hotels.limit(3)) %>
+    <%= render(@city.hotels.limit(3).sort_by{|a| a.reviews.sort_by{|b| b.rating }}) %>
+
 </div>
 
 <hr>
@@ -67,7 +68,7 @@
 </div>
 
 <div class="row">
-    <%= render(@city.citywalks.limit(3)) %>
+    <%= render(@city.citywalks.sort_by{|a| a.mean}.reverse[0..2]) %>
 </div>
 
 <hr>
@@ -79,7 +80,7 @@
 </div>
 
 <div class="row">
-    <%= render(@city.restaurants.limit(3)) %>
+     <%= render(@city.restaurants.limit(3).sort_by{|a| a.reviews.sort_by{|b| b.rating }}) %>
 </div>
 
 <hr>
