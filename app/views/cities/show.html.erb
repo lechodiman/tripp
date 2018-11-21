@@ -1,3 +1,7 @@
+<%= country_object = ISO3166::Country.find_country_by_name(@city.country.name) %>
+<%= dic = JSON.parse(HTTParty.get('http://api.openweathermap.org/data/2.5/weather?q=' + @city.name + ',' + country_object.alpha2 + '&appid=' + ENV["OPENWEATHER_API_KEY"]).to_json)%>
+
+
 <div class="row align-items-center flex-column">
     <h1 class="display-1"><%= @city.name %></h1>
     <h6> <%= link_to @city.country.name, country_path(@city.country) %> </h6>
@@ -26,6 +30,23 @@
         </div>        
     </div>
 </div>
+
+<% if dic %>
+
+    <br>
+
+    <div class="row flex-column align-items-center">
+
+        <h2>Current weather: <%= dic['weather'][0]['main']%></h2>
+        <h2>Description: <%= dic['weather'][0]['description']%></h2>
+            
+        <%= image_tag("http://openweathermap.org/img/w/#{dic['weather'][0]['icon']}.png", :size => "100x100") %>
+
+    </div>
+
+    <br>
+
+<% end %>
 
 <div class="row justify-content-center">
     <h2>Browse <%= @city.name %></h2>
