@@ -1,21 +1,36 @@
 <h1>Participate in our polls right now</h1>
 
 <% @polls.each do |poll| %>
-    <div class="card">
-        <div class="card-body">
-            <h2 class="card-title"><%= poll.topic %> <small>(voted: <%= poll.votes_summary %>)</small></h2>
-
-            <%= render 'voting_form', poll: poll %>
-            
-            <!-- if es del usuario o es admin -->
-            <% if has_role?(:admin) || has_role?(:moderator) || current_user == poll.user%>
-                <%= link_to 'Edit', edit_poll_path(poll), class: 'btn btn-default' %>
-                <%= link_to 'Delete', poll_path(poll), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure?'} %>
-            <% end %>
+    <div class="row m-2">
+        <div class="col-1 p-0">
+            <%= image_tag(poll.user.avatar, alt: poll.user.username, class: " img-fluid rounded-circle") %>
         </div>
-    </div>
+
+        <div class="col-9 d-flex flex-column">
+            <div class="poll-header">
+                <h4><%= poll.topic %> <small>(voted: <%= poll.votes_summary %>)</small></h4>
+            </div>
+
+            <%= render 'voting_form', poll: poll %>                            
+        </div>
+
+        <div class="col-2 text-md-center">
+            <% if current_user == poll.user || has_role?(:admin) || has_role?(:moderator) %>
+                    <%= link_to edit_poll_path(poll) do %>
+                        <p><i class="fas fa-pencil-alt"></i></p>
+                    <% end %>
+
+                    <%= link_to poll_path(poll), method: :delete, data: { confirm: "Are you sure?" } do %>
+                        <p><i class="fas fa-trash-alt"></i></p>
+                    <% end %>
+            <% end %> <!-- endif -->
+        </div> <!-- col-2 -->           
+
+    </div> <!-- row -->
 <% end %>
 
-<div class="row justify-content-center mt-2">
-    <%= link_to 'Add poll', new_poll_path, class: "btn btn-primary" %>
-</div>
+<% if current_user %>
+    <div class="row justify-content-center">
+        <%= link_to 'Add poll', new_poll_path, class: "btn btn-primary" %>
+    </div>
+<% end %>

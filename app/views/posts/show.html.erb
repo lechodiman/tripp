@@ -1,33 +1,11 @@
-<div class="row">
-    <h1 class="display-1"><%= @post.title %></h1>
-</div>
-
-<%= link_to save_post_path(@post), class: "save", method: :put do %>  
-<%if current_user.find_saved_items.include?(@post)%>
-<i class="fas fa-star"></i>
-<%else%>
-<i class="far fa-star"></i>
-<%end%>
-<%end%>
-
-<div class="row">
-    <p class="lead"><%= @post.content%></p>
-</div>
+<%= render @post %>
 
 <div class="row justify-content-center">
-    <h3 class="text-muted">Comments</h3>
+    <div class="col-10">
+    	<%= render(@post.comments) %>	        
+    </div>
 </div>
 
-
-
-<%= render(@post.comments) %>
-
-
-<br>
-<br>
+<hr>
 
 <%= render partial: "comments/form" %>
-
-
-
-

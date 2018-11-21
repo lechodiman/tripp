@@ -4,7 +4,7 @@
   <%= render partial: 'polls/vote_option', collection: poll.vote_options, as: :option %>
 
   <% if !current_user %>
-    <p>You need to log in to vote</p>
+    <p>You need to <%= link_to "log in", new_user_session_path %> to vote</p>
   <% elsif current_user.voted_for?(poll) %>
     <p>You have already voted!</p>
   <% else %>
