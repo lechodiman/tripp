@@ -8,6 +8,15 @@
     <p class="lead"><%= @restaurant.description %></p>
 </div>
 
+<div class="row">
+    <div class="col-sm-12 justify-content-center">
+        <div class="show-image">
+            <%= image_tag @restaurant.image.url  , alt: @restaurant.name, class: "h-100 w-100" %>        
+        </div>        
+    </div>
+</div>
+
+
 
 <%= render partial: "reviews/reviews", locals: {reviewable: @restaurant} %>
 

@@ -6,5 +6,16 @@ class Hotel < ApplicationRecord
   	validates :name, format: { with: VALID_USERNAME_REGEX }, uniqueness: { case_sensitive: false }
   	validates :description, presence: true
 
+  	mount_uploader :image, ImageUploader
+
   	resourcify
+
+  	def mean	
+        if self.reviews.blank?
+            0
+        else
+            average_review = self.reviews.average(:rating).round(2)
+        end
+    end
+    
 end
