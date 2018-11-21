@@ -49,7 +49,7 @@ class CitywalksController < ApplicationController
     private
 
     def citywalks_params
-        params.require(:citywalk).permit(:name, :description, :duration, :place)
+        params.require(:citywalk).permit(:name, :description, :duration, :place, :image)
     end
 
     def find_city

@@ -6,5 +6,7 @@ class Hotel < ApplicationRecord
   	validates :name, format: { with: VALID_USERNAME_REGEX }, uniqueness: { case_sensitive: false }
   	validates :description, presence: true
 
+  	mount_uploader :image, ImageUploader
+
   	resourcify
 end
