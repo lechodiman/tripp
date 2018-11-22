@@ -34,4 +34,8 @@ module CitiesHelper
 
 		end
 	end
+
+	def to_celsius(farenheit_degrees)
+		((farenheit_degrees - 32) * 5 / 9).to_int
+	end
 end
