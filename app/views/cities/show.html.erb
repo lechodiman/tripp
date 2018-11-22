@@ -1,6 +1,15 @@
-<%= country_object = ISO3166::Country.find_country_by_name(@city.country.name) %>
-<%= dic = JSON.parse(HTTParty.get('http://api.openweathermap.org/data/2.5/weather?q=' + @city.name + ',' + country_object.alpha2 + '&appid=' + ENV["OPENWEATHER_API_KEY"]).to_json)%>
+<% country_object = ISO3166::Country.find_country_by_name(@city.country.name) %>
 
+<% dic = JSON.parse(HTTParty.get('http://api.openweathermap.org/data/2.5/weather?q=' + 
+                                    @city.name + ',' + 
+                                    country_object.alpha2 + '&units=metric&appid=' + 
+                                    ENV["OPENWEATHER_API_KEY"]).to_json)%>
+
+<% forecast_dic = JSON.parse(HTTParty.get('http://api.openweathermap.org/data/2.5/forecast?q=' + 
+                                            @city.name + ',' + 
+                                            country_object.alpha2 + '&cnt=6&units=metric&appid=' + ENV["OPENWEATHER_FORECAST_API_KEY"]).to_json)%>
+
+<%= forecast_dic['list'][0]%>
 
 <div class="row align-items-center flex-column">
     <h1 class="display-1"><%= @city.name %></h1>
@@ -45,6 +54,51 @@
     </div>
 
     <br>
+
+    <div class="row">
+        <div class="col-md-1">
+            <h2>Day: </h2>
+            <h2>Min: </h2>
+            <h2>Max: </h2>
+        </div>
+
+        <div class="col-md-2">
+            <h2><%= next_five_days[0] %></h2>
+            <h2><%= forecast_dic['list'][1]['main']['temp_min']%></h2>
+            <h2><%= forecast_dic['list'][1]['main']['temp_max']%></h2>
+            <%= image_tag("http://openweathermap.org/img/w/#{forecast_dic['list'][1]['weather'][0]['icon']}.png", :size => "100x100") %>
+        </div>   
+
+        <div class="col-md-2">
+            <h2><%= next_five_days[1] %></h2>
+            <h2><%= forecast_dic['list'][2]['main']['temp_min']%></h2>
+            <h2><%= forecast_dic['list'][2]['main']['temp_max']%></h2>
+            <%= image_tag("http://openweathermap.org/img/w/#{forecast_dic['list'][2]['weather'][0]['icon']}.png", :size => "100x100") %>
+        </div>   
+
+        <div class="col-md-2">
+            <h2><%= next_five_days[2] %></h2>
+            <h2><%= forecast_dic['list'][3]['main']['temp_min']%></h2>
+            <h2><%= forecast_dic['list'][3]['main']['temp_max']%></h2>
+            <%= image_tag("http://openweathermap.org/img/w/#{forecast_dic['list'][3]['weather'][0]['icon']}.png", :size => "100x100") %>
+        </div>    
+
+        <div class="col-md-2">
+            <h2><%= next_five_days[3] %></h2>
+            <h2><%= forecast_dic['list'][4]['main']['temp_min']%></h2>
+            <h2><%= forecast_dic['list'][4]['main']['temp_max']%></h2>
+            <%= image_tag("http://openweathermap.org/img/w/#{forecast_dic['list'][4]['weather'][0]['icon']}.png", :size => "100x100") %>
+        </div>     
+
+        <div class="col-md-2">
+            <h2><%= next_five_days[4] %></h2>
+            <h2><%= forecast_dic['list'][5]['main']['temp_min']%></h2>
+            <h2><%= forecast_dic['list'][5]['main']['temp_max']%></h2>
+            <%= image_tag("http://openweathermap.org/img/w/#{forecast_dic['list'][5]['weather'][0]['icon']}.png", :size => "100x100") %>
+        </div>   
+
+        <div class="col-md-1"></div>        
+    </div>
 
 <% end %>
 
