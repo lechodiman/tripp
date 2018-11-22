@@ -77,4 +77,7 @@ gem 'httparty'
 # Countries gem
 gem 'countries'
 
+# Geocorder gem
+gem 'geocoder'
+
 ruby ">= 2.3.3"
