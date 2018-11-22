@@ -32,4 +32,14 @@ class User < ApplicationRecord
     def voted_for?(poll)
         vote_options.any? {|v| v.poll == poll }
     end
+
+    def favorite_cities
+        array = Array.new
+        self.find_saved_items.each do |p|
+            if p.class == City
+                array << p
+            end
+        end
+        array
+    end
 end

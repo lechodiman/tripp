@@ -15,23 +15,16 @@
     </div>
 </div>
 
-<div class="row">
-	<div class="dropdown">
-	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    Favorite Cities
-	  </button>
-	   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-	   	<% current_user.find_saved_items.each do |p| %>
-	   	<%if p.class == City%>
-	    <button class="dropdown-item" type="button"><%= link_to p.name ,city_path(p) %>
-	    <%end%>
-		</button>
-	    <% end %>
-	  </div>
+<div class="row justify-content-center">
+    <h3 class="text-muted">Favorite Cities</h3>
+</div>
 
-	</div>
-	&nbsp;
-	&nbsp;
+<div class="row">
+    <%= render(current_user.favorite_cities)%>
+
+</div>
+
+
 
 	<div class="dropdown">
 	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
