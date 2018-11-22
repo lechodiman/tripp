@@ -1,15 +1,5 @@
-<% country_object = ISO3166::Country.find_country_by_name(@city.country.name) %>
-
-<% dic = JSON.parse(HTTParty.get('http://api.openweathermap.org/data/2.5/weather?q=' + 
-                                    @city.name + ',' + 
-                                    country_object.alpha2 + '&units=metric&appid=' + 
-                                    ENV["OPENWEATHER_API_KEY"]).to_json)%>
-
-<% forecast_dic = JSON.parse(HTTParty.get('http://api.openweathermap.org/data/2.5/forecast?q=' + 
-                                            @city.name + ',' + 
-                                            country_object.alpha2 + '&cnt=6&units=metric&appid=' + ENV["OPENWEATHER_FORECAST_API_KEY"]).to_json)%>
-
-<%= forecast_dic['list'][0]%>
+<% coordinates = Geocoder.search(@city.name + ',' + @city.country.name).first.coordinates %>
+<% forecast_dic = JSON.parse(HTTParty.get('https://api.darksky.net/forecast/' + ENV['DARK_SPY_API_KEY'] + '/' + coordinates[0].to_s + ',' + coordinates[1].to_s).to_json)%>
 
 <div class="row align-items-center flex-column">
     <h1 class="display-1"><%= @city.name %></h1>
@@ -40,16 +30,29 @@
     </div>
 </div>
 
-<% if dic %>
+<br>
+<br>
+
+<div class="row">
+    <div class="col-md-1"></div>
+
+    <div class="col-md-5">
+        <h2>Current weather: <%= forecast_dic['currently']['summary'] %></h2>
+        <h2>Current temperature: <%= to_celsius(forecast_dic['currently']['temperature']) %>º</h2>
+    </div>
+
+    <div class="col-md-5">
+        <%= image_tag(forecast_dic['currently']['icon'], :size => "120x120") %>
+    </div>
+
+    <div class="col-md-1"></div>
+</div>
+
+<% if forecast_dic %>
 
     <br>
 
     <div class="row flex-column align-items-center">
-
-        <h2>Current weather: <%= dic['weather'][0]['main']%></h2>
-        <h2>Description: <%= dic['weather'][0]['description']%></h2>
-            
-        <%= image_tag("http://openweathermap.org/img/w/#{dic['weather'][0]['icon']}.png", :size => "100x100") %>
 
     </div>
 
@@ -64,43 +67,46 @@
 
         <div class="col-md-2">
             <h2><%= next_five_days[0] %></h2>
-            <h2><%= forecast_dic['list'][1]['main']['temp_min']%></h2>
-            <h2><%= forecast_dic['list'][1]['main']['temp_max']%></h2>
-            <%= image_tag("http://openweathermap.org/img/w/#{forecast_dic['list'][1]['weather'][0]['icon']}.png", :size => "100x100") %>
+            <h2><%= to_celsius(forecast_dic['daily']['data'][1]['temperatureMin'])%>º</h2>
+            <h2><%= to_celsius(forecast_dic['daily']['data'][1]['temperatureMax'])%>º</h2>
+            <%= image_tag(forecast_dic['daily']['data'][1]['icon'], :size => "100x100") %>
         </div>   
 
         <div class="col-md-2">
             <h2><%= next_five_days[1] %></h2>
-            <h2><%= forecast_dic['list'][2]['main']['temp_min']%></h2>
-            <h2><%= forecast_dic['list'][2]['main']['temp_max']%></h2>
-            <%= image_tag("http://openweathermap.org/img/w/#{forecast_dic['list'][2]['weather'][0]['icon']}.png", :size => "100x100") %>
+            <h2><%= to_celsius(forecast_dic['daily']['data'][2]['temperatureMin'])%>º</h2>
+            <h2><%= to_celsius(forecast_dic['daily']['data'][2]['temperatureMax'])%>º</h2>
+            <%= image_tag(forecast_dic['daily']['data'][2]['icon'], :size => "100x100") %>
         </div>   
 
         <div class="col-md-2">
             <h2><%= next_five_days[2] %></h2>
-            <h2><%= forecast_dic['list'][3]['main']['temp_min']%></h2>
-            <h2><%= forecast_dic['list'][3]['main']['temp_max']%></h2>
-            <%= image_tag("http://openweathermap.org/img/w/#{forecast_dic['list'][3]['weather'][0]['icon']}.png", :size => "100x100") %>
+            <h2><%= to_celsius(forecast_dic['daily']['data'][3]['temperatureMin'])%>º</h2>
+            <h2><%= to_celsius(forecast_dic['daily']['data'][3]['temperatureMax'])%>º</h2>
+            <%= image_tag(forecast_dic['daily']['data'][3]['icon'], :size => "100x100") %>
         </div>    
 
         <div class="col-md-2">
             <h2><%= next_five_days[3] %></h2>
-            <h2><%= forecast_dic['list'][4]['main']['temp_min']%></h2>
-            <h2><%= forecast_dic['list'][4]['main']['temp_max']%></h2>
-            <%= image_tag("http://openweathermap.org/img/w/#{forecast_dic['list'][4]['weather'][0]['icon']}.png", :size => "100x100") %>
+            <h2><%= to_celsius(forecast_dic['daily']['data'][4]['temperatureMin'])%>º</h2>
+            <h2><%= to_celsius(forecast_dic['daily']['data'][4]['temperatureMax'])%>º</h2>
+            <%= image_tag(forecast_dic['daily']['data'][4]['icon'], :size => "100x100") %>
         </div>     
 
         <div class="col-md-2">
             <h2><%= next_five_days[4] %></h2>
-            <h2><%= forecast_dic['list'][5]['main']['temp_min']%></h2>
-            <h2><%= forecast_dic['list'][5]['main']['temp_max']%></h2>
-            <%= image_tag("http://openweathermap.org/img/w/#{forecast_dic['list'][5]['weather'][0]['icon']}.png", :size => "100x100") %>
+            <h2><%= to_celsius(forecast_dic['daily']['data'][5]['temperatureMin'])%>º</h2>
+            <h2><%= to_celsius(forecast_dic['daily']['data'][5]['temperatureMax'])%>º</h2>
+            <%= image_tag(forecast_dic['daily']['data'][5]['icon'], :size => "100x100") %>
         </div>   
 
         <div class="col-md-1"></div>        
     </div>
 
 <% end %>
+
+<br>
+<br>
 
 <div class="row justify-content-center">
     <h2>Browse <%= @city.name %></h2>
