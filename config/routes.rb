@@ -47,6 +47,7 @@ Rails.application.routes.draw do
                     member do
                         put "like", to: "reviews#upvote"
                         put "dislike", to: "reviews#downvote"
+                        put "save", to: "hotels#saved"
                     end
                 end
             end
