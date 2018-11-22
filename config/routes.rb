@@ -56,6 +56,9 @@ Rails.application.routes.draw do
             end
 
             resources :citywalks do
+                member do
+                    put "save", to: "citywalks#saved"  
+                end
                 resources :reviews, module: :citywalks do
                     member do
                         put "like", to: "reviews#upvote"
