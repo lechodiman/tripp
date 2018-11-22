@@ -43,11 +43,14 @@ Rails.application.routes.draw do
                 put "save", to: "cities#saved"
             end
             resources :hotels do
+                member do 
+                    put "save" , to: "hotels#saved"
+                end
             	resources :reviews, module: :hotels do
                     member do
                         put "like", to: "reviews#upvote"
                         put "dislike", to: "reviews#downvote"
-                        put "save", to: "hotels#saved"
+
                     end
                 end
             end

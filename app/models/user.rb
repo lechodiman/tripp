@@ -42,4 +42,14 @@ class User < ApplicationRecord
         end
         array
     end
+
+    def favorite_hotels
+        array = Array.new
+        self.find_saved_items.each do |p|
+            if p.class == Hotel
+                array << p
+            end
+        end
+        array
+    end
 end
