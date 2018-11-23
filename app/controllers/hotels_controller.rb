@@ -1,6 +1,6 @@
 class HotelsController < ApplicationController
     before_action :find_city, only: [:new, :create, :index]
-    before_action :find_hotel, only: [:show, :edit, :update, :destroy]
+    before_action :find_hotel, only: [:show, :edit, :update, :destroy, :saved]
     before_action :authenticate_user!, only: [:new, :edit]
 
     def index
@@ -45,6 +45,13 @@ class HotelsController < ApplicationController
             render 'new'
         end
     end
+
+    def saved
+        @hotel.upsaved_by current_user
+        redirect_to hotel_path(@hotel)
+    end
+
+
 
     private
 

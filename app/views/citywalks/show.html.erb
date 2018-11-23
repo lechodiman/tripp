@@ -8,6 +8,16 @@
     <p class="lead"><%= @citywalk.description %></p>
 </div>
 
+<%if current_user%>
+    <%= link_to save_citywalk_path(@citywalk), class: "save", method: :put do %>  
+    <%if current_user.find_saved_items.include?(@citywalk)%>
+        <i class="fas fa-star"></i>
+    <%else%>
+        <i class="far fa-star"></i>
+    <%end%>
+    <%end%>
+<%end%>
+
 <div class="row flex-column">
     <p><strong>Duration</strong> <%= @citywalk.duration %> minutes</p>
     <p><strong>Place</strong> <%= @citywalk.place %></p>
