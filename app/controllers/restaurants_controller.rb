@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
     before_action :find_city, only: [:new, :create, :index]
-    before_action :find_restaurant, only: [:show, :edit, :update, :destroy, :saved]
-    before_action :authenticate_user!, only: [:new, :edit, :saved]
+    before_action :find_restaurant, only: [:show, :edit, :update, :destroy, :saved, :unsaved]
+    before_action :authenticate_user!, only: [:new, :edit, :saved, :unsaved]
 
     def index
         @restaurants = Restaurant.where(city_id: @city.id)
@@ -40,9 +40,13 @@ class RestaurantsController < ApplicationController
 
     def saved
         @restaurant.upsaved_by current_user
-        redirect_to restaurant_path(@restaurant)
+        redirect_back(fallback_location: root_path)
     end
 
+    def unsaved
+        @restaurant.unsave_by current_user
+        redirect_back(fallback_location: root_path)
+    end
 
     private
 
