@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
     before_action :find_city, only: [:new, :create, :index]
     before_action :find_restaurant, only: [:show, :edit, :update, :destroy, :saved]
-    before_action :authenticate_user!, only: [:new, :edit]
+    before_action :authenticate_user!, only: [:new, :edit, :saved]
 
     def index
         @restaurants = Restaurant.where(city_id: @city.id)
