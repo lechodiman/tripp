@@ -41,6 +41,7 @@ Rails.application.routes.draw do
         resources :cities do
             member do 
                 put "save", to: "cities#saved"
+                put "unsave", to: "cities#unsaved"
             end
             resources :hotels do
                 member do 

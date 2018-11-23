@@ -6,4 +6,11 @@ module UsersHelper
             false
         end
     end
+
+    def has_favorite_item(item)
+        if user_signed_in? && current_user.find_saved_items.include?(item)
+            return true
+        end
+        return false
+    end
 end

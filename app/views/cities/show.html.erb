@@ -3,19 +3,15 @@
     <h6> <%= link_to @city.country.name, country_path(@city.country) %> </h6>
 </div>
 
-
-
-<%if current_user%>
-    <%= link_to save_city_path(@city), class: "save", method: :put do %>  
-    <%if current_user.find_saved_items.include?(@city)%>
+<% if has_favorite_item(@city) %>
+    <%= link_to unsave_city_path(@city), method: :put do  %>
         <i class="fas fa-star"></i>
-    <%else%>
+    <% end %>
+<% else %>
+    <%= link_to save_city_path(@city), method: :put do  %>
         <i class="far fa-star"></i>
-    <%end%>
-    <%end%>
-<%end%>
-
-
+    <% end %>                        
+<% end %>
 
 <div class="row">
     <p class="lead"><%= @city.description %></p>

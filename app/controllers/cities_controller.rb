@@ -1,7 +1,7 @@
 class CitiesController < ApplicationController
     before_action :find_country, only: [:new, :create]
-    before_action :find_city, only: [:show, :edit, :update, :destroy, :saved]
-    before_action :authenticate_user!, only: [:new, :edit, :saved]
+    before_action :find_city, only: [:show, :edit, :update, :destroy, :saved, :unsaved]
+    before_action :authenticate_user!, only: [:new, :edit, :saved, :unsaved]
 
     def show
     end
@@ -41,7 +41,12 @@ class CitiesController < ApplicationController
 
     def saved
         @city.upsaved_by current_user
-        redirect_to city_path(@city)
+        redirect_back(fallback_location: root_path)
+    end
+
+    def unsaved
+        @city.unsave_by current_user
+        redirect_back(fallback_location: root_path)
     end
 
     private
