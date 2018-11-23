@@ -38,6 +38,8 @@ gem 'cloudinary', '~> 1.9', '>= 1.9.1'
 gem 'cocoon', '~> 1.2', '>= 1.2.12'
 gem 'devise', '~> 4.5'
 gem 'figaro'
+gem 'geocoder'
+gem 'httparty'
 gem 'jquery-rails'
 gem 'mini_magick', '~> 4.9', '>= 4.9.2'
 gem 'rolify', '~> 5.2'
@@ -70,14 +72,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-# API gem
-gem 'httparty'
-
-# Countries gem
-gem 'countries'
-
-# Geocorder gem
-gem 'geocoder'
 
 ruby ">= 2.3.3"
