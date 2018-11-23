@@ -69,6 +69,9 @@ Rails.application.routes.draw do
 
 
             resources :restaurants do
+                member do
+                    put "save", to: "restaurants#saved"  
+                end
                 resources :reviews, module: :restaurants
                 
             end

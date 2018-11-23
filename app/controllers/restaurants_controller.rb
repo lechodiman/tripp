@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
     before_action :find_city, only: [:new, :create, :index]
-    before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
+    before_action :find_restaurant, only: [:show, :edit, :update, :destroy, :saved]
     before_action :authenticate_user!, only: [:new, :edit]
 
     def index
@@ -37,6 +37,12 @@ class RestaurantsController < ApplicationController
             render 'new'
         end
     end
+
+    def saved
+        @restaurant.upsaved_by current_user
+        redirect_to restaurant_path(@restaurant)
+    end
+
 
     private
 
