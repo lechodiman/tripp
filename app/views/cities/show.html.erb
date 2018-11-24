@@ -4,21 +4,22 @@
 </div>
 
 
-
-<%if current_user%>
-    <%= link_to save_city_path(@city), class: "save", method: :put do %>  
-    <%if current_user.find_saved_items.include?(@city)%>
-        <i class="fas fa-star"></i>
-    <%else%>
-        <i class="far fa-star"></i>
-    <%end%>
-    <%end%>
-<%end%>
-
-
-
 <div class="row">
     <p class="lead"><%= @city.description %></p>
+</div>
+
+<div class="row justify-content-end mb-4">
+    <div class="col-md-3">
+        <% if has_favorite_item(@city) %>
+            <%= link_to unsave_city_path(@city), class: "btn btn-outline-success w-100", method: :put do  %>
+                <i class="fas fa-star"></i> Remove
+            <% end %>
+        <% else %>
+            <%= link_to save_city_path(@city), class: "btn btn-outline-success w-100", method: :put do  %>
+                <i class="far fa-star"></i> Save
+            <% end %>                        
+        <% end %>            
+    </div>
 </div>
 
 <div class="row">
@@ -135,33 +136,57 @@
 </div>
 
 <div class="row">
-    <%= render(@city.hotels.sort_by{|a| a.mean}.reverse[0..2]) %>
+    <% if @city.hotels.exists? %>
+        <%= render(@city.hotels.sort_by{|a| a.mean}.reverse[0..2]) %>        
+    <% else %>
+        <h4> Nothing here yet ... </h4>
+    <% end %>
 </div>
 
 <hr>
 
-<%= link_to "Add Hotel", new_city_hotel_path(@city), class:"btn btn-primary"  %>
+<% if has_role?(:admin) %>
+    <%= link_to new_city_hotel_path(@city), class:"btn btn-outline-primary" do %>
+        <i class="fas fa-plus"></i> Add Hotel
+    <% end %>    
+<% end %>
 
 <div class="row justify-content-center">
     <h3 class="text-muted">Citywalks</h3>
 </div>
 
 <div class="row">
-    <%= render(@city.citywalks.sort_by{|a| a.mean}.reverse[0..2]) %>
+    <% if @city.citywalks.exists? %>
+        <%= render(@city.citywalks.sort_by{|a| a.mean}.reverse[0..2]) %>
+    <% else %>
+        <h4> Nothing here yet ...</h4>        
+    <% end %>
 </div>
 
 <hr>
 
-<%= link_to "Add Citywalk", new_city_citywalk_path(@city), class:"btn btn-primary"  %>
+<% if has_role?(:admin) %>
+    <%= link_to new_city_citywalk_path(@city), class:"btn btn-outline-primary" do %>    
+        <i class="fas fa-plus"></i> Add Citywalk
+    <% end %>
+<% end %>
 
 <div class="row justify-content-center">
     <h3 class="text-muted">Restaurants</h3>
 </div>
 
 <div class="row">
-    <%= render(@city.restaurants.sort_by{|a| a.mean}.reverse[0..2]) %>
+    <% if @city.restaurants.exists? %>
+        <%= render(@city.restaurants.sort_by{|a| a.mean}.reverse[0..2]) %>        
+    <% else %>
+        <h4> Nothing here yet ...</h4>
+    <% end %>
 </div>
 
 <hr>
 
-<%= link_to "Add restaurant", new_city_restaurant_path(@city), class:"btn btn-primary"  %>
+<% if has_role?(:admin) %>
+    <%= link_to new_city_restaurant_path(@city), class:"btn btn-outline-primary" do %>    
+        <i class="fas fa-plus"></i> Add Restaurant
+    <% end %>
+<% end %>

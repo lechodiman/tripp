@@ -1,6 +1,6 @@
 <% if has_role?(:admin) %>
 
-    <div class="col-md-6 offset-3">
+    <div class="col-md-6 offset-md-3">
 
         <div class="edit-city-form">
 
@@ -11,7 +11,7 @@
                 <%= f.input :description %>
                 <%= f.input :image %>
                 <% if @city.image? %>
-                    <%= image_tag @city.image.thumb.url, class:"d-block mx-auto" %>
+                    <%= image_tag @city.image.thumb.url, class:"img-fluid d-block mx-auto" %>
                 <% end %>
                 <hr>
                 <%= f.button :submit, :class => "btn btn-primary" %>

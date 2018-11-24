@@ -1,27 +1,37 @@
-<div class="row justify-content-center">
-    <h1 class="display-1"><%= current_user.username %></h1>
-</div>
-
-<div class="row justify-content-center">
-    <div class="average-review-rating" data-score="<%= current_user.posts.sum {|s| 5*s.get_likes.size.to_f/s.votes_for.size} %>"></div> <small>based on <%= current_user.posts.sum {|s| s.votes_for.size} %> votes</small>   
-</div>
-
-
-<div class="row">
-    <div class="col-sm-12 justify-content-center">
-        <div class="show-image">
-            <%= image_tag current_user.avatar, alt: current_user.username, class: "h-50 w-50" %>        
-        </div>     
+<div class="row mt-4 mb-4">
+    <div class="col-1 p-0">
+        <%= link_to user_path(@user) do %>
+            <%= image_tag(@user.avatar, alt: @user.username, class: " img-fluid rounded-circle") %>
+        <% end %>
+    </div>
+    <div class="col-4">
+        <h2><%= @user.username %></h2>
+        <div class="average-review-rating" data-score="<%= @user.posts.sum {|s| 5*s.get_likes.size.to_f/s.votes_for.size} %>"></div> <small>based on <%= @user.posts.sum {|s| s.votes_for.size} %> votes</small>   
     </div>
 </div>
+
+<hr>
+
+<% if user_signed_in? && current_user == @user %>
+    <div class="row justify-content-end">
+        <ul class="d-flex">
+            <%= link_to edit_user_registration_path(@user), class: "profile-button" do %>
+                <p><i class="fas fa-user-edit"></i> Edit Profile</p>
+            <% end %>
+
+            <%= link_to destroy_user_session_path, class: "profile-button" do %>
+                <p><i class="fas fa-sign-out-alt"></i> Logout</p>
+            <% end %>        
+        </ul>
+    </div>    
+<% end %>
 
 <div class="row justify-content-center">
     <h3 class="text-muted">Favorite Cities</h3>
 </div>
 
 <div class="row">
-    <%= render(current_user.favorite_cities)%>
-
+    <%= render(@user.favorite_cities)%>
 </div>
 
 <div class="row justify-content-center">
@@ -29,8 +39,7 @@
 </div>
 
 <div class="row">
-    <%= render(current_user.favorite_hotels)%>
-
+    <%= render(@user.favorite_hotels)%>
 </div>
 
 <div class="row justify-content-center">
@@ -38,8 +47,7 @@
 </div>
 
 <div class="row">
-    <%= render(current_user.favorite_citywalks)%>
-
+    <%= render(@user.favorite_citywalks)%>
 </div>
 
 <div class="row justify-content-center">
@@ -47,36 +55,18 @@
 </div>
 
 <div class="row">
-    <%= render(current_user.favorite_restaurants)%>
-
+    <%= render(@user.favorite_restaurants)%>
 </div>
 
 </div>
-
-<script>
-    $('.review-rating').raty({
-        readOnly: true,
-        score: function() {
-            return $(this).attr('data-score');
-        },
-        path: '/assets/'
-    });
-</script>
 
 <script>
     $('.average-review-rating').raty({
         readOnly: true,
         path: '/assets/',
         score: function() {
+            console.log($(this).attr('data-score'));
             return $(this).attr('data-score');
         }
-    });
-</script>
-
-
-<script>
-    $('#rating-form').raty({
-        path: '/assets/',
-        scoreName: 'review[rating]'
     });
 </script>

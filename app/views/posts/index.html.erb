@@ -12,4 +12,6 @@
 
 <hr>
 
-<%= link_to "Add Post", new_post_path, class: "btn btn-primary" %>
+<% if has_role?(:admin) %>
+    <%= link_to "Add Post", new_post_path, class: "btn btn-primary" %>    
+<% end %>

@@ -19,8 +19,6 @@ class ReviewsController < ApplicationController
     def edit
     end
 
-
-
     def update
         this_reviewable = @review.reviewable
         if @review.update(review_params)

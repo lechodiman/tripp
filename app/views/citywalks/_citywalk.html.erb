@@ -4,15 +4,27 @@
         <div class="caption">
             <h4><%= link_to citywalk.name, citywalk_path(citywalk), class: "caption-link"%></h4>
         </div>
-        <% if has_role?(:admin) %>
-            <div class="thumbnail-buttons">
+        <div class="thumbnail-buttons">
+
+            <% if has_favorite_item(citywalk) %>
+                <%= link_to unsave_citywalk_path(citywalk), method: :put do  %>
+                    <p><i class="fas fa-star"></i></p>
+                <% end %>
+            <% else %>
+                <%= link_to save_citywalk_path(citywalk), method: :put do  %>
+                    <p><i class="far fa-star"></i></p>
+                <% end %>                        
+            <% end %>            
+
+            <% if has_role?(:admin) %>
                 <%= link_to edit_citywalk_path(citywalk) do %>
                     <p><i class="fas fa-pencil-alt"></i></p>
                 <% end %>
                 <%= link_to citywalk_path(citywalk), method: :delete, data: { confirm: "Are you sure?" } do %>
                     <p><i class="fas fa-trash-alt"></i></p>
                 <% end %>            
-            </div>            
-        <% end %>
+            <% end %>
+            
+        </div>            
     </div>
 </div>

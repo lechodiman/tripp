@@ -4,15 +4,28 @@
         <div class="caption">
             <h4><%= link_to city.name, city_path(city), class: "caption-link"%></h4>
         </div>
-        <% if has_role?(:admin) %>
-            <div class="thumbnail-buttons">
+        <div class="thumbnail-buttons">
+
+            <% if has_favorite_item(city) %>
+                <%= link_to unsave_city_path(city), method: :put do  %>
+                    <p><i class="fas fa-star"></i></p>
+                <% end %>
+            <% else %>
+                <%= link_to save_city_path(city), method: :put do  %>
+                    <p><i class="far fa-star"></i></p>
+                <% end %>                        
+            <% end %>            
+
+            <% if has_role?(:admin) %>                
                 <%= link_to edit_city_path(city) do %>
                     <p><i class="fas fa-pencil-alt"></i></p>
                 <% end %>
+                
                 <%= link_to city_path(city), method: :delete, data: { confirm: "Are you sure?" } do %>
                     <p><i class="fas fa-trash-alt"></i></p>
                 <% end %>            
-            </div>            
-        <% end %>
+            <% end %>
+
+        </div>            
     </div>
 </div>
