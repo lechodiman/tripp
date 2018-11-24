@@ -3,18 +3,23 @@
     <h6> <%= link_to @city.country.name, country_path(@city.country) %> </h6>
 </div>
 
-<% if has_favorite_item(@city) %>
-    <%= link_to unsave_city_path(@city), method: :put do  %>
-        <i class="fas fa-star"></i>
-    <% end %>
-<% else %>
-    <%= link_to save_city_path(@city), method: :put do  %>
-        <i class="far fa-star"></i>
-    <% end %>                        
-<% end %>
 
 <div class="row">
     <p class="lead"><%= @city.description %></p>
+</div>
+
+<div class="row justify-content-end mb-4">
+    <div class="col-md-3">
+        <% if has_favorite_item(@city) %>
+            <%= link_to unsave_city_path(@city), class: "btn btn-outline-success w-100", method: :put do  %>
+                <i class="fas fa-star"></i> Remove
+            <% end %>
+        <% else %>
+            <%= link_to save_city_path(@city), class: "btn btn-outline-success w-100", method: :put do  %>
+                <i class="far fa-star"></i> Save
+            <% end %>                        
+        <% end %>            
+    </div>
 </div>
 
 <div class="row">
@@ -24,6 +29,7 @@
         </div>        
     </div>
 </div>
+
 
 <div class="row justify-content-center">
     <h2>Browse <%= @city.name %></h2>

@@ -10,17 +10,20 @@
     </div>
 </div>
 <hr>
-<div class="row justify-content-end">
-    <ul class="d-flex">
-        <%= link_to edit_user_registration_path(@user), class: "profile-button" do %>
-            <p><i class="fas fa-user-edit"></i> Edit Profile</p>
-        <% end %>
 
-        <%= link_to destroy_user_session_path, class: "profile-button" do %>
-            <p><i class="fas fa-sign-out-alt"></i> Logout</p>
-        <% end %>        
-    </ul>
-</div>
+<% if user_signed_in? && current_user == @user %>
+    <div class="row justify-content-end">
+        <ul class="d-flex">
+            <%= link_to edit_user_registration_path(@user), class: "profile-button" do %>
+                <p><i class="fas fa-user-edit"></i> Edit Profile</p>
+            <% end %>
+
+            <%= link_to destroy_user_session_path, class: "profile-button" do %>
+                <p><i class="fas fa-sign-out-alt"></i> Logout</p>
+            <% end %>        
+        </ul>
+    </div>    
+<% end %>
 
 <div class="row justify-content-center">
     <h3 class="text-muted">Favorite Cities</h3>
