@@ -12,6 +12,14 @@ class RestaurantsController < ApplicationController
         @restaurant = Restaurant.new
     end
 
+    def show
+        if @restaurant.reviews.blank?
+            @average_review = 0
+        else
+            @average_review = @restaurant.reviews.average(:rating).round(2)
+        end
+    end
+
     def update
         if @restaurant.update(restaurants_params)
             redirect_to restaurant_path(@restaurant)
