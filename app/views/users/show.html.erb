@@ -1,78 +1,72 @@
-<div class="row justify-content-center">
-    <h1 class="display-1"><%= current_user.username %></h1>
-</div>
-
-<div class="row justify-content-center">
-    <div class="average-review-rating" data-score="<%= current_user.posts.sum {|s| 5*s.get_likes.size.to_f/s.votes_for.size} %>"></div> <small>based on <%= current_user.posts.sum {|s| s.votes_for.size} %> votes</small>   
-</div>
-
-
-<div class="row">
-    <div class="col-sm-12 justify-content-center">
-        <div class="show-image">
-            <%= image_tag current_user.avatar, alt: current_user.username, class: "h-50 w-50" %>        
-        </div>     
+<div class="row mt-4 mb-4">
+    <div class="col-1 p-0">
+        <%= link_to user_path(@user) do %>
+            <%= image_tag(@user.avatar, alt: @user.username, class: " img-fluid rounded-circle") %>
+        <% end %>
+    </div>
+    <div class="col-4">
+        <h2><%= @user.username %></h2>
+        <div class="average-review-rating" data-score="<%= @user.posts.sum {|s| 5*s.get_likes.size.to_f/s.votes_for.size} %>"></div> <small>based on <%= @user.posts.sum {|s| s.votes_for.size} %> votes</small>   
     </div>
 </div>
 
-<div class="row">
-	<div class="dropdown">
-	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    Favorite Cities
-	  </button>
-	   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-	   	<% current_user.find_saved_items.each do |p| %>
-	   	<%if p.class == City%>
-	    <button class="dropdown-item" type="button"><%= link_to p.name ,city_path(p) %>
-	    <%end%>
-		</button>
-	    <% end %>
-	  </div>
+<hr>
 
-	</div>
-	&nbsp;
-	&nbsp;
+<% if user_signed_in? && current_user == @user %>
+    <div class="row justify-content-end">
+        <ul class="d-flex">
+            <%= link_to edit_user_registration_path(@user), class: "profile-button" do %>
+                <p><i class="fas fa-user-edit"></i> Edit Profile</p>
+            <% end %>
 
-	<div class="dropdown">
-	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    Favorite Posts
-	  </button>
-	   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-	   	<% current_user.find_saved_items.each do |p| %>
-	   	<%if p.class == Post%>
-	    <button class="dropdown-item" type="button"><%= link_to p.title ,post_path(p) %>
-	    <%end%>
-		</button>
-	    <% end %>
-	  </div>
+            <%= link_to destroy_user_session_path, class: "profile-button" do %>
+                <p><i class="fas fa-sign-out-alt"></i> Logout</p>
+            <% end %>        
+        </ul>
+    </div>    
+<% end %>
 
-	</div>
+<div class="row justify-content-center">
+    <h3 class="text-muted">Favorite Cities</h3>
 </div>
 
-<script>
-    $('.review-rating').raty({
-        readOnly: true,
-        score: function() {
-            return $(this).attr('data-score');
-        },
-        path: '/assets/'
-    });
-</script>
+<div class="row">
+    <%= render(@user.favorite_cities)%>
+</div>
+
+<div class="row justify-content-center">
+    <h3 class="text-muted">Favorite Hotels</h3>
+</div>
+
+<div class="row">
+    <%= render(@user.favorite_hotels)%>
+</div>
+
+<div class="row justify-content-center">
+    <h3 class="text-muted">Favorite Citywalks</h3>
+</div>
+
+<div class="row">
+    <%= render(@user.favorite_citywalks)%>
+</div>
+
+<div class="row justify-content-center">
+    <h3 class="text-muted">Favorite Restaurants</h3>
+</div>
+
+<div class="row">
+    <%= render(@user.favorite_restaurants)%>
+</div>
+
+</div>
 
 <script>
     $('.average-review-rating').raty({
         readOnly: true,
         path: '/assets/',
         score: function() {
+            console.log($(this).attr('data-score'));
             return $(this).attr('data-score');
         }
-    });
-</script>
-
-
-<script>
-    $('#rating-form').raty({
-        path: '/assets/',
-        scoreName: 'review[rating]'
     });
 </script>

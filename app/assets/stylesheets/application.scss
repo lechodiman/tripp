@@ -15,6 +15,28 @@
  */
 @import "bootstrap";
 
+/* Variables*/
+$triposo_green: #5AB959;
+$triposo_white: rgba(255, 255, 255, 0.6);
+$triposo_black: #262626;
+$triposo_cyan: #00C4F8;
+$triposo_hover_link: rgba(255, 255, 255, 0.7);
+
+/* Imports */
+@import "users";
+
+.navbar {
+    background: $triposo_cyan;
+
+    a.nav-link {
+        color: #fff !important;
+
+        &:hover {
+            color: $triposo_hover_link !important; 
+        }
+    }
+}
+
 .nav-gravatar {
     height: 30px;
     width: auto;
@@ -27,6 +49,7 @@
     background-color: #f4f4f4;
     color: #333;
     width: 100%;
+    margin: 0.5em 0;
 }
 
 a.activity-button:hover {
@@ -39,9 +62,10 @@ a.activity-button:hover {
 
     .thumbnail-buttons {
         display: flex;
+        flex-direction: column;
         position: absolute;
         top: 5%;
-        right: 5%;
+        right: 2%;
     }
 
     .caption {
@@ -52,10 +76,17 @@ a.activity-button:hover {
     
     .caption-link {
         color: #fff;
+        font-size: 22px;
     }
 
     a {
         margin-right: 1rem;
+        color: $triposo_white;
+        font-size: 20px;
+
+        &:hover {
+            color: #fff;
+        }
     }
 }
 
@@ -69,7 +100,6 @@ a.activity-button:hover {
 
 #myInput {
     text-align: center;
-    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 70%; /* Full-width */
@@ -81,25 +111,13 @@ a.activity-button:hover {
 }
 
 #myTable {
-    border-collapse: collapse; /* Collapse borders */
-    width: 70%; /* Full-width */
-    border: 1px solid #ddd; /* Add a grey border */
-    font-size: 18px; /* Increase font-size */
-    margin-left:auto; 
-    margin-right:auto;
+    margin: 0 auto;
+    text-align: center;
+    width: 70%;
 }
 
-#myTable th, #myTable td {
-    text-align: left; /* Left-align text */
-    padding: 12px; /* Add padding */
-}
 
-#myTable tr {
-    /* Add a bottom border to all table rows */
-    border-bottom: 1px solid #ddd; 
-}
-
-#myTable tr.header, #myTable tr:hover {
+#myTable .header, #myTable tr:hover {
     /* Add a grey background color to the table header and on hover */
     background-color: #f1f1f1;
 }

@@ -1,0 +1,52 @@
+<div class="row m-2">
+    <div class="col-1 p-0">
+        <%= link_to user_path(post.user) do %>
+            <%= image_tag(post.user.avatar, alt: post.user.username, class: " img-fluid rounded-circle") %>
+        <% end %>
+    </div>
+
+    <div class="col-9 d-flex flex-column">
+        <div class="post-header">
+            <h4 class="d-inline"> <%= link_to post.title, post_path(post) %></h4> by 
+            <strong><%= link_to post.user.username, user_path(post.user) %></strong> <small><%= time_ago_in_words(post.created_at) %></small>  
+        </div>
+        <div class="post-body">
+            <%= post.content %>
+            <% if post.image? %>
+                <%= link_to post_path(post) do  %>
+                    <%= image_tag post.image.thumb.url, class:"img-fluid d-block mx-auto" %>
+                <% end %>
+            <% end %>
+        </div>
+        <div class="btn-group btn-group-sm mt-auto">
+            <%= link_to like_post_path(post), method: :put, class: "btn btn-primary" do %>
+                <i class="fas fa-heart"></i></i> <%= post.get_upvotes.size %>
+            <% end %>
+
+
+            <%= link_to dislike_post_path(post), method: :put, class: "btn btn-primary" do %>
+                <i class="fas fa-thumbs-down"></i></i> <%= post.get_downvotes.size %>
+            <% end %>
+        </div>
+    </div>
+    <div class="col-2 text-md-center">
+        <%= link_to save_post_path(post), method: :put do %>  
+            <%if user_signed_in? && current_user.find_saved_items.include?(post)%>
+                <p><i class="fas fa-star"></i></p>
+            <%else%>
+                <p><i class="far fa-star"></i></p>
+            <%end%>
+        <%end%>
+            
+
+        <% if current_user == post.user || has_role?(:admin) || has_role?(:moderator) %>
+                <%= link_to edit_post_path(post) do %>
+                    <p><i class="fas fa-pencil-alt"></i></p>
+                <% end %>
+
+                <%= link_to post_path(post), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <p><i class="fas fa-trash-alt"></i></p>
+                <% end %>
+        <% end %> <!-- endif -->
+    </div> <!-- col-2 -->           
+</div> <!-- div.row -->

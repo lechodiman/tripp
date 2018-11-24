@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
     before_action :find_city, only: [:new, :create, :index]
-    before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate_user!, only: [:new, :edit]
+    before_action :find_restaurant, only: [:show, :edit, :update, :destroy, :saved, :unsaved]
+    before_action :authenticate_user!, only: [:new, :edit, :saved, :unsaved]
 
     def index
         @restaurants = Restaurant.where(city_id: @city.id)
@@ -10,6 +10,14 @@ class RestaurantsController < ApplicationController
 
     def new
         @restaurant = Restaurant.new
+    end
+
+    def show
+        if @restaurant.reviews.blank?
+            @average_review = 0
+        else
+            @average_review = @restaurant.reviews.average(:rating).round(2)
+        end
     end
 
     def update
@@ -38,10 +46,20 @@ class RestaurantsController < ApplicationController
         end
     end
 
+    def saved
+        @restaurant.upsaved_by current_user
+        redirect_back(fallback_location: root_path)
+    end
+
+    def unsaved
+        @restaurant.unsave_by current_user
+        redirect_back(fallback_location: root_path)
+    end
+
     private
 
     def restaurants_params
-        params.require(:restaurant).permit(:name, :description)
+        params.require(:restaurant).permit(:name, :description, :image)
     end
 
     def find_city

@@ -1,10 +1,31 @@
-<div class="col-sm-4">
-    <h5><%= hotel.name %></h5> 
-    <%= link_to "See more", hotel_path(hotel), class: "btn btn-primary" %>
-    <% if has_role?(:admin) %>
-	    <div class="btn-group">
-	        <%= link_to "Edit", edit_hotel_path(hotel), class: "btn btn-secondary" %>
-	        <%= link_to "Delete", hotel_path(hotel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-	    </div>
-	<% end %>
+<div class="col-md-4 mb-4">
+    <div class="thumbnail">
+        <%= link_to image_tag(hotel.image.thumb.url, alt: hotel.name, class: "img-fluid"), hotel_path(hotel) if hotel.image? %>
+        <div class="caption">
+            <h4><%= link_to hotel.name, hotel_path(hotel), class: "caption-link"%></h4>
+        </div>
+        <div class="thumbnail-buttons">
+
+            <% if has_favorite_item(hotel) %>
+                <%= link_to unsave_hotel_path(hotel), method: :put do  %>
+                    <p><i class="fas fa-star"></i></p>
+                <% end %>
+            <% else %>
+                <%= link_to save_hotel_path(hotel), method: :put do  %>
+                    <p><i class="far fa-star"></i></p>
+                <% end %>                        
+            <% end %>            
+
+            <% if has_role?(:admin) %>
+                <%= link_to edit_hotel_path(hotel) do %>
+                    <p><i class="fas fa-pencil-alt"></i></p>
+                <% end %>
+
+                <%= link_to hotel_path(hotel), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <p><i class="fas fa-trash-alt"></i></p>
+                <% end %>            
+            <% end %>
+            
+        </div>            
+    </div>
 </div>

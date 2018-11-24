@@ -1,8 +1,30 @@
-<div class="col-sm-4">
-    <h5><%= restaurant.name %></h5> 
-    <%= link_to "See more", restaurant_path(restaurant), class: "btn btn-primary" %>
-    <div class="btn-group">
-        <%= link_to "Edit", edit_restaurant_path(restaurant), class: "btn btn-secondary" %>
-        <%= link_to "Delete", restaurant_path(restaurant), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+<div class="col-md-4 mb-4">
+    <div class="thumbnail">
+        <%= link_to image_tag(restaurant.image.thumb.url, alt: restaurant.name, class: "img-fluid"), restaurant_path(restaurant) if restaurant.image? %>
+        <div class="caption">
+            <h4><%= link_to restaurant.name, restaurant_path(restaurant), class: "caption-link"%></h4>
+        </div>
+        <div class="thumbnail-buttons">
+
+            <% if has_favorite_item(restaurant) %>
+                <%= link_to unsave_restaurant_path(restaurant), method: :put do  %>
+                    <p><i class="fas fa-star"></i></p>
+                <% end %>
+            <% else %>
+                <%= link_to save_restaurant_path(restaurant), method: :put do  %>
+                    <p><i class="far fa-star"></i></p>
+                <% end %>                        
+            <% end %>            
+
+            <% if has_role?(:admin) %>
+                <%= link_to edit_restaurant_path(restaurant) do %>
+                    <p><i class="fas fa-pencil-alt"></i></p>
+                <% end %>
+                <%= link_to restaurant_path(restaurant), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <p><i class="fas fa-trash-alt"></i></p>
+                <% end %>            
+            <% end %>
+            
+        </div>            
     </div>
 </div>

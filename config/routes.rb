@@ -34,6 +34,7 @@ Rails.application.routes.draw do
             put "like", to: "posts#upvote"
             put "dislike", to: "posts#downvote"
             put "save" , to: "posts#saved"
+            put "unsave", to: "posts#unsaved"
         end
     end
     
@@ -41,8 +42,14 @@ Rails.application.routes.draw do
         resources :cities do
             member do 
                 put "save", to: "cities#saved"
+                put "unsave", to: "cities#unsaved"
             end
             resources :hotels do
+                member do 
+                    put "save" , to: "hotels#saved"
+                    put "unsave", to: "hotels#unsaved"
+
+                end
             	resources :reviews, module: :hotels do
                     member do
                         put "like", to: "reviews#upvote"
@@ -52,6 +59,11 @@ Rails.application.routes.draw do
             end
 
             resources :citywalks do
+                member do
+                    put "save", to: "citywalks#saved"  
+                    put "unsave", to: "citywalks#unsaved"
+
+                end
                 resources :reviews, module: :citywalks do
                     member do
                         put "like", to: "reviews#upvote"
@@ -62,6 +74,11 @@ Rails.application.routes.draw do
 
 
             resources :restaurants do
+                member do
+                    put "save", to: "restaurants#saved"
+                    put "unsave", to: "restaurants#unsaved"
+  
+                end
                 resources :reviews, module: :restaurants
                 
             end

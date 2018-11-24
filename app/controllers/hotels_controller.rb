@@ -1,7 +1,7 @@
 class HotelsController < ApplicationController
     before_action :find_city, only: [:new, :create, :index]
-    before_action :find_hotel, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate_user!, only: [:new, :edit]
+    before_action :find_hotel, only: [:show, :edit, :update, :destroy, :saved, :unsaved]
+    before_action :authenticate_user!, only: [:new, :edit, :saved, :unsaved]
 
     def index
         @hotels = Hotel.where(city_id: @city.id)
@@ -46,10 +46,20 @@ class HotelsController < ApplicationController
         end
     end
 
+    def saved
+        @hotel.upsaved_by current_user
+        redirect_back(fallback_location: root_path)
+    end
+
+    def unsaved
+        @hotel.unsave_by current_user
+        redirect_back(fallback_location: root_path)
+    end
+
     private
 
     def hotel_params
-        params.require(:hotel).permit(:name, :description)
+        params.require(:hotel).permit(:name, :description, :image)
     end
 
     def find_city

@@ -1,7 +1,7 @@
 class CitywalksController < ApplicationController
     before_action :find_city, only: [:new, :create, :index]
-    before_action :find_citywalk, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate_user!, only: [:new, :edit]
+    before_action :find_citywalk, only: [:show, :edit, :update, :destroy, :saved, :unsaved]
+    before_action :authenticate_user!, only: [:new, :edit, :saved, :unsaved]
 
     def index
         @citywalks = Citywalk.where(city_id: @city.id)
@@ -46,10 +46,20 @@ class CitywalksController < ApplicationController
         end
     end
 
+    def saved
+        @citywalk.upsaved_by current_user
+        redirect_back(fallback_location: root_path)
+    end
+
+    def unsaved
+        @citywalk.unsave_by current_user
+        redirect_back(fallback_location: root_path)
+    end
+
     private
 
     def citywalks_params
-        params.require(:citywalk).permit(:name, :description, :duration, :place)
+        params.require(:citywalk).permit(:name, :description, :duration, :place, :image)
     end
 
     def find_city

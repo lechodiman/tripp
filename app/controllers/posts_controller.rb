@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
     before_action :find_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :saved]
-    before_action :authenticate_user!, only: [:new, :edit, :upvote, :downvote]
+    before_action :authenticate_user!, only: [:new, :edit, :upvote, :downvote, :saved]
 
     def index
         @posts = Post.all.order('created_at DESC')

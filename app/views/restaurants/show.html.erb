@@ -9,6 +9,30 @@
 </div>
 
 
+<div class="row justify-content-end mb-4">
+    <div class="col-md-3">
+        <% if has_favorite_item(@restaurant) %>
+            <%= link_to unsave_restaurant_path(@restaurant), class: "btn btn-outline-success w-100", method: :put do  %>
+                <i class="fas fa-star"></i> Remove
+            <% end %>
+        <% else %>
+            <%= link_to save_restaurant_path(@restaurant), class: "btn btn-outline-success w-100", method: :put do  %>
+                <i class="far fa-star"></i> Save
+            <% end %>                        
+        <% end %>            
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 justify-content-center">
+        <div class="show-image">
+            <%= image_tag @restaurant.image.url  , alt: @restaurant.name, class: "h-100 w-100" %>        
+        </div>        
+    </div>
+</div>
+
+<hr>
+
 <%= render partial: "reviews/reviews", locals: {reviewable: @restaurant} %>
 
 <%= render partial: "reviews/form", locals: {reviewable: @restaurant} %>
