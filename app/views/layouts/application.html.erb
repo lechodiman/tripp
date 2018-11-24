@@ -24,16 +24,22 @@
     <ul class="navbar-nav mr-auto">
       <% if has_role?(:admin) %>
         <li class="nav-item">
-          <%= link_to "Users", all_users_show_path, class: "nav-link" %>
+          <%= link_to all_users_show_path, class: "nav-link" do %>
+            <i class="fas fa-users"></i> Users
+          <% end %>
         </li>           
       <% end %>
 
       <li class="nav-item">
-        <%= link_to "Posts", posts_path, class: "nav-link" %>
+        <%= link_to posts_path, class: "nav-link" do %>
+          <i class="fas fa-newspaper"></i> Posts
+        <% end %>
       </li>
 
       <li class="nav-item">
-        <%= link_to 'Polls', polls_path, class: "nav-link" %>
+        <%= link_to polls_path, class: "nav-link" do %>
+          <i class="fas fa-poll"></i> Polls
+        <% end %>
       </li>       
     </ul>
 
