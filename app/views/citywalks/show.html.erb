@@ -8,6 +8,25 @@
     <p class="lead"><%= @citywalk.description %></p>
 </div>
 
+<div class="row">
+    <div class="col-sm-4">
+        <h4 class="text-secondary align-self-center">Details:</h2>        
+    </div>
+    <div class="col-sm-4 d-flex justify-content-center">
+
+        <h5><i class="fas fa-clock"></i> Duration: </h5>
+
+        <p class="ml-2"> <%= @citywalk.duration %> minutes</p>        
+    </div>
+    <div class="col-sm-4  d-flex justify-content-center">
+        <h5><i class="fas fa-map"></i> Place: </h5> 
+
+        <p class="ml-2"> <%= @citywalk.place %></p> 
+        
+    </div>
+</div>
+
+
 <div class="row justify-content-end mb-4">
     <div class="col-md-3">
         <% if has_favorite_item(@citywalk) %>
@@ -22,11 +41,6 @@
     </div>
 </div>
 
-<div class="row flex-column">
-    <p><strong>Duration</strong> <%= @citywalk.duration %> minutes</p>
-    <p><strong>Place</strong> <%= @citywalk.place %></p>
-
-</div>
 
 <div class="row">
     <div class="col-sm-12 justify-content-center">
