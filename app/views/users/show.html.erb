@@ -1,4 +1,4 @@
-<div class="row p-2">
+<div class="row mt-4 mb-4">
     <div class="col-1 p-0">
         <%= link_to user_path(@user) do %>
             <%= image_tag(@user.avatar, alt: @user.username, class: " img-fluid rounded-circle") %>
@@ -9,6 +9,7 @@
         <div class="average-review-rating" data-score="<%= @user.posts.sum {|s| 5*s.get_likes.size.to_f/s.votes_for.size} %>"></div> <small>based on <%= @user.posts.sum {|s| s.votes_for.size} %> votes</small>   
     </div>
 </div>
+
 <hr>
 
 <% if user_signed_in? && current_user == @user %>

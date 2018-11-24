@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myapp</title>
+    <title>Tripp</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -14,14 +14,14 @@
 
 <body>
   
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to "Travel App", root_path, class: "navbar-brand" %>
+<nav class="navbar navbar-expand-sm navbar-dark">
+  <%= link_to "Tripp", root_path, class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="nav navbar-nav mr-auto">
       <% if has_role?(:admin) %>
         <li class="nav-item">
           <%= link_to all_users_show_path, class: "nav-link" do %>
@@ -45,7 +45,7 @@
 
     <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline my-2 my-lg-0" } do |form| %>
       <%= form.text_field :q, placeholder: "Search", data: { behavior: "autocomplete" }, class: "form-control mr-sm-2" %>
-      <%= form.button "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
+      <%= form.button "Search", class: "btn btn-success my-2 my-sm-0" %>
     <% end %>
     
     <ul class="nav navbar-nav navbar-right">
