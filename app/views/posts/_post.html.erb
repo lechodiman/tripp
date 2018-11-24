@@ -1,6 +1,8 @@
 <div class="row m-2">
     <div class="col-1 p-0">
-        <%= image_tag(post.user.avatar, alt: post.user.username, class: " img-fluid rounded-circle") %>
+        <%= link_to user_path(post.user) do %>
+            <%= image_tag(post.user.avatar, alt: post.user.username, class: " img-fluid rounded-circle") %>
+        <% end %>
     </div>
 
     <div class="col-9 d-flex flex-column">
@@ -29,12 +31,13 @@
     </div>
     <div class="col-2 text-md-center">
         <%= link_to save_post_path(post), method: :put do %>  
-            <%if current_user.find_saved_items.include?(post)%>
+            <%if user_signed_in? && current_user.find_saved_items.include?(post)%>
                 <p><i class="fas fa-star"></i></p>
             <%else%>
                 <p><i class="far fa-star"></i></p>
             <%end%>
         <%end%>
+            
 
         <% if current_user == post.user || has_role?(:admin) || has_role?(:moderator) %>
                 <%= link_to edit_post_path(post) do %>

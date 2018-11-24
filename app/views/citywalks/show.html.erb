@@ -8,15 +8,19 @@
     <p class="lead"><%= @citywalk.description %></p>
 </div>
 
-<%if current_user%>
-    <%= link_to save_citywalk_path(@citywalk), class: "save", method: :put do %>  
-    <%if current_user.find_saved_items.include?(@citywalk)%>
-        <i class="fas fa-star"></i>
-    <%else%>
-        <i class="far fa-star"></i>
-    <%end%>
-    <%end%>
-<%end%>
+<div class="row justify-content-end mb-4">
+    <div class="col-md-3">
+        <% if has_favorite_item(@citywalk) %>
+            <%= link_to unsave_citywalk_path(@citywalk), class: "btn btn-outline-success w-100", method: :put do  %>
+                <i class="fas fa-star"></i> Remove
+            <% end %>
+        <% else %>
+            <%= link_to save_citywalk_path(@citywalk), class: "btn btn-outline-success w-100", method: :put do  %>
+                <i class="far fa-star"></i> Save
+            <% end %>                        
+        <% end %>            
+    </div>
+</div>
 
 <div class="row flex-column">
     <p><strong>Duration</strong> <%= @citywalk.duration %> minutes</p>
@@ -31,6 +35,8 @@
         </div>        
     </div>
 </div>
+
+<hr>
 
 <%= render partial: "reviews/reviews", locals: {reviewable: @citywalk} %>
 
