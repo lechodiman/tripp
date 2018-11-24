@@ -5,12 +5,14 @@
 
 
 
-<%= link_to save_city_path(@city), class: "save", method: :put do %>  
-<%if current_user.find_saved_items.include?(@city)%>
-<i class="fas fa-star"></i>
-<%else%>
-<i class="far fa-star"></i>
-<%end%>
+<%if current_user%>
+    <%= link_to save_city_path(@city), class: "save", method: :put do %>  
+    <%if current_user.find_saved_items.include?(@city)%>
+        <i class="fas fa-star"></i>
+    <%else%>
+        <i class="far fa-star"></i>
+    <%end%>
+    <%end%>
 <%end%>
 
 
@@ -26,6 +28,84 @@
         </div>        
     </div>
 </div>
+
+<br>
+<br>
+
+<div class="row">
+    <div class="col-md-1"></div>
+
+    <div class="col-md-5">
+        <h2>Current weather: <%= @forecast_dic['currently']['summary'] %></h2>
+        <h2>Current temperature: <%= to_celsius(@forecast_dic['currently']['temperature']) %>º</h2>
+    </div>
+
+    <div class="col-md-5">
+        <%= image_tag(@forecast_dic['currently']['icon'], :size => "120x120") %>
+    </div>
+
+    <div class="col-md-1"></div>
+</div>
+
+<% if @forecast_dic %>
+
+    <br>
+
+    <div class="row flex-column align-items-center">
+
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-1">
+            <h2>Day: </h2>
+            <h2>Min: </h2>
+            <h2>Max: </h2>
+        </div>
+
+        <div class="col-md-2">
+            <h2><%= next_five_days[0] %></h2>
+            <h2><%= to_celsius(@forecast_dic['daily']['data'][1]['temperatureMin'])%>º</h2>
+            <h2><%= to_celsius(@forecast_dic['daily']['data'][1]['temperatureMax'])%>º</h2>
+            <%= image_tag(@forecast_dic['daily']['data'][1]['icon'], :size => "100x100") %>
+        </div>   
+
+        <div class="col-md-2">
+            <h2><%= next_five_days[1] %></h2>
+            <h2><%= to_celsius(@forecast_dic['daily']['data'][2]['temperatureMin'])%>º</h2>
+            <h2><%= to_celsius(@forecast_dic['daily']['data'][2]['temperatureMax'])%>º</h2>
+            <%= image_tag(@forecast_dic['daily']['data'][2]['icon'], :size => "100x100") %>
+        </div>   
+
+        <div class="col-md-2">
+            <h2><%= next_five_days[2] %></h2>
+            <h2><%= to_celsius(@forecast_dic['daily']['data'][3]['temperatureMin'])%>º</h2>
+            <h2><%= to_celsius(@forecast_dic['daily']['data'][3]['temperatureMax'])%>º</h2>
+            <%= image_tag(@forecast_dic['daily']['data'][3]['icon'], :size => "100x100") %>
+        </div>    
+
+        <div class="col-md-2">
+            <h2><%= next_five_days[3] %></h2>
+            <h2><%= to_celsius(@forecast_dic['daily']['data'][4]['temperatureMin'])%>º</h2>
+            <h2><%= to_celsius(@forecast_dic['daily']['data'][4]['temperatureMax'])%>º</h2>
+            <%= image_tag(@forecast_dic['daily']['data'][4]['icon'], :size => "100x100") %>
+        </div>     
+
+        <div class="col-md-2">
+            <h2><%= next_five_days[4] %></h2>
+            <h2><%= to_celsius(@forecast_dic['daily']['data'][5]['temperatureMin'])%>º</h2>
+            <h2><%= to_celsius(@forecast_dic['daily']['data'][5]['temperatureMax'])%>º</h2>
+            <%= image_tag(@forecast_dic['daily']['data'][5]['icon'], :size => "100x100") %>
+        </div>   
+
+        <div class="col-md-1"></div>        
+    </div>
+
+<% end %>
+
+<br>
+<br>
 
 <div class="row justify-content-center">
     <h2>Browse <%= @city.name %></h2>
@@ -55,7 +135,7 @@
 </div>
 
 <div class="row">
-    <%= render(@city.hotels.limit(3)) %>
+    <%= render(@city.hotels.sort_by{|a| a.mean}.reverse[0..2]) %>
 </div>
 
 <hr>
@@ -67,7 +147,7 @@
 </div>
 
 <div class="row">
-    <%= render(@city.citywalks.limit(3)) %>
+    <%= render(@city.citywalks.sort_by{|a| a.mean}.reverse[0..2]) %>
 </div>
 
 <hr>
@@ -79,7 +159,7 @@
 </div>
 
 <div class="row">
-    <%= render(@city.restaurants.limit(3)) %>
+    <%= render(@city.restaurants.sort_by{|a| a.mean}.reverse[0..2]) %>
 </div>
 
 <hr>

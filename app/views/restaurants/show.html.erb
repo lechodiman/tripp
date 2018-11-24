@@ -9,6 +9,26 @@
 </div>
 
 
+<%if current_user%>
+    <%= link_to save_restaurant_path(@restaurant), class: "save", method: :put do %>  
+    <%if current_user.find_saved_items.include?(@restaurant)%>
+        <i class="fas fa-star"></i>
+    <%else%>
+        <i class="far fa-star"></i>
+    <%end%>
+    <%end%>
+<%end%>
+
+<div class="row">
+    <div class="col-sm-12 justify-content-center">
+        <div class="show-image">
+            <%= image_tag @restaurant.image.url  , alt: @restaurant.name, class: "h-100 w-100" %>        
+        </div>        
+    </div>
+</div>
+
+
+
 <%= render partial: "reviews/reviews", locals: {reviewable: @restaurant} %>
 
 <%= render partial: "reviews/form", locals: {reviewable: @restaurant} %>

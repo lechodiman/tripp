@@ -1,3 +1,44 @@
 // Place all the styles related to the Main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*
+Removes white gap between slides - change to base color of slide images
+*/
+.carousel {
+  background:#F5F5F5; 
+}
+
+.carousel-item .img-fluid {
+  width:60%;
+  height: 60%;
+}
+
+/* 
+anchors are inline so you need it make them block to go full width
+*/
+.carousel-item a {
+  display: block;
+  width:60%;
+  height: 60%;
+}
+
+.carousel-control-prev {
+  color:#036;
+  margin-left: -.5rem;
+  z-index: 10;
+}
+
+.carousel-control-next {
+  color:#036;
+  margin-right: -.5rem;
+  z-index: 10;
+}
+
+.carousel-control-prev:hover {
+  color:#0084FF;
+}
+
+.carousel-control-next:hover {
+  color:#0084FF;
+}

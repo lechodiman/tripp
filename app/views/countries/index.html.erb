@@ -30,3 +30,9 @@
         <% end %>            
     </div>
 <% end %>
+
+<% if has_role?(:admin) %>
+    <div class="row justify-content-center">
+        <%= link_to "Add Country", new_country_path, class: "btn btn-primary" %>        
+    </div>
+<% end %>
