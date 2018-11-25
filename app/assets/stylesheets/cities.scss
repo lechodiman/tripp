@@ -1,3 +1,9 @@
 // Place all the styles related to the Cities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@media only screen and (max-width: 600px) {
+	[class*="col-"]:not(:last-child) {
+	  	margin-bottom: 100px;
+	}
+}
