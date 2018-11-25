@@ -57,45 +57,92 @@
     <br>
 
     <div class="row">
-        <div class="col-md-1 d-flex flex-column align-items-center">
-            <h2>Day: </h2>
-            <h2>Min: </h2>
-            <h2>Max: </h2>
+        <div class="col-md-1"></div>
+
+        
+        <div class="col-md-2 d-flex flex-column align-items-center">
+
+                <h2><%= next_five_days[0] %></h2>
+
+                <div class="row">
+
+                    <%= image_tag(@forecast_dic['daily']['data'][1]['icon'], :size => "100x100") %>
+
+                    <div class="col">
+                        <h2><%= to_celsius(@forecast_dic['daily']['data'][1]['temperatureMin'])%>º</h2>
+                        <h2><%= to_celsius(@forecast_dic['daily']['data'][1]['temperatureMax'])%>º</h2>
+                    </div>
+                    
+                </div>
+ 
         </div>
 
         <div class="col-md-2 d-flex flex-column align-items-center">
-            <h2><%= next_five_days[0] %></h2>
-            <h2><%= to_celsius(@forecast_dic['daily']['data'][1]['temperatureMin'])%>º</h2>
-            <h2><%= to_celsius(@forecast_dic['daily']['data'][1]['temperatureMax'])%>º</h2>
-            <%= image_tag(@forecast_dic['daily']['data'][1]['icon'], :size => "100x100") %>
-        </div>   
 
-        <div class="col-md-2 d-flex flex-column align-items-center">
             <h2><%= next_five_days[1] %></h2>
-            <h2><%= to_celsius(@forecast_dic['daily']['data'][2]['temperatureMin'])%>º</h2>
-            <h2><%= to_celsius(@forecast_dic['daily']['data'][2]['temperatureMax'])%>º</h2>
-            <%= image_tag(@forecast_dic['daily']['data'][2]['icon'], :size => "100x100") %>
-        </div>   
+
+            <div class="row">
+
+                <%= image_tag(@forecast_dic['daily']['data'][2]['icon'], :size => "100x100") %>
+
+                <div class="col">
+                    <h2><%= to_celsius(@forecast_dic['daily']['data'][2]['temperatureMin'])%>º</h2>
+                    <h2><%= to_celsius(@forecast_dic['daily']['data'][2]['temperatureMax'])%>º</h2>
+                </div>
+                
+            </div>
+
+        </div>  
 
         <div class="col-md-2 d-flex flex-column align-items-center">
+
             <h2><%= next_five_days[2] %></h2>
-            <h2><%= to_celsius(@forecast_dic['daily']['data'][3]['temperatureMin'])%>º</h2>
-            <h2><%= to_celsius(@forecast_dic['daily']['data'][3]['temperatureMax'])%>º</h2>
-            <%= image_tag(@forecast_dic['daily']['data'][3]['icon'], :size => "100x100") %>
-        </div>    
+
+            <div class="row">
+
+                <%= image_tag(@forecast_dic['daily']['data'][3]['icon'], :size => "100x100") %>
+
+                <div class="col">
+                    <h2><%= to_celsius(@forecast_dic['daily']['data'][3]['temperatureMin'])%>º</h2>
+                    <h2><%= to_celsius(@forecast_dic['daily']['data'][3]['temperatureMax'])%>º</h2>
+                </div>
+                
+            </div>
+
+        </div>  
 
         <div class="col-md-2 d-flex flex-column align-items-center">
+
             <h2><%= next_five_days[3] %></h2>
-            <h2><%= to_celsius(@forecast_dic['daily']['data'][4]['temperatureMin'])%>º</h2>
-            <h2><%= to_celsius(@forecast_dic['daily']['data'][4]['temperatureMax'])%>º</h2>
-            <%= image_tag(@forecast_dic['daily']['data'][4]['icon'], :size => "100x100") %>
-        </div>     
+
+            <div class="row">
+
+                <%= image_tag(@forecast_dic['daily']['data'][4]['icon'], :size => "100x100") %>
+
+                <div class="col">
+                    <h2><%= to_celsius(@forecast_dic['daily']['data'][4]['temperatureMin'])%>º</h2>
+                    <h2><%= to_celsius(@forecast_dic['daily']['data'][4]['temperatureMax'])%>º</h2>
+                </div>
+                
+            </div>
+
+        </div>  
 
         <div class="col-md-2 d-flex flex-column align-items-center">
+
             <h2><%= next_five_days[4] %></h2>
-            <h2><%= to_celsius(@forecast_dic['daily']['data'][5]['temperatureMin'])%>º</h2>
-            <h2><%= to_celsius(@forecast_dic['daily']['data'][5]['temperatureMax'])%>º</h2>
-            <%= image_tag(@forecast_dic['daily']['data'][5]['icon'], :size => "100x100") %>
+
+            <div class="row">
+
+                <%= image_tag(@forecast_dic['daily']['data'][5]['icon'], :size => "100x100") %>
+
+                <div class="col">
+                    <h2><%= to_celsius(@forecast_dic['daily']['data'][5]['temperatureMin'])%>º</h2>
+                    <h2><%= to_celsius(@forecast_dic['daily']['data'][5]['temperatureMax'])%>º</h2>
+                </div>
+                
+            </div>
+
         </div>   
 
         <div class="col-md-1"></div>        
