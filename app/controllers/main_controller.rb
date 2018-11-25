@@ -18,4 +18,7 @@ class MainController < ApplicationController
             }
         end
     end
+
+    def landing_page
+    end
 end
