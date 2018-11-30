@@ -123,14 +123,14 @@ a.activity-button:hover {
 }
 
 .centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .label {
-color: white;
-padding: 8px;
+    color: white;
+    padding: 8px;
 }
 
 .success {background-color: #4CAF50;}
@@ -139,3 +139,18 @@ padding: 8px;
 .danger {background-color: #f44336;} 
 .other {background-color: #e7e7e7; color: black;}
 
+.fas.fa-star {
+    color: darken(yellow, 10%);
+
+    &:hover {
+        color: lighten(yellow, 5%);
+    }
+}
+
+.far.fa-star {
+    color: orange;
+
+    &:hover {
+        color: lighten(orange, 20%);
+    }
+}
