@@ -5,7 +5,7 @@ class CitiesController < ApplicationController
 
     def show
         @coordinates = Geocoder.search(@city.name + ',' + @city.country.name).first.coordinates
-        @forecast_dic = JSON.parse(HTTParty.get('https://api.darksky.net/forecast/' + ENV['DARK_SPY_API_KEY'] + '/' + @coordinates[0].to_s + ',' + @coordinates[1].to_s).to_json)
+        @forecast_dic = JSON.parse(HTTParty.get('https://api.darksky.net/forecast/' + ENV['DARK_SPY_API_KEY'] + '/' + @coordinates[0].to_s + ',' + @coordinates[1].to_s, verify: false).to_json)
     end
 
     def new
