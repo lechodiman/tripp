@@ -4,6 +4,9 @@
         <div class="caption">
             <h4><%= link_to hotel.name, hotel_path(hotel), class: "caption-link"%></h4>
         </div>
+        <div class="rating_star">
+            <h4><%= link_to hotel.name, root_path, class: "caption-link"%></h4>
+        </div>
         <div class="thumbnail-buttons">
 
             <% if has_favorite_item(hotel) %>
