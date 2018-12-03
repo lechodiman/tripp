@@ -4,6 +4,12 @@
         <div class="caption">
             <h4><%= link_to hotel.name, hotel_path(hotel), class: "caption-link"%></h4>
         </div>
+        <div class="rating-star">
+            <div class="average-review-rating" data-score="<%= hotel.mean %>"></div> 
+        </div>
+        <div class="based-on">
+            <small><%= hotel.reviews.count %> reviews</small>
+        </div>
         <div class="thumbnail-buttons">
 
             <% if has_favorite_item(hotel) %>
@@ -29,3 +35,24 @@
         </div>            
     </div>
 </div>
+
+<script>
+    $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        path: '/assets/'
+    });
+</script>
+
+<script>
+    $('.average-review-rating').raty({
+        readOnly: true,
+        path: '/assets/',
+        score: function() {
+            return $(this).attr('data-score');
+        }
+    });
+</script>
+
