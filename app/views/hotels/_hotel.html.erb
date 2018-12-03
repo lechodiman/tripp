@@ -7,6 +7,9 @@
         <div class="rating-star">
             <div class="average-review-rating" data-score="<%= hotel.mean %>"></div> 
         </div>
+        <div class="based-on">
+            <small><%= hotel.reviews.count %> reviews</small>
+        </div>
         <div class="thumbnail-buttons">
 
             <% if has_favorite_item(hotel) %>
