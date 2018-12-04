@@ -6,15 +6,13 @@
         </div>
         <div class="thumbnail-buttons">
 
-            <% if has_favorite_item(city) %>
-                <%= link_to unsave_city_path(city), method: :put do  %>
-                    <p><i class="fas fa-star"></i></p>
+            <%= link_to save_city_path(city), method: :put, remote: true do  %>
+                <% if has_favorite_item(city) %>
+                    <p><i class="star-icon fas fa-star"></i></p>
+                <% else %>
+                    <p><i class="star-icon far fa-star"></i></p>
                 <% end %>
-            <% else %>
-                <%= link_to save_city_path(city), method: :put do  %>
-                    <p><i class="far fa-star"></i></p>
-                <% end %>                        
-            <% end %>            
+            <% end %>                        
 
             <% if has_role?(:admin) %>                
                 <%= link_to edit_city_path(city) do %>
@@ -28,4 +26,22 @@
 
         </div>            
     </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
