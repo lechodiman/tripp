@@ -11,15 +11,13 @@
 
 <div class="row justify-content-end mb-4">
     <div class="col-md-3">
-        <% if has_favorite_item(@restaurant) %>
-            <%= link_to unsave_restaurant_path(@restaurant), class: "btn btn-outline-success w-100", method: :put do  %>
-                <i class="fas fa-star"></i> Remove
+        <%= link_to save_restaurant_path(@restaurant), class: "btn btn-outline-success w-100", method: :put, remote: true do  %>
+            <% if has_favorite_item(@restaurant) %>
+                <i class="star-icon fas fa-star"></i> <span class="fav-action">Remove</span>
+            <% else %>
+                <i class="star-icon far fa-star"></i> <span class="fav-action">Save</span>
             <% end %>
-        <% else %>
-            <%= link_to save_restaurant_path(@restaurant), class: "btn btn-outline-success w-100", method: :put do  %>
-                <i class="far fa-star"></i> Save
-            <% end %>                        
-        <% end %>            
+        <% end %>                        
     </div>
 </div>
 
@@ -37,6 +35,7 @@
 
 <%= render partial: "reviews/form", locals: {reviewable: @restaurant} %>
 
+<%= render "partials/favorite_modal" %>
 
 <script>
     $('.review-rating').raty({

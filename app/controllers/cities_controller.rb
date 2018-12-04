@@ -49,6 +49,7 @@ class CitiesController < ApplicationController
             @city.upsaved_by current_user
         end
         respond_to do |format|
+            format.html {redirect_back(fallback_location: @country)}
             format.js
         end
     end

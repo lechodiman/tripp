@@ -6,15 +6,13 @@
         </div>
         <div class="thumbnail-buttons">
 
-            <% if has_favorite_item(restaurant) %>
-                <%= link_to unsave_restaurant_path(restaurant), method: :put do  %>
-                    <p><i class="fas fa-star"></i></p>
+            <%= link_to save_restaurant_path(restaurant), method: :put do  %>
+                <% if has_favorite_item(restaurant) %>
+                    <p><i class="star-icon fas fa-star"></i></p>
+                <% else %>
+                    <p><i class="star-icon far fa-star"></i></p>
                 <% end %>
-            <% else %>
-                <%= link_to save_restaurant_path(restaurant), method: :put do  %>
-                    <p><i class="far fa-star"></i></p>
-                <% end %>                        
-            <% end %>            
+            <% end %>                        
 
             <% if has_role?(:admin) %>
                 <%= link_to edit_restaurant_path(restaurant) do %>
