@@ -10,8 +10,10 @@
 
 <div class="row justify-content-end mb-4">
     <div class="col-md-3">
+        
+        <% remoteOption = user_signed_in? ? true : false %>
 
-        <%= link_to save_city_path(@city), class: "btn btn-outline-success w-100", method: :put, remote: true do  %>
+        <%= link_to save_city_path(@city), class: "btn btn-outline-success w-100", method: :put, remote: remoteOption do  %>
             <% if has_favorite_item(@city) %>
                 <i class="star-icon fas fa-star"></i> <span class="fav-action">Remove</span>
             <% else %>

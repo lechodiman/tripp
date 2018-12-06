@@ -1,8 +1,8 @@
 class CitiesController < ApplicationController
     include UsersHelper
     before_action :find_country, only: [:new, :create]
-    before_action :find_city, only: [:show, :edit, :update, :destroy, :saved, :unsaved]
-    before_action :authenticate_user!, only: [:new, :edit, :saved, :unsaved]
+    before_action :find_city, only: [:show, :edit, :update, :destroy, :saved]
+    before_action :authenticate_user!, only: [:new, :edit, :saved]
 
     def show
         @coordinates = Geocoder.search(@city.name + ',' + @city.country.name).first.coordinates
