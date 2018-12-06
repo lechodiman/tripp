@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<header id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
   <ol class="carousel-indicators">
 
@@ -13,44 +13,46 @@
   <div class="carousel-inner">
 
     <div class="carousel-item active">
-      <img src="<%= image_url('paris.jpg') %>" alt="paris" style="width:100%;" class="center">
+      <img src="<%= image_url('paris.jpeg') %>" alt="paris" style="width:100%; height: 50%;" class="fill">
 	    <div class="carousel-caption">
 	      <h1>Tripp</h1>
 	      <h3>Be everywhere</h3>
-	      <h3>Explore the most amazing countries and cities of the world!</h3>
-        <h3><%= link_to "Start browsing countries!", countries_url %></h3>
+        <h3><%= link_to "Start browsing!", countries_url, class: "btn btn-success" %></h3>
 	    </div>
     </div>
 
     <div class="carousel-item">
-      <img src="<%= image_url('central_park.jpg') %>" alt="central_park" style="width:100%;" class="center">
+      <img src="<%= image_url('central_park.jpeg') %>" alt="central_park" style="width:100%; height: 50%;" class="fill">
       <div class="carousel-caption">
         <h1>Citywalks</h1>
         <h3>Find with us the most spectacular landscapes</h3>
+        <h3><%= link_to "Start browsing!", countries_url, class: "btn btn-success" %></h3>
       </div>
     </div>
 
     <div class="carousel-item">
-      <img src="<%= image_url('restaurant.jpg') %>" alt="restaurant" style="width:100%;" class="center">
+      <img src="<%= image_url('restaurant.jpeg') %>" alt="restaurant" style="width:100%; height: 50%;" class="fill">
       <div class="carousel-caption">
         <h1>Restaurants</h1>
         <h3>Eat in the perfect place for the perfect trip</h3>
+        <h3><%= link_to "Start browsing!", countries_url, class: "btn btn-success" %></h3>
       </div>
     </div>
 
     <div class="carousel-item">
-      <img src="<%= image_url('hotel.jpg') %>" alt="hotel" style="width:100%;" class="center">
+      <img src="<%= image_url('hotel.jpeg') %>" alt="hotel" style="width:100%; height: 50%;" class="fill">
       <div class="carousel-caption">
         <h1>Hotels</h1>
         <h3>Search for the hotel of your dreams</h3>
+        <h3><%= link_to "Start browsing!", countries_url, class: "btn btn-success" %></h3>
       </div>
     </div>
 
     <div class="carousel-item">
-      <img src="<%= image_url('tourists.jpg') %>" alt="tourists" style="width:100%;" class="center">
+      <img src="<%= image_url('tourists.jpeg') %>" alt="tourists" style="width:100%; height: 50%;" class="fill">
       <div class="carousel-caption">
         <h1>Come travel with us right now!</h1>
-        <h3><%= link_to "Join us", countries_url %></h3>
+        <h3><%= link_to "Start browsing!", countries_url, class: "btn btn-success" %></h3>
       </div>
     </div>
 
@@ -65,4 +67,74 @@
     <span class="sr-only">Next</span>
   </a>
 
+</header>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-8">
+
+      <h2 class="mt-4">What We Do</h2>
+      <p>Tripp, headquartered in Santiago, Chile, is one of the largest travel website in the world, with more than 315 million reviewers (active and inactive) and over 500 million reviews of hotels, restaurants and citywalks.</p>
+      <p>We help you find things to do across many destinations and uncountable points of interest.</p>
+      <p>We ensure our content is highly relevant through a delightful mix of fact and opinion.</p>
+
+    </div>
+    <div class="col-sm-4 d-flex flex-column align-items-center">
+      <h2 class="mt-4">Contact Us</h2>
+      <address>
+        <br>1234 Sta Rosa
+        <br>Santiago, Chile
+        <br>
+      </address>
+      <address>
+        <abbr title="Phone">P:</abbr>
+        (123) 456-7890
+        <br>
+        <abbr title="Email">E:</abbr>
+        <a href="mailto:#">tripp@example.com</a>
+      </address>
+    </div>
+  </div>
+  <!-- /.row -->
+
+  <h2 class="mt-4">What you will be able to find</h2>
+
+  <div class="row">
+    <div class="col-sm-4 my-4">
+      <div class="card">
+        <img class="card-img-top" src="<%= image_url('world.jpg') %>" alt="">
+        <div class="card-body">
+          <h4 class="card-title">Countries and cities</h4>
+          <p class="card-text">You don't know where to travel for your next holidays? There are many cultures and places to visit out there and we want you to find what's perfect for you and your loved ones.</p>
+        </div>
+        <div class="card-footer">
+          <%= link_to '<button type="button" class="btn btn-primary">Find out more!</button>'.html_safe, countries_url %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 my-4">
+      <div class="card">
+        <img class="card-img-top" src="<%= image_url('citywalks.jpg') %>" alt="">
+        <div class="card-body">
+          <h4 class="card-title">Hotels, Restaurants and Citywalks</h4>
+          <p class="card-text">What's an adventure without the most amazing place to stay or eat the perfect typical dish? And do not forget about the most spectacular parks, museums, shopping centers and more! Find everything you need with us!</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 my-4">
+      <div class="card">
+        <img class="card-img-top" src="<%= image_url('graph.jpg') %>" alt="">
+        <div class="card-body">
+          <h4 class="card-title">Weather</h4>
+          <p class="card-text">With us, you will be able to know the forecast and actual weather to get prepared for all your destinations and adventures.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.row -->
+
 </div>
+<!-- /.container -->
+

@@ -29,6 +29,12 @@
     </div> <!-- row -->
 <% end %>
 
+<div class="row justify-content-center">
+    <%= will_paginate @hotels, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
+
+<hr>
+
 <% if current_user %>
     <div class="row justify-content-center">
         <%= link_to 'Add poll', new_poll_path, class: "btn btn-primary" %>

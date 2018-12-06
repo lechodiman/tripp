@@ -4,17 +4,22 @@
         <div class="caption">
             <h4><%= link_to restaurant.name, restaurant_path(restaurant), class: "caption-link"%></h4>
         </div>
+        <div class="rating-star">
+            <div class="average-review-rating" data-score="<%= restaurant.mean %>"></div> 
+        </div>
+        <div class="based-on">
+            <small><%= restaurant.reviews.count %> reviews</small>
+        </div>
+
         <div class="thumbnail-buttons">
 
-            <% if has_favorite_item(restaurant) %>
-                <%= link_to unsave_restaurant_path(restaurant), method: :put do  %>
-                    <p><i class="fas fa-star"></i></p>
+            <%= link_to save_restaurant_path(restaurant), method: :put do  %>
+                <% if has_favorite_item(restaurant) %>
+                    <p><i class="star-icon fas fa-star"></i></p>
+                <% else %>
+                    <p><i class="star-icon far fa-star"></i></p>
                 <% end %>
-            <% else %>
-                <%= link_to save_restaurant_path(restaurant), method: :put do  %>
-                    <p><i class="far fa-star"></i></p>
-                <% end %>                        
-            <% end %>            
+            <% end %>                        
 
             <% if has_role?(:admin) %>
                 <%= link_to edit_restaurant_path(restaurant) do %>
@@ -28,3 +33,23 @@
         </div>            
     </div>
 </div>
+
+<script>
+    $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        path: '/assets/'
+    });
+</script>
+
+<script>
+    $('.average-review-rating').raty({
+        readOnly: true,
+        path: '/assets/',
+        score: function() {
+            return $(this).attr('data-score');
+        }
+    });
+</script>

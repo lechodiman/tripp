@@ -1,0 +1,24 @@
+var icon = $('.star-icon');
+var favAction = $('.fav-action');
+
+<% if has_favorite_item(@citywalk) %>
+    // remove far class
+    icon.removeClass('far');
+    // add fas class
+    icon.addClass('fas');
+
+    favAction.html('Remove');
+
+    $('.modal-title').html('Added to favorites');
+<% else %>
+    // remove fas class
+    icon.removeClass('fas');
+    // add far class
+    icon.addClass('far');
+
+    favAction.html('Add');
+
+    $('.modal-title').html('Removed from favorites');
+<% end %>
+
+$('#exampleModal').modal('show');

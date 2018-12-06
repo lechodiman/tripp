@@ -24,6 +24,7 @@ $triposo_hover_link: rgba(255, 255, 255, 0.7);
 
 /* Imports */
 @import "users";
+@import "main";
 
 .navbar {
     background: $triposo_cyan;
@@ -70,10 +71,22 @@ a.activity-button:hover {
 
     .caption {
         position: absolute;
+        bottom: 20%;
+        left: 5%;
+    }
+   
+    .rating-star {
+        position: absolute;
         bottom: 10%;
         left: 5%;
     }
     
+    .based-on {
+        position: absolute;
+        bottom: 10%;
+        left: 35%;
+        color: #fff;
+    }
     .caption-link {
         color: #fff;
         font-size: 22px;
@@ -123,14 +136,14 @@ a.activity-button:hover {
 }
 
 .centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .label {
-color: white;
-padding: 8px;
+    color: white;
+    padding: 8px;
 }
 
 .success {background-color: #4CAF50;}
@@ -138,4 +151,3 @@ padding: 8px;
 .warning {background-color: #ff9800;}
 .danger {background-color: #f44336;} 
 .other {background-color: #e7e7e7; color: black;}
-
