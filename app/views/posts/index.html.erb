@@ -14,7 +14,7 @@
 
 <hr>
 
-<% if has_role?(:admin) %>
+<% if user_signed_in? %>
     <div class="row justify-content-center">
         <%= link_to "Add Post", new_post_path, class: "btn btn-primary" %>            
     </div>
