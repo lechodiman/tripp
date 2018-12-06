@@ -1,10 +1,13 @@
 <div class="row mt-3">
     <div class="col-1 p-0">
-        <%= image_tag(comment.user.avatar, alt: comment.user.username, class: " img-fluid rounded-circle") %>
+        <%= link_to user_path(comment.user) do  %>
+            <%= image_tag(comment.user.avatar, alt: comment.user.username, class: " img-fluid rounded-circle") %>
+        <% end %>
     </div>
     <div class="col-8 flex-column">
         <div class="comment-header">
-            <strong><%= comment.user.username %></strong> <small><%= time_ago_in_words(comment.created_at) %></small>  
+            <strong> <%= link_to comment.user.username, user_path(comment.user)  %></strong> 
+            <small><%= time_ago_in_words(comment.created_at) %></small>  
         </div>
         <div class="comment-content">
                 <%= comment.content %>

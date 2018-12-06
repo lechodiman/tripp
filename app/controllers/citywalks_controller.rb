@@ -1,4 +1,5 @@
 class CitywalksController < ApplicationController
+    include UsersHelper
     before_action :find_city, only: [:new, :create, :index]
     before_action :find_citywalk, only: [:show, :edit, :update, :destroy, :saved, :unsaved]
     before_action :authenticate_user!, only: [:new, :edit, :saved, :unsaved]
@@ -47,13 +48,15 @@ class CitywalksController < ApplicationController
     end
 
     def saved
-        @citywalk.upsaved_by current_user
-        redirect_back(fallback_location: root_path)
-    end
-
-    def unsaved
-        @citywalk.unsave_by current_user
-        redirect_back(fallback_location: root_path)
+        if has_favorite_item(@citywalk)
+            @citywalk.unsave_by current_user
+        else
+            @citywalk.upsaved_by current_user
+        end
+        respond_to do |format|
+            format.html {redirect_back(fallback_location: @city)}
+            format.js
+        end
     end
 
     private
