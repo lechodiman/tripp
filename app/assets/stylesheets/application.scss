@@ -24,6 +24,7 @@ $triposo_hover_link: rgba(255, 255, 255, 0.7);
 
 /* Imports */
 @import "users";
+@import "main";
 
 .navbar {
     background: $triposo_cyan;
@@ -70,10 +71,22 @@ a.activity-button:hover {
 
     .caption {
         position: absolute;
+        bottom: 20%;
+        left: 5%;
+    }
+   
+    .rating-star {
+        position: absolute;
         bottom: 10%;
         left: 5%;
     }
     
+    .based-on {
+        position: absolute;
+        bottom: 10%;
+        left: 35%;
+        color: #fff;
+    }
     .caption-link {
         color: #fff;
         font-size: 22px;
