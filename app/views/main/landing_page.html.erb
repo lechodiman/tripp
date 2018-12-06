@@ -13,7 +13,7 @@
   <div class="carousel-inner">
 
     <div class="carousel-item active">
-      <img src="<%= image_url('paris.jpg') %>" alt="paris" style="width:100%;" class="fill">
+      <img src="<%= image_url('paris.jpeg') %>" alt="paris" style="width:100%; height: 50%;" class="fill">
 	    <div class="carousel-caption">
 	      <h1>Tripp</h1>
 	      <h3>Be everywhere</h3>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="carousel-item">
-      <img src="<%= image_url('central_park.jpg') %>" alt="central_park" style="width:100%;" class="fill">
+      <img src="<%= image_url('central_park.jpeg') %>" alt="central_park" style="width:100%; height: 50%;" class="fill">
       <div class="carousel-caption">
         <h1>Citywalks</h1>
         <h3>Find with us the most spectacular landscapes</h3>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="carousel-item">
-      <img src="<%= image_url('restaurant.jpg') %>" alt="restaurant" style="width:100%;" class="fill">
+      <img src="<%= image_url('restaurant.jpeg') %>" alt="restaurant" style="width:100%; height: 50%;" class="fill">
       <div class="carousel-caption">
         <h1>Restaurants</h1>
         <h3>Eat in the perfect place for the perfect trip</h3>
@@ -39,7 +39,7 @@
     </div>
 
     <div class="carousel-item">
-      <img src="<%= image_url('hotel.jpg') %>" alt="hotel" style="width:100%;" class="fill">
+      <img src="<%= image_url('hotel.jpeg') %>" alt="hotel" style="width:100%; height: 50%;" class="fill">
       <div class="carousel-caption">
         <h1>Hotels</h1>
         <h3>Search for the hotel of your dreams</h3>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="carousel-item">
-      <img src="<%= image_url('tourists.jpg') %>" alt="tourists" style="width:100%;" class="fill">
+      <img src="<%= image_url('tourists.jpeg') %>" alt="tourists" style="width:100%; height: 50%;" class="fill">
       <div class="carousel-caption">
         <h1>Come travel with us right now!</h1>
         <h3><%= link_to "Join us", countries_url %></h3>
@@ -105,6 +105,9 @@
         <div class="card-body">
           <h4 class="card-title">Countries and cities</h4>
           <p class="card-text">You don't know where to travel for your next holidays? There are many cultures and places to visit out there and we want you to find what's perfect for you and your loved ones.</p>
+        </div>
+        <div class="card-footer">
+          <%= link_to '<button type="button" class="btn btn-primary">Find out more!</button>'.html_safe, countries_url %>
         </div>
       </div>
     </div>
