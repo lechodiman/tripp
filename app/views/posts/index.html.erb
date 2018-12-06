@@ -5,13 +5,17 @@
 <% if @posts.count == 0 %>
     <h1>There are no posts currently in this category</h1>
 <% else %>
-
-    <%= render @posts %>
-    
+    <%= render @posts %>    
 <% end %> <!-- endelse -->
+
+<div class="row justify-content-center">
+    <%= will_paginate @hotels, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
 
 <hr>
 
 <% if has_role?(:admin) %>
-    <%= link_to "Add Post", new_post_path, class: "btn btn-primary" %>    
+    <div class="row justify-content-center">
+        <%= link_to "Add Post", new_post_path, class: "btn btn-primary" %>            
+    </div>
 <% end %>

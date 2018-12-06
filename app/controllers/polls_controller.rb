@@ -4,6 +4,7 @@ class PollsController < ApplicationController
 
     def index
         @polls = Poll.all
+                     .paginate(page: params[:page], per_page: 2)
     end
 
     def new

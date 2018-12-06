@@ -1,7 +1,8 @@
 class CitiesController < ApplicationController
+    include UsersHelper
     before_action :find_country, only: [:new, :create]
-    before_action :find_city, only: [:show, :edit, :update, :destroy, :saved, :unsaved]
-    before_action :authenticate_user!, only: [:new, :edit, :saved, :unsaved]
+    before_action :find_city, only: [:show, :edit, :update, :destroy, :saved]
+    before_action :authenticate_user!, only: [:new, :edit, :saved]
 
     def show
         @coordinates = Geocoder.search(@city.name + ',' + @city.country.name).first.coordinates
@@ -42,13 +43,15 @@ class CitiesController < ApplicationController
     end
 
     def saved
-        @city.upsaved_by current_user
-        redirect_back(fallback_location: root_path)
-    end
-
-    def unsaved
-        @city.unsave_by current_user
-        redirect_back(fallback_location: root_path)
+        if has_favorite_item(@city)
+            @city.unsave_by current_user
+        else
+            @city.upsaved_by current_user
+        end
+        respond_to do |format|
+            format.html {redirect_back(fallback_location: @country)}
+            format.js
+        end
     end
 
     private

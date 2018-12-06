@@ -5,11 +5,14 @@
 <% reviewable.reviews.each do |review| %>
     <div class="row m-2">
         <div class="col-1 p-0">
-            <%= image_tag(review.user.avatar, alt: review.user.username, class: " img-fluid rounded-circle") %>
+            <%= link_to user_path(review.user) do %>
+                <%= image_tag(review.user.avatar, alt: review.user.username, class: " img-fluid rounded-circle") %>
+            <% end %>
         </div>
         <div class="col-8 flex-column">
             <div class="review-header">
-                <strong><%= review.user.username %></strong> <small><%= time_ago_in_words(review.created_at) %></small>  
+                <strong><%= link_to review.user.username, user_path(review.user) %></strong> 
+                <small><%= time_ago_in_words(review.created_at) %></small>  
                 <div class="review-rating" data-score="<%= review.rating %>"></div>
             </div>
             <div class="review-body">

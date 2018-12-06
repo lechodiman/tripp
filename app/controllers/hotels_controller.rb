@@ -1,4 +1,5 @@
 class HotelsController < ApplicationController
+    include UsersHelper
     before_action :find_city, only: [:new, :create, :index]
     before_action :find_hotel, only: [:show, :edit, :update, :destroy, :saved, :unsaved]
     before_action :authenticate_user!, only: [:new, :edit, :saved, :unsaved]
@@ -47,13 +48,15 @@ class HotelsController < ApplicationController
     end
 
     def saved
-        @hotel.upsaved_by current_user
-        redirect_back(fallback_location: root_path)
-    end
-
-    def unsaved
-        @hotel.unsave_by current_user
-        redirect_back(fallback_location: root_path)
+        if has_favorite_item(@hotel)
+            @hotel.unsave_by current_user
+        else
+            @hotel.upsaved_by current_user
+        end
+        respond_to do |format|
+            format.html {redirect_back(fallback_location: @city)}
+            format.js
+        end
     end
 
     private

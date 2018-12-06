@@ -12,15 +12,13 @@
         </div>
         <div class="thumbnail-buttons">
 
-            <% if has_favorite_item(citywalk) %>
-                <%= link_to unsave_citywalk_path(citywalk), method: :put do  %>
-                    <p><i class="fas fa-star"></i></p>
+            <%= link_to save_citywalk_path(citywalk), method: :put do  %>
+                <% if has_favorite_item(citywalk) %>
+                    <p><i class="star-icon fas fa-star"></i></p>
+                <% else %>
+                    <p><i class="star-icon far fa-star"></i></p>
                 <% end %>
-            <% else %>
-                <%= link_to save_citywalk_path(citywalk), method: :put do  %>
-                    <p><i class="far fa-star"></i></p>
-                <% end %>                        
-            <% end %>            
+            <% end %>                        
 
             <% if has_role?(:admin) %>
                 <%= link_to edit_citywalk_path(citywalk) do %>
